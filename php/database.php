@@ -20,4 +20,21 @@
 	catch (PDOException $e) {
 		exit("Impossibile connettersi al database: " . $e->getMessage());
 	}
+
+
+	function &getCredentials($pdo){
+
+		$query = "
+				SELECT mail, password
+				FROM user
+				WHERE mail = :mail";
+
+		$check = $pdo->prepare($query);
+		$check->bindParam(':mail', $mail, PDO::PARAM_STR);
+		$check->execute();
+
+		$user =  $check->fetch(PDO::FETCH_ASSOC);
+		echo var_dump($user);
+		return $user;
+	}
 ?>
