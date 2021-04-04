@@ -1,0 +1,20 @@
+
+
+/* 	********************************************************************
+
+								OPEN SANS
+
+	*******************************************************************/
+@font-face {
+	font-family: openSans-Regular;
+	src: url(../assets/fonts/Open_Sans/OpenSans-Regular.ttf);
+}
+
+@font-face {
+	font-family: openSans-Vold;
+	src: url(../assets/fonts/Open_Sans/OpenSans-Bold.ttf);
+	font-weight: bold;
+}
+
+
+/**********************************************************************/
