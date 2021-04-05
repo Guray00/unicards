@@ -11,9 +11,15 @@
 }
 
 @font-face {
-	font-family: openSans-Vold;
+	font-family: openSans-Bold;
 	src: url(../assets/fonts/Open_Sans/OpenSans-Bold.ttf);
 	font-weight: bold;
+}
+
+@font-face {
+	font-family: openSans-Italic;
+	src: url(../assets/fonts/Open_Sans/OpenSans-Italic.ttf);
+	font-style: italic;
 }
 
 

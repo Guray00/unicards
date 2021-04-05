@@ -14,20 +14,19 @@
 <html>
 	<header>
 		<title>unicards</title>
-		<link rel="stylesheet" href="../css/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
-		<link rel="stylesheet" href="../css/design.css">
+		<link rel="stylesheet" href="../css/login.css">
 	</header>
 
 
 	<body>
-		<form id="login" method="POST" action="../php/login.php">
-			<h1>Login</h1>
+		<form id="signin" method="POST" action="../php/signin.php">
+			<h1>Sign In</h1>
 
 			<label>Mail:</label> <input type="email" name="mail" required> <br>
 			<label>Password:</label> <input type="password" name="password" required> <br>
 		
-			<input type="submit" value="Login" name="login" method="POST">
+			<input type="submit" value="Sign In" name="signin" method="POST">
 		</form>
 	</body>
 </html>

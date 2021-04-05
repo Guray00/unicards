@@ -19,4 +19,15 @@
 		return true;
 	}
 
+	function _isUsernameValid($username){
+		return filter_var(
+			$username,
+			FILTER_VALIDATE_REGEXP, [
+				"options" => [
+					"regexp" => "/^[a-z\d_@]{3,20}$/i"
+				]
+			]
+		);
+	}
+
 ?>
