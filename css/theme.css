@@ -5,7 +5,29 @@
 	font-family: openSans-Regular;
 }
 
+.dark {
+	--primary-color: #F00;
+	--secondary-color: #0F0;
 
+	--background-color: #2f3036;
+	--background-paper: #34383f;
+
+	--text-primary: #ffffff;
+	--text-secondary: #454545;
+	--text-error: #B33;
+}
+
+:root {
+	--primary-color: #F00;
+	--secondary-color: #0F0;
+
+	--background-color: #ffffff;
+	--background-paper: #ffffff;
+
+	--text-primary: #ffffff;
+	--text-secondary: #454545;
+	--text-error: #B33;
+}
 
 
 /*******************************
@@ -14,6 +36,7 @@
 body {
 	background-image: url("../assets/wall.svg");
 	background-size: 25%;
+	background-color: var(--background-color);
 }
 
 .side-box {
@@ -21,7 +44,7 @@ body {
 }
 
 .content-box {
-	background-color: #ffffff;
+	background-color: var(--background-paper);
 }
 
 /*******************************
@@ -66,7 +89,6 @@ footer {
 /*******************************
 			Login
 *******************************/
-
 #login_container {
 	background-image: url("../assets/wall.svg");
 	background-size: 25%;
@@ -78,5 +100,5 @@ footer {
 }
 
 #login > h1, label {
-	color: #edf0f3;
+	color: #ffffff;
 }

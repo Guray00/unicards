@@ -36,11 +36,25 @@ div.content-box, div.side-box {
 ************************/
 input[type=submit]{
 	padding: 3%;
-	border-radius: 10%;
+	padding-left: 6%;
+	padding-right: 6%;
+
+	border-radius: 3pt;
 	border: none;
 	text-align: center;
   	text-decoration: none;
-	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+input[type=email], input[type=password]{
+	padding: 3%;
+	border-radius: 3pt;
+	border: none;
+  	text-decoration: none;
+}
+
+input:focus{
+	outline: none;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
 }
 
 /***********************

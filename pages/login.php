@@ -32,6 +32,11 @@
 				<label id="msg">aaa</label>
 				<input type="submit" id="btn" value="Login" name="login" method="POST">
 			</form>
+
+			<div id="login-side">
+				<h1>Unicards</h1>
+				<h2>Un ottimo modo per studiare</h2>
+			</div>
 			
 		</div>
 
