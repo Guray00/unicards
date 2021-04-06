@@ -36,7 +36,7 @@ CONSTRAINT `user_account` FOREIGN KEY `fkIdx_75` (`mail`) REFERENCES `User` (`ma
 -- ************************************** `Card`
 CREATE TABLE `Card`
 (
- `id`       integer NOT NULL ,
+ `id`       integer NOT NULL AUTO_INCREMENT,
  `question` text NOT NULL ,
  `answer`   text NOT NULL ,
 
@@ -86,4 +86,5 @@ insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1
 
 /*modificati a manina
 	- auto_increment su deck - id
+	- auto_increment su card - id
 */
