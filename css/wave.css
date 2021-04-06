@@ -1,0 +1,44 @@
+.wave1, .wave2, .wave3{height: 30px;position: relative; width: 100%;z-index: 12;left: 0;bottom: 0;}
+
+.wave1 {
+  -webkit-animation: wave-animation1 8.7s infinite linear; /* Safari 4+ */
+  -moz-animation:    wave-animation1 8.7s infinite linear; /* Fx 5+ */
+  -o-animation:      wave-animation1 8.7s infinite linear; /* Opera 12+ */
+  animation:         wave-animation1 8.7s infinite linear; /* IE 10+ */
+}
+.wave2 {
+  -webkit-animation: wave-animation1 10.3s infinite linear; /* Safari 4+ */
+  -moz-animation:    wave-animation1 10.3s infinite linear; /* Fx 5+ */
+  -o-animation:      wave-animation1 10.3s infinite linear; /* Opera 12+ */
+  animation:         wave-animation1 10.3s infinite linear; /* IE 10+ */
+}
+
+@-webkit-keyframes wave-animation1 {
+  0%   { background-position: 0 0; }
+  100% { background-position: 1601px 0; }
+}
+@-moz-keyframes wave-animation1 {
+  0%   { background-position: 0 0; }
+  100% { background-position: 1601px 0; }
+}
+@-o-keyframes wave-animation1 {
+  0%   { background-position: 0 0; }
+  100% { background-position: 1601px 0; }
+}
+@keyframes wave-animation1 {
+  0%   { background-position: 0 0; }
+  100% {background-position: 1601px 0;}
+}
+
+.wave1 {
+	background-color: aqua;
+    background: url('http://www.templates-preview.com/bootstrap-templates/300111854/images/wave1.png') 0 0 repeat-x;
+}
+/*
+.wave2 {
+    background: url('http://www.templates-preview.com/bootstrap-templates/300111854/images/wave2.png') 0 0 repeat-x;
+}*/
+
+.wave2 {
+    background: url("../assets/wave1.png") 0 0 repeat-x;
+}

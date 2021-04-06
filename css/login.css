@@ -1,8 +1,76 @@
+@import "design.css";
+
+html, body{
+	height: 100%;
+	width: 100%;
+}
+
 /***********************
 		login page
 ************************/
+
+#login_container {
+	display: flex;
+	height: calc(100% - var(--footer-size));
+	width: 100%;
+
+	justify-content: center;
+	align-items: center;	
+}
+
 #login {
-	display: block;
-	width: fit-content;
+	display: grid;
+
 	padding: 15pt;
+	border-radius: 15pt;
+	grid-gap: 8pt;
+
+	grid-template-columns: auto 1fr;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin: 15pt;
+}
+
+
+
+
+#login > h1 {
+	grid-column-end: span 2;
+	grid-row: 1;
+}
+
+
+#lbl_mail {
+	grid-column: 1;
+	grid-row: 2;
+}
+
+#mail {
+	grid-column: 2;
+	grid-row: 2;
+}
+
+
+#lbl_password {
+	grid-column: 1;
+	grid-row: 3;
+}
+
+#password {
+	grid-column: 2;
+	grid-row: 3;
+}
+
+
+#msg {
+	visibility: hidden;
+	grid-column-end: span 2;
+	grid-row: 4;
+	text-align: center;
+}
+
+#btn {
+	grid-column: 2;
+	grid-row: 5;
+	width: fit-content;
+	justify-self:flex-end;
 }

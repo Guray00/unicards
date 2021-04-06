@@ -14,6 +14,8 @@
 <html>
 	<header>
 		<title>unicards</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../css/design.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		<link rel="stylesheet" href="../css/login.css">
 	</header>

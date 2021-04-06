@@ -23,7 +23,7 @@
 			
 			// preparo la query  per ottenere le credenziali
 			$query = "
-				SELECT mail, password
+				SELECT mail, username, password
 				FROM user
 				WHERE mail = :mail";
 

@@ -16,18 +16,26 @@
 		<title>unicards</title>
 		<link rel="stylesheet" href="../css/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
-		<link rel="stylesheet" href="../css/design.css">
 	</header>
 
 
 	<body>
-		<form id="login" method="POST" action="../php/login.php">
-			<h1>Login</h1>
 
-			<label>Mail:</label> <input type="email" name="mail" required> <br>
-			<label>Password:</label> <input type="password" name="password" required> <br>
-		
-			<input type="submit" value="Login" name="login" method="POST">
-		</form>
+		<div id="login_container">
+			<form id="login" method="POST" action="../php/login.php">
+				<h1>Login</h1>
+
+				<label id="lbl_mail">Mail:</label> 
+				<input type="email" id="" name="mail" required>
+				<label id="lbl_password">Password:</label> 
+				<input type="password" id="password" name="password" required>
+				<label id="msg">aaa</label>
+				<input type="submit" id="btn" value="Login" name="login" method="POST">
+			</form>
+			
+		</div>
+
+		<!-- <div class="wave2"></div> -->
+		<?php require("../html/footer.php");?>
 	</body>
 </html>

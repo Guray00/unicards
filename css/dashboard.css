@@ -1,3 +1,11 @@
+@import "design.css";
+
+/*  necessario per far espandere
+	la griglia in verticale */
+html, body {
+	height: 100%;
+}
+
 /***********************
 		DASHBOARD
 ************************/
@@ -14,7 +22,7 @@
 	border-radius: 10pt;
 
 	margin: 10pt;
-	padding: 10pt;
+	padding: 20pt;
 	min-width: 200pt;
 }
 
@@ -37,33 +45,49 @@
 
 	/* consente al menu di muoversi*/
 	position: sticky;
-	top: 10%;
+	top: 18pt;
 }
 
 /*la griglia che formatta la pagina*/
 .container {
 	display: grid;
 	width: 100%;
-	height: 100%;
 
-	grid-template-rows: auto 1fr;
+	/*il footer non deve essere visibile
+	senza scroll, perciò richiedo che la
+	griglia sia più grande per nasconderlo*/
+	height: calc(100% + var(--footer-size));
+
+	grid-template-rows: auto 1fr auto;
 	grid-template-columns: 75fr 25fr;
 }
 
-/*  necessario per far espandere
-	la griglia in verticale */
-html, body {
-	height: 100%;
+
+#add {
+	background-image: url("../assets/add.png");
+	
+	width: 100pt;
+	height: 100pt;
+
+	margin: 5pt;
+	object-fit: cover;
+	background-size: cover;
 }
 
 
 
 /***********************
-	posizionamento nav
+	 posizionamento
 ************************/
 nav {
 	grid-row-start: 1;
 	grid-row-end: 1;
+	grid-column-end: span 2;
+}
+
+footer {
+	grid-row-start: 3;
+	grid-row-end: 3;
 	grid-column-end: span 2;
 }
 

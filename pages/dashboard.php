@@ -11,26 +11,31 @@
 
 	<head>
 		<title>Dashboard</title>
+		<meta charset="utf-8">
+		
+		<!--  Stili  -->
 		<link rel="stylesheet" href="../css/dashboard.css">
-		<link rel="stylesheet" href="../css/design.css">
 		<link rel="stylesheet" href="../css/theme.css">
-
 	</head>
 
-	<body>
+	<!-- griglia -->
+	<body class="container">
+	
+		<!-- Navbar -->
+		<?php require("../html/nav.php");?>
 
-			
-			
-			<div class="container">
-				<?php require("../html/nav.php");?>
+		<!-- Menu sinistro -->
+		<div class="deck_show">	
+			<div id="add"></div>
+		</div>
 
-				<div class="deck_show">	
-				</div>
-				<div  class="menu">
-					<p><?php echo $_SESSION["session_username"]?></p>
-				</div>
-			</div>
-			
-			<?php require("../html/footer.php");?>
+		<!--  Menu destro  -->
+		<div  class="menu">
+			<p><?php echo $_SESSION["session_username"]?></p>
+		</div>
+
+		<!--  Footer  -->
+		<?php require("../html/footer.php");?>
+						
 	</body>
 </html>

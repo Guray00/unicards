@@ -2,11 +2,27 @@
 		general
 ************************/
 
+:root{
+	--footer-size: 100pt;
+}
+
 *{
 	margin: 0;
 	padding: 0;
 }
 
+
+/***********************
+		Buttons
+************************/
+input[type=submit]{
+	padding: 3%;
+	border-radius: 10%;
+	border: none;
+	text-align: center;
+  	text-decoration: none;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 /***********************
 		  nav
@@ -40,7 +56,7 @@ nav > a.unselected {
 footer {
 	display: flex;
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	height: 100pt;
+	height: var(--footer-size);
 	text-align: center;
 	justify-content: center;
 	align-items: center;

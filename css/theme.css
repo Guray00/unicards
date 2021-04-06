@@ -5,10 +5,10 @@
 	font-family: openSans-Regular;
 }
 
-#login {
-	border-radius: 10pt;
-}
 
+/*******************************
+		Navigation bar
+*******************************/
 nav > a.selected {
 	color: rgb(29, 149, 230);
 	font-weight: bold;
@@ -20,7 +20,30 @@ nav > a.unselected {
 	text-decoration: none;	
 }
 
+/*******************************
+			Footer
+*******************************/
 footer {
+	background-size: contain;
 	background-color: #21252b;
 	color: rgb(175, 175, 175);
+}
+
+/*******************************
+			Login
+*******************************/
+
+#login_container {
+	background-image: url("../assets/sfondo.png");
+	background-size: cover;
+	background-color: #fde55b;
+}
+
+
+#login {
+	background-color: #6188f5;
+}
+
+#login > h1,#lbl_mail, #lbl_password {
+	color: #edf0f3;
 }
