@@ -1,4 +1,4 @@
-@import "design.css";
+@import "../design.css";
 
 html, body{
 	height: 100%;
@@ -29,8 +29,6 @@ html, body{
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	margin: 15pt;
 }
-
-
 
 
 #login > h1 {

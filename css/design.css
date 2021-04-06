@@ -11,6 +11,25 @@
 	padding: 0;
 }
 
+/***********************
+	  Content/side
+************************/
+div.content-box, div.side-box {
+	margin: 10pt;
+	padding: 20pt;
+
+	border-radius: 10pt;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/***********************
+	  Deck
+************************/
+.add {	
+	width: 100pt;
+	height: 100pt;
+	margin: 5pt;
+}
 
 /***********************
 		Buttons
@@ -35,7 +54,7 @@ nav {
 	
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	justify-content: flex-end;
-	padding-right: 40pt;
+	padding-right: 30pt;
 }
 
 nav > a {

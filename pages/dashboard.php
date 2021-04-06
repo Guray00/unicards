@@ -14,28 +14,27 @@
 		<meta charset="utf-8">
 		
 		<!--  Stili  -->
-		<link rel="stylesheet" href="../css/dashboard.css">
+		<link rel="stylesheet" href="../css/layout/1-column-layout.css">
 		<link rel="stylesheet" href="../css/theme.css">
 	</head>
 
 	<!-- griglia -->
-	<body class="container">
+	<body class="container-side-right">
 	
 		<!-- Navbar -->
 		<?php require("../html/nav.php");?>
 
 		<!-- Menu sinistro -->
-		<div class="deck_show">	
-			<div id="add"></div>
+		<div class="left content-box">	
+			<div class="add"></div>
 		</div>
 
 		<!--  Menu destro  -->
-		<div  class="menu">
+		<div  class="right side-box">
 			<p><?php echo $_SESSION["session_username"]?></p>
 		</div>
 
 		<!--  Footer  -->
-		<?php require("../html/footer.php");?>
-						
+		<?php require("../html/footer.php");?>						
 	</body>
 </html>

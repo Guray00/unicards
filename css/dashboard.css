@@ -11,7 +11,7 @@ html, body {
 ************************/
 
 /*contenitore di mazzi*/
-.deck_show {
+.deck_show {	
 	/*posizione*/
 	grid-column-start: 1;
 	grid-column-end: 1;

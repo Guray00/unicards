@@ -7,6 +7,15 @@
 
 
 /*******************************
+			Deck
+*******************************/
+.add {
+	background-image: url("../assets/add.png");
+	object-fit: cover;
+	background-size: cover;
+}
+
+/*******************************
 		Navigation bar
 *******************************/
 nav > a.selected {
@@ -34,16 +43,15 @@ footer {
 *******************************/
 
 #login_container {
-	background-image: url("../assets/sfondo.png");
-	background-size: cover;
+	/*background-image: url("../assets/sfondo.png");
+	background-size: cover;*/
 	background-color: #fde55b;
 }
-
 
 #login {
 	background-color: #6188f5;
 }
 
-#login > h1,#lbl_mail, #lbl_password {
+#login > h1, label {
 	color: #edf0f3;
 }

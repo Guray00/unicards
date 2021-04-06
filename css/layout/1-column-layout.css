@@ -1,0 +1,80 @@
+@import "../design.css";
+
+/*  necessario per far espandere
+	la griglia in verticale */
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	display: grid;
+	width: 100%;
+
+	/*il footer non deve essere visibile
+	senza scroll, perciò richiedo che la
+	griglia sia più grande per nasconderlo*/
+	height: calc(100% + var(--footer-size));
+	grid-template-rows: auto 1fr auto;
+}
+
+div.left {
+	/*posizione*/
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start:2;
+	grid-row-end: 2;
+}
+
+div.right {
+	/*posizione*/
+	grid-column-start: 2;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 2;
+}
+
+div.content-box {
+	min-width: 200pt;
+}
+
+div.side-box {
+	min-width: 150pt;
+	min-height: 150pt;
+	height: fit-content;
+
+	/* consente al menu di muoversi*/
+	position: sticky;
+	top: 18pt;
+}
+
+
+body.container-side-right {	
+	grid-template-columns: 75fr 25fr;
+}
+
+body.container-side-left {	
+	grid-template-columns: 25fr 75fr;
+}
+
+
+/***********************
+	 posizionamento
+************************/
+nav {
+	grid-row-start: 1;
+	grid-row-end: 1;
+	grid-column-end: span 2;
+}
+
+footer {
+	grid-row-start: 3;
+	grid-row-end: 3;
+	grid-column-end: span 2;
+}
+
+
+
+
+
+
