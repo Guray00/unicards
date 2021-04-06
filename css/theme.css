@@ -6,6 +6,24 @@
 }
 
 
+
+
+/*******************************
+			container
+*******************************/
+body {
+	background-image: url("../assets/wall.svg");
+	background-size: 25%;
+}
+
+.side-box {
+	backdrop-filter: saturate(180%) blur(20px);
+}
+
+.content-box {
+	background-color: #ffffff;
+}
+
 /*******************************
 			Deck
 *******************************/
@@ -18,6 +36,11 @@
 /*******************************
 		Navigation bar
 *******************************/
+
+nav {
+	backdrop-filter: saturate(180%) blur(20px);
+}
+
 nav > a.selected {
 	color: rgb(29, 149, 230);
 	font-weight: bold;
@@ -36,6 +59,8 @@ footer {
 	background-size: contain;
 	background-color: #21252b;
 	color: rgb(175, 175, 175);
+	background-image: url("../assets/wall_darker.svg");
+	background-size: 25%;
 }
 
 /*******************************
@@ -43,8 +68,8 @@ footer {
 *******************************/
 
 #login_container {
-	/*background-image: url("../assets/sfondo.png");
-	background-size: cover;*/
+	background-image: url("../assets/wall.svg");
+	background-size: 25%;
 	background-color: #fde55b;
 }
 
