@@ -21,7 +21,6 @@ form {
 	display: grid;
 	width: fit-content;
 	height: fit-content;
-	margin-top: 50pt;
 	
 
 	text-align: start;
@@ -29,10 +28,6 @@ form {
 	grid-template-columns: auto auto auto;
 }
 
-#deck_left {
-	position: sticky;
-	top: 5pt;
-}
 
 #deck_right {
 	display: grid;
@@ -100,6 +95,12 @@ textarea{
 	display: block;
 	text-align: end;
 	justify-content: end;
+
+	height: fit-content;
+	margin-top: 40pt;
+
+	top:0pt;
+	position: sticky;
 }
 
 .submit {

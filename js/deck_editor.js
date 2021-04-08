@@ -2,6 +2,9 @@
 // evito di dare lo stesso id a carte differenti quando vengono aggiunte o rimosse
 MAX_CARD = 1;
 
+
+//------->oninvalid="alert('You must fill out the form!');" <--------
+
 // elimina in automatico le caselle di testo vuote se quelle sotto sono riempite
 function textAreaHandler(q, a, lq, la){
 	// quando modifico una domanda, se è vuota e anche la risposta è vuota, cancello

@@ -147,7 +147,7 @@
 	</head>
 
 	<body>	
-		<form id="deck_form" method="GET" action="../php/deck_updater.php">
+		<form id="deck_form" method="GET" action="../php/deck_updater.php" >
 
 			<!-- menu sinistro -->
 			<div id="deck_left">
