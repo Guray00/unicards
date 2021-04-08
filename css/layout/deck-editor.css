@@ -1,0 +1,172 @@
+@import "../design.css";
+
+html {
+	height: 100%;
+}
+
+body{
+	height: 100%;
+	width: 100%;
+	background-color: #6188f5;	
+}
+
+form {
+	width: 100%;
+	min-height: 100%;
+	display: flex;
+}
+
+
+#menu {
+	display: grid;
+	width: fit-content;
+	height: fit-content;
+	margin-top: 50pt;
+	
+
+	text-align: start;
+	grid-gap: 20pt;
+	grid-template-columns: auto auto auto;
+}
+
+#deck_left {
+	position: sticky;
+	top: 5pt;
+}
+
+#deck_right {
+	display: grid;
+	width: 100%;
+	margin-right: 15pt;
+	margin-top: 15pt;
+
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr;
+}
+
+
+#tab-content {
+	grid-column: 1;
+	grid-row: 2;
+	margin: 0;
+	z-index: 0;
+	border-top-left-radius: 0pt;
+	margin-bottom: 15pt;
+
+}
+
+
+.tab-container {
+	width: 100%;
+	height: 100%;
+}
+
+textarea{
+	width: 100%;
+	height: 50pt;
+	float: left;
+	margin: 0;
+	resize: vertical;
+}
+
+.cards-container > label {
+	margin-top: 10pt;
+	font-size: 11pt;
+	color:#8a8a8a;
+}
+
+.cards-container {
+	display: grid;
+	width: 100%;
+
+	grid-template-columns: 40fr 60fr;
+	height: fit-content;
+	grid-column-gap: 15pt;
+}
+
+
+#preview {
+	display: flex;
+	background-color: bisque;
+	width: 120pt;
+	height: 120pt;
+
+	grid-row-start: 3;
+	grid-row-end: span 3;
+	grid-column: 3;
+}
+
+#deck_left {
+	display: block;
+	text-align: end;
+	justify-content: end;
+}
+
+.submit {
+	margin-right: 10pt;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
+	font-size: 12pt;
+}
+
+#btn-add{
+	width: 70pt;
+	margin-top: 5pt;
+	margin-left: auto;
+	grid-column-start: 2;
+	grid-row: 9999;
+}
+
+/*
+button {
+	margin-right: 10pt;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
+	font-size: 12pt;
+}*/
+
+h1 {
+	grid-row: 1;
+	grid-column-end: span 3;	
+	margin: 0;
+}
+
+
+h2 {
+	margin-top: -20pt;
+	font-weight: 100;
+	font-size: 12pt;
+	grid-row: 2;
+	grid-column-end: span 3;	
+	color: rgb(92, 92, 92);
+}
+
+#lbl_name {
+	grid-row: 3;
+	grid-column: 1;
+}
+
+#lbl_school {
+	grid-row: 4;
+	grid-column: 1;	
+}
+
+#lbl_degree {
+	grid-row: 5;
+	grid-column: 1;	
+}
+
+
+#txt_name {
+	grid-row: 3;
+	grid-column: 2;
+}
+
+#txt_school {
+	grid-row: 4;
+	grid-column: 2;	
+}
+
+#txt_degree {
+	grid-row: 5;
+	grid-column: 2;	
+}
+

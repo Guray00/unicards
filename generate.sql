@@ -33,10 +33,11 @@ CONSTRAINT `user_account` FOREIGN KEY `fkIdx_75` (`mail`) REFERENCES `User` (`ma
 );
 
 
+
 -- ************************************** `Card`
 CREATE TABLE `Card`
 (
- `id`       integer NOT NULL AUTO_INCREMENT,
+ `id`       integer unsigned NOT NULL AUTO_INCREMENT ,
  `question` text NOT NULL ,
  `answer`   text NOT NULL ,
 
@@ -56,7 +57,7 @@ CREATE TABLE `degree`
 -- ************************************** `school`
 CREATE TABLE `school`
 (
- `id`   integer NOT NULL ,
+ `id`   integer unsigned NOT NULL AUTO_INCREMENT ,
  `name` varchar(45) NOT NULL ,
 
 PRIMARY KEY (`id`)
@@ -65,11 +66,12 @@ PRIMARY KEY (`id`)
 -- ************************************** `Deck`
 CREATE TABLE `Deck`
 (
- `id`     integer NOT NULL AUTO_INCREMENT,
+ `id`     integer unsigned NOT NULL AUTO_INCREMENT ,
  `user`   varchar(300) NOT NULL ,
  `name`   varchar(45) NOT NULL ,
- `school` integer NOT NULL ,
- `degree` varchar(45) NOT NULL ,
+ `school` integer unsigned,
+ `degree` varchar(45),
+ `public` bit NOT NULL ,
 
 PRIMARY KEY (`id`, `user`),
 KEY `fkIdx_21` (`user`),
@@ -80,11 +82,68 @@ KEY `fkIdx_83` (`degree`),
 CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`)
 );
 
+-- ************************************** `Tag`
+
+CREATE TABLE `Tag`
+(
+ `name` varchar(45) NOT NULL ,
+
+PRIMARY KEY (`name`)
+);
+
+
+
+-- ************************************** `deck_tag`
+CREATE TABLE `deck_tag`
+(
+ `deck` integer unsigned NOT NULL ,
+ `user` varchar(300) NOT NULL ,
+ `name` varchar(45) NOT NULL ,
+
+PRIMARY KEY (`deck`, `user`, `name`),
+KEY `fkIdx_46` (`deck`, `user`),
+CONSTRAINT `FK_45` FOREIGN KEY `fkIdx_46` (`deck`, `user`) REFERENCES `Deck` (`id`, `user`),
+KEY `fkIdx_51` (`name`),
+CONSTRAINT `FK_50` FOREIGN KEY `fkIdx_51` (`name`) REFERENCES `Tag` (`name`)
+);
+
+
+-- ************************************** `Section`
+CREATE TABLE `Section`
+(
+ `deck_id` integer unsigned NOT NULL ,
+ `user`    varchar(300) NOT NULL ,
+ `card_id` integer unsigned NOT NULL ,
+ `name`    varchar(45) NOT NULL ,
+
+PRIMARY KEY (`deck_id`, `user`, `card_id`),
+KEY `fkIdx_92` (`deck_id`, `user`),
+CONSTRAINT `FK_91` FOREIGN KEY `fkIdx_92` (`deck_id`, `user`) REFERENCES `Deck` (`id`, `user`),
+KEY `fkIdx_98` (`card_id`),
+CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_98` (`card_id`) REFERENCES `Card` (`id`)
+);
+
+-- ************************************** `Session`
+CREATE TABLE `Session`
+(
+ `id`   integer unsigned NOT NULL ,
+ `mail` varchar(300) NOT NULL ,
+ `time` timestamp NOT NULL ,
+
+PRIMARY KEY (`id`, `mail`),
+KEY `fkIdx_58` (`mail`),
+CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` (`mail`)
+);
+
+
+
+
 -- ************************************ 	TEST
 insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 
-
-/*modificati a manina
-	- auto_increment su deck - id
-	- auto_increment su card - id
-*/
+insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"deck test", 	1);
+insert into school values (1, "Universita di Pisa");
+insert into card (question, answer) values ("domanda di test", "risposta di test");
+INSERT INTO `card` (`id`, `question`, `answer`) VALUES (NULL, 'domanda 2', 'risposta 2');
+insert into Section values (1, "test@test.it", 1, "sezione 1");
+insert into Section values (1, "test@test.it", 2, "sezione 1");

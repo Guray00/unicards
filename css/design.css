@@ -14,13 +14,97 @@
 /***********************
 	  Content/side
 ************************/
-div.content-box, div.side-box {
+.content-box, div.side-box {
 	margin: 10pt;
 	padding: 20pt;
 
 	border-radius: 10pt;
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/***********************
+	  tabs
+************************/
+
+
+/*le label di una tab*/
+label.tab {
+	display: flex;
+    width: 105pt;
+	height: 30pt;
+	margin: 0;
+	margin-right: -15pt;
+	border: 0;
+	padding: 0;
+	border-radius: 0;
+	box-shadow: none;
+	border-radius: 0%;
+	background-color: rgba(0, 0, 0, 0);
+	z-index: 5;
+
+	padding-left: 10pt;
+	align-items: center;
+	font-size: 12pt;
+	color: rgba(0, 0, 0, 0.267);
+	background-image: url("../assets/selected_tab.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+/*nel caso di una tab nascondo il radio button*/
+input[type="radio"].tab {
+	display: none;
+}
+
+/*quando una tab è selezionata*/
+.tab:checked + label {
+	background-image: url("../assets/selected_tab2.svg");
+	font-weight: bold;
+	z-index: 6;
+}
+
+/*quando il mouse è sopra una tab*/
+.tab:hover{
+	outline: none;
+	background-image: url("../assets/tab_hover.svg");
+}
+
+/*selettore di tab*/
+.tab-header {
+	display: flex;
+	height: auto;
+	width: 100%;
+	z-index: 9999;
+}
+
+.tab-container {
+	display: none;
+}
+
+.add-tab {
+	order: 9999;
+	display: flex;
+	height: 30pt;
+	width: 55pt;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	border-radius: 0;
+	background-color: rgba(240, 248, 255, 0);
+	background-image: url("../assets/add_tab.svg");
+}
+
+.add-tab:hover, .add-tab:focus {
+	outline: none;
+	background-image: url("../assets/add_tab_hover.svg");
+}
+
+
+.add-tab:focus {
+	margin: 0;
+}
+
+
 
 /***********************
 	  Deck
@@ -34,10 +118,11 @@ div.content-box, div.side-box {
 /***********************
 		Buttons
 ************************/
-input[type=submit]{
-	padding: 3%;
-	padding-left: 6%;
-	padding-right: 6%;
+
+button, input[type=submit]{
+	padding: 3pt;
+	padding-left: 15pt;
+	padding-right: 15pt;
 
 	border-radius: 3pt;
 	border: none;
@@ -45,16 +130,26 @@ input[type=submit]{
   	text-decoration: none;
 }
 
-input[type=email], input[type=password]{
+
+/***********************
+		Text
+************************/
+input[type=email], input[type=text], input[type=password]{
 	padding: 3%;
 	border-radius: 3pt;
 	border: none;
   	text-decoration: none;
 }
 
+textarea {
+	border-radius: 3pt;
+}
+
+
+
 input:focus{
 	outline: none;
-	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
+	box-shadow: 0 4px 4px 0 rgba(59, 59, 59, 0.068), 0 6px 20px 0 rgba(0, 0, 0, 0.048);
 }
 
 /***********************

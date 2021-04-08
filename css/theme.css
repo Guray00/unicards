@@ -1,8 +1,14 @@
 @import "fonts.css";
 
 /*default setup*/
-* {
+*{
 	font-family: openSans-Regular;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: rgb(156, 156, 156);
+	font-style: italic;
+	opacity: 0.7; /* Firefox */
 }
 
 .dark {
@@ -12,7 +18,7 @@
 	--background-color: #2f3036;
 	--background-paper: #34383f;
 
-	--text-primary: #ffffff;
+	--text-primary: #000000;
 	--text-secondary: #454545;
 	--text-error: #B33;
 }
@@ -24,11 +30,33 @@
 	--background-color: #ffffff;
 	--background-paper: #ffffff;
 
-	--text-primary: #ffffff;
+	--text-primary: #000000;
 	--text-secondary: #454545;
 	--text-error: #B33;
 }
 
+
+.save {
+	background-color: #0fe260;
+	color: rgb(0, 0, 0);
+}
+
+/*******************************
+			Text
+*******************************/
+textarea, input[type=email], input[type=text], input[type=password]{
+	border: solid rgb(211, 211, 211) 1pt;
+}
+
+
+/*******************************
+			Buttons
+*******************************/
+.submit {
+	background-color: #2dc085;
+	color: #1a6d4c;
+
+}
 
 /*******************************
 			container
@@ -36,7 +64,7 @@
 body {
 	background-image: url("../assets/wall.svg");
 	background-size: 25%;
-	background-color: var(--background-color);
+	/*background-color: var(--background-color);*/
 }
 
 .side-box {
@@ -46,6 +74,8 @@ body {
 .content-box {
 	background-color: var(--background-paper);
 }
+
+
 
 /*******************************
 			Deck
@@ -99,6 +129,6 @@ footer {
 	background-color: #6188f5;
 }
 
-#login > h1, label {
+#login > h1, #login > label {
 	color: #ffffff;
 }

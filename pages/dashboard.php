@@ -27,6 +27,7 @@
 		<!-- Menu sinistro -->
 		<div class="left content-box">	
 			<div class="add"></div>
+			<a href="./deck_editor.php?id=1">vai</a>
 		</div>
 
 		<!--  Menu destro  -->
