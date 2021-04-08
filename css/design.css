@@ -33,14 +33,14 @@ label.tab {
     width: 105pt;
 	height: 30pt;
 	margin: 0;
-	margin-right: -15pt;
+	/*margin-right: -15pt;*/
 	border: 0;
 	padding: 0;
 	border-radius: 0;
 	box-shadow: none;
 	border-radius: 0%;
 	background-color: rgba(0, 0, 0, 0);
-	z-index: 5;
+	z-index: 1;
 
 	padding-left: 10pt;
 	align-items: center;
@@ -60,7 +60,7 @@ input[type="radio"].tab {
 .tab:checked + label {
 	background-image: url("../assets/selected_tab2.svg");
 	font-weight: bold;
-	z-index: 6;
+	z-index: 90;
 }
 
 /*quando il mouse è sopra una tab*/
@@ -87,14 +87,17 @@ input[type="radio"].tab {
 	height: 30pt;
 	width: 55pt;
 	margin: 0;
+	/*margin-left: -15pt;*/
 	border: 0;
 	padding: 0;
+	outline: none;
 	border-radius: 0;
+	z-index: 0;
 	background-color: rgba(240, 248, 255, 0);
 	background-image: url("../assets/add_tab.svg");
 }
 
-.add-tab:hover, .add-tab:focus {
+.add-tab:hover, .add-tab:active {
 	outline: none;
 	background-image: url("../assets/add_tab_hover.svg");
 }

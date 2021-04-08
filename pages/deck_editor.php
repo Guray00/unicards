@@ -7,6 +7,79 @@
 
 	$currentpage="deck_edit";
 
+	/******************************
+	 			FUNZIONI
+	 *****************************/
+
+	function defaultTabContainer(){
+		echo " <div class=\"tab-container\" id='tab1'> 
+					<div class='cards-container'>
+						<label id='1_lbl_section'>Nome sezione:</label>
+						<input class='section_name' id='1_section_name' type='text' value='Untitled'></input>
+						<label id='1_lbl_question1'>Domanda 1</label>
+						<label id='1_lbl_answer1'>Risposta 1</label>
+						<textarea id='1_question1' name='1_question1' form='deck_form' required></textarea>
+						<textarea id='1_answer1' name='1_answer1'   form='deck_form' required></textarea>
+						<button type='button' id='btn-add' onclick='addCard(this)'>Aggiungi carta</button> 
+					</div>
+	 			</div>";
+	}
+
+	function defaultTabs(){
+		echo "<input type='radio' id='tab1' value='tab1' name='tabs' class='tab' checked/>
+			  <label for='tab1' class='tab' id='1_section'>Untitled</label>";
+	}
+
+	function loadCards($cards){
+		$tab_number = 1;
+		foreach ($cards as $section => $value){
+			echo "<div class=\"tab-container\" id='tab{$tab_number}'> 
+					<div class='cards-container'>
+					<label id='1_lbl_section'>Nome sezione:</label>
+					<input class='section_name' id='{$tab_number}_section_name' type='text' value='{$section}'></input>
+					";
+
+						$question_number = 1;
+						foreach($value as $c){
+							$lbl_question = $tab_number.'_lbl_question'.$question_number;
+							$lbl_answer   = $tab_number.'_lbl_answer'.$question_number;
+							$question = $tab_number.'_question'.$question_number;
+							$answer   = $tab_number.'_answer'.$question_number;
+							echo 	"	
+										<label 	  id='{$lbl_question}'>Domanda {$question_number}</label>
+										<label 	  id='{$lbl_answer}'  >Risposta {$question_number}</label>
+
+										<textarea id='{$question}' name='{$question}' form='deck_form' required>{$c['question']}</textarea>
+										<textarea id='{$answer}'   name='{$answer}' form='deck_form' required>{$c['answer'  ]}</textarea>";
+							$question_number++;
+						}
+						
+						echo '<button type="button" id="btn-add" onclick="addCard(this)">Aggiungi carta</button>';
+
+			echo 	"</div>
+				</div>";
+
+			$tab_number++;
+		}
+	}
+
+	function loadTabs($cards){
+		$count = 1;
+		$checked = "checked";
+		foreach ($cards as $section => $value){
+			echo "
+			<input type='radio' id='tab{$count}' value='tab{$count}' name='tabs' class='tab' {$checked}/>
+			<label for='tab{$count}' class='tab' id='{$count}_section'>{$section}</label>
+			";							
+			$checked = "";
+			$count++;
+		}
+	}
+
+	/******************************
+	 			DATABASE
+	 *****************************/
+
 	$name   = "";
 	$school = "";
 	$degree = "";
@@ -63,14 +136,18 @@
 <html>
 	<head>
 		<title>Deck edit</title>
+
+		<!-- style -->
 		<link rel="stylesheet" href="../css/layout/deck-editor.css">
 		<link rel="stylesheet" href="../css/theme.css">
+
+		<!-- scripts -->
 		<script type="text/javascript" src="../js/tabs_controller.js"></script>
 		<script type="text/javascript" src="../js/deck_editor.js"></script>
 	</head>
 
 	<body>	
-		<form id="deck_form" method="GET" action="../php/deck_editor.php">
+		<form id="deck_form" method="GET" action="../php/deck_updater.php">
 
 			<!-- menu sinistro -->
 			<div id="deck_left">
@@ -95,89 +172,31 @@
 			
 			<!-- menu destro -->
 			<div id="deck_right">
-				<div class="tab-header">
+				<div class="tab-header" id="tab-header-0">
 					<?php
 						if (isset($cards)){
-							$count = 1;
-							$checked = "checked";
-							foreach ($cards as $section => $value){
-								echo "
-								<input type='radio' id='tab{$count}' value='tab{$count}' name='tabs' class='tab' {$checked}/>
-								<label for='tab{$count}' class='tab' id='{$count}_section'>{$section}</label>
-								";
-								
-								$checked = "";
-								$count++;
-							}
-
-							echo "<button type='button' class='add-tab'></button>";
+							loadTabs($cards);
 						}
 
 						else {
-							echo "
-								<input type='radio' id='tab1' value='tab1' name='tabs' class='tab' checked/>
-								<label for='tab1' class='tab' id='1_section'>Senza nome</label>
-								<button type='button' class='add-tab'></button>
-								";
+							defaultTabs();
 						}
+
+						echo "<button type='button' class='add-tab'></button>";
 					?>
 				</div>
 
-				<div class="content-box" id="tab-content">
+				<!-- posizione in cui vengono caricate le tabs -->
+				<div class="content-box" id="tab-content-0">
 					<?php
 						if (isset($cards)){
-							$tab_number = 1;
-							foreach ($cards as $section => $value){
-								echo "<div class=\"tab-container\" id='tab{$tab_number}'> 
-										<div class='cards-container'>
-										<label id='1_lbl_section'>Nome sezione:</label>
-										<input class='section_name' id='{$tab_number}_section_name' type='text' value='{$section}'></input>
-										";
-
-											$question_number = 1;
-											foreach($value as $c){
-												$lbl_question = $tab_number.'_lbl_question'.$question_number;
-												$lbl_answer   = $tab_number.'_lbl_answer'.$question_number;
-												$question = $tab_number.'_question'.$question_number;
-												$answer   = $tab_number.'_answer'.$question_number;
-												echo 	"	
-															<label 	  id='{$lbl_question}'>Domanda {$question_number}</label>
-															<label 	  id='{$lbl_answer}'  >Risposta {$question_number}</label>
-
-															<textarea id='{$question}' name='{$question}' form='deck_form' required>{$c['question']}</textarea>
-															<textarea id='{$answer}'   name='{$answer}' form='deck_form' required>{$c['answer'  ]}</textarea>";
-
-												$question_number++;
-											}
-											
-											echo '<button type="button" id="btn-add" onclick="addCard(this)">Aggiungi carta</button>';
-
-								echo 	"</div>
-								 </div>";
-
-								$tab_number++;
-							}
+								loadCards($cards);
 						}
 
 						else {
-							echo "<div class=\"tab-container\" id='tab1'> 
-									<div class='cards-container'>
-										<label id='1_lbl_section'>Nome sezione:</label>
-										<input class='section_name' id='1_section_name' type='text' value='Senza nome'></input>
-									";
-
-							echo 	"	<label id='1_lbl_question1'>Domanda 1</label>
-										<label id='1_lbl_answer1'>Risposta 1</label>
-										<textarea id='1_question1' name='1_question1' form='deck_form' required></textarea>
-										<textarea id='1_answer1' name='1_answer1'   form='deck_form' required></textarea>
-										<button type='button' id='btn-add' onclick='addCard(this)'>Aggiungi carta</button> 
-									";
-										
-							echo 	"</div>
-								 </div>";
+							defaultTabContainer();
 						}
 					?>
-
 				</div>
 			</div>
 		</form>

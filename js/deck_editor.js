@@ -1,7 +1,6 @@
 
 // evito di dare lo stesso id a carte differenti quando vengono aggiunte o rimosse
 MAX_CARD = 1;
-MAX_TAB	 = 1;
 
 // elimina in automatico le caselle di testo vuote se quelle sotto sono riempite
 function textAreaHandler(q, a, lq, la){
@@ -31,6 +30,30 @@ function textAreaHandler(q, a, lq, la){
 }
 
 
+// cerca una string tra i nomi delle tag, restituisce true se viene trovata
+function tabNameCheck(value){
+	let found = false;
+	for (i of document.getElementsByClassName("tab")){
+		// per motivi di DB, la label è case insensitive, trim rimuove gli spazi prima e dopo
+		if(i.nodeName == "LABEL" && i.innerText.toUpperCase().trim() == value.toUpperCase().trim()){
+			found = true;
+		}
+	}
+	return found;
+}
+
+
+// si assicura che il nome delle tag sia corretto
+function tabRename(element){
+	console.log("chiamato");
+	number = element.id.substr(0, element.id.indexOf("_"));
+	let found = tabNameCheck(element.value);
+
+	// due tab non possono avere lo stesso nome o essere vuoto
+	if (!found && element.value.trim() != "") document.getElementById(number+"_section").innerText = element.value;
+	else element.value = document.getElementById(number+"_section").innerText;
+}
+
 
 // gestisco la dinamicità degli elementi
 window.addEventListener("load",function(){
@@ -58,11 +81,10 @@ window.addEventListener("load",function(){
 	}
 
 
+	// per rinominare le tab
 	for (i of document.getElementsByClassName("section_name")){
 		i.onchange = function(){
-			number = this.id.substr(0, this.id.indexOf("_"));
-			console.log("val: "+ number);
-			document.getElementById(number+"_section").innerText = this.value;
+			tabRename(this);
 		}
 	}
 
@@ -78,6 +100,54 @@ window.addEventListener("load",function(){
 				document.getElementById("deck_form").appendChild(tabs);
 			}
 		}
+	}
+
+	// gestisce il pulsante add-tab
+	for (i of document.getElementsByClassName("add-tab")){
+		i.addEventListener("click", function(){
+			for (j of document.getElementsByClassName("tab-container")){
+				if(j.children.length == 0){
+				
+					let cards_container = document.createElement("div");
+					cards_container.className = "cards-container";
+
+					let lbl = document.createElement("label");
+					lbl.id  = MAX_TAB+"_lbl_section";
+					lbl.innerText="Nome sezione:";
+					
+					let inp = document.createElement("input");
+					inp.className = "section_name";
+					inp.id = MAX_TAB + "_section_name";
+					inp.type = "text";
+
+					// mi assicuro che il nome sia un nome non ancora utilizzato
+					let t = MAX_TAB;
+					while (tabNameCheck("Untitled"+t)){t++;}
+
+					inp.value="Untitled"+t;
+					//rinomino per essere sicuro che sia corretto.
+					document.getElementById(MAX_TAB+"_section").innerText = inp.value; 
+
+					inp.onchange = function(){
+						tabRename(this);
+					}
+
+					j.appendChild(cards_container);
+					cards_container.appendChild(lbl);
+					cards_container.appendChild(inp);
+
+					addCard(lbl);
+
+					//<button type="button" id="btn-add" onclick="addCard(this)">Aggiungi carta</button>
+					let butn = document.createElement("button");
+					butn.type="button";
+					butn.id="btn-add";
+					butn.innerText="Aggiungi carta";
+					butn.onclick = function(){addCard(this);};
+					cards_container.appendChild(butn);
+				}
+			}
+		})
 	}
 
 })
@@ -128,63 +198,16 @@ function addCard(btn){
 
 	textAreaHandler(q, a, lq, la);
 	
-	/*
-	c.onchange = function() {
-		if(this.value == "" && d.value == "" && btn.parentNode.getElementsByTagName("textarea").length > 2){
-			let p = this.parentNode;
-			p.removeChild(this);
-			p.removeChild(d);
-			p.removeChild(a);
-			p.removeChild(b);
-			updateLabels(p);
-		}
-	}
-
-	d.onchange = function() {
-		if(this.value == "" && c.value == ""  && btn.parentNode.getElementsByTagName("textarea").length > 2){
-			let p = this.parentNode;
-			p.removeChild(this);
-			p.removeChild(c);
-			p.removeChild(a);
-			p.removeChild(b);
-			updateLabels(p);
-		}
-	}*/
 }
 
 /*sfruttiamo l'arrotondamento per rinominare
 correttamente le etichette delle domande
 e delle risposte*/
 function updateLabels(p){
-	q = 0.5; 
+	q = 0; 
 	for (i of p.getElementsByTagName("label")){
 		if(i.innerText.includes("Domanda")) i.innerText = "Domanda " + Math.round(q);
 		else if(i.innerText.includes("Risposta")) i.innerText = "Risposta " +Math.round(q);
 		q+=0.5;
 	}
 }
-
-/*
-
-<div class="tab-container" id="container1">
-						<div id="grid">	
-							<?php
-								if (!isset($cards)){
-									echo '<label>Domanda 1</label>
-									<label>Risposta 1</label>
-									<textarea></textarea>
-									<textarea></textarea>';
-								}
-
-								else {
-								}
-							?>
-							<button type='button' id="btn-add" onclick="addCard(this)">Aggiungi carta</button> 
-						</div>
-					</div>
-
-					<div class="tab-container" id="container2">bb</div>
-					<div class="tab-container" id="container3">cc</div>
-
-
-*/ 
