@@ -32,6 +32,13 @@ function textAreaHandler(q, a, lq, la){
 	}
 }
 
+function onInvalidText(){
+	document.getElementById("error_msg").innerText = "Qualcosa è andato storto, controlla se hai compilato tutti i campi!";
+	setTimeout( ()=>{
+		document.getElementById("error_msg").innerText = "";
+	}, 5000);
+}
+
 
 // cerca una string tra i nomi delle tag, restituisce true se viene trovata
 function tabNameCheck(value){
@@ -122,6 +129,9 @@ window.addEventListener("load",function(){
 					inp.className = "section_name";
 					inp.id = MAX_TAB + "_section_name";
 					inp.type = "text";
+					inp.required = true;
+					inp.oninvalid = function(){onInvalidText();}
+
 
 					// mi assicuro che il nome sia un nome non ancora utilizzato
 					let t = MAX_TAB;
@@ -184,12 +194,15 @@ function addCard(btn){
 	q.id   = section+"_question"+MAX_CARD;
 	q.name = section+"_question"+MAX_CARD;
 	q.required = true;
+	q.oninvalid = function(){onInvalidText();}
 
 
 	let a  = document.createElement("textarea");
 	a.id   = section+"_answer"+MAX_CARD;
 	a.name = section+"_answer"+MAX_CARD;
 	a.required = true;
+	a.oninvalid = function(){onInvalidText();}
+
 
 	lq.innerText = "Domanda "+ number;
 	la.innerText = "Risposta "+number;

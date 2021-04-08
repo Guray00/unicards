@@ -93,7 +93,6 @@ textarea{
 
 #deck_left {
 	display: block;
-	text-align: end;
 	justify-content: end;
 
 	height: fit-content;
@@ -103,10 +102,36 @@ textarea{
 	position: sticky;
 }
 
-.submit {
+#left-bottom {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 1fr auto;
+}
+
+#error_msg {
+	grid-column: 1;
+	grid-row: 1;
+	margin-left: 15pt;
+	color: white;
+
+	font-size: 11pt;
+	font-style: italic;
+
+	align-self: center;
+}
+
+#submit {
 	margin-right: 10pt;
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
 	font-size: 12pt;
+
+	height: fit-content;
+
+	grid-row: 1;
+	grid-column: 2;
+
+	background-color: #2dc085;
+	color: #135037;
 }
 
 #btn-add{
