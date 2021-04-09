@@ -132,3 +132,30 @@ footer {
 #login > h1, #login > label {
 	color: #ffffff;
 }
+
+
+/*******************************
+			Deck Editor
+*******************************/
+
+#deck_editor {
+	background-color: #6188f5;	
+}
+
+#back {
+	background-color: #fa7c66;
+	color: #ffffff;
+}
+
+#back > a, #back > a:visited, #back >a:active {
+	color: white;
+}
+
+#submit {
+	background-color: #2dc085;
+	color: #135037;
+}
+
+#error_msg {
+	color: white;
+}

@@ -83,11 +83,12 @@
 	$name   = "";
 	$school = "";
 	$degree = "";
+	$schools = [];
 	if (isset($_GET["id"]) == true){
 		
 		$query = "
-				SELECT D.id, D.name, S.name as school, degree, public
-				FROM deck D, school S
+				SELECT D.id, D.name, D.school, D.degree, D.public
+				FROM deck D
 				WHERE D.user = :mail AND D.id= :id";
 
 
@@ -128,7 +129,23 @@
 			$cards[$row["section"]][$row["card"]]["answer"]   = $row["answer"];
 		}
 
+				
 	}
+
+	$query = "
+		SELECT name
+		FROM school
+		order by name";
+
+
+		// ottengo le informazioni sul mazzo
+		$q3 = $pdo->prepare($query);
+		$q3->execute();
+		$schools =  $q3->fetchAll(PDO::FETCH_ASSOC);
+
+	/* 
+	<input type="text" id="txt_school"	value=<?php echo '"'.$school.'"'?> placeholder="Università collegata">
+*/
 ?>
 
 
@@ -146,7 +163,7 @@
 		<script type="text/javascript" src="../js/deck_editor.js"></script>
 	</head>
 
-	<body>	
+	<body id="deck_editor">	
 		<form id="deck_form" method="GET" action="../php/deck_updater.php" >
 
 			<!-- menu sinistro -->
@@ -163,12 +180,26 @@
 					<label id="lbl_color">Colore:</label>
 
 					<input type="text" id="txt_name" 	name="name" value=<?php echo '"'.$name.'"'	?> placeholder="Nome del mazzo" required oninvalid='onInvalidText()'>
-					<input type="text" id="txt_school"	value=<?php echo '"'.$school.'"'?> placeholder="Università collegata">
+					
+					<select name="school" id="txt_school">
+						<option value="null">Nessuna</option>
+						<?php
+							foreach($schools as $s){
+								//$tmp = $s['id'] ." - ". $s['name'];
+								$selected = "";
+								if($s['name'] == $school) $selected='selected="selected"';
+
+								echo "<option value='{$s['name']}' {$selected}>{$s['name']}</option>";
+							}
+						?>
+					</select>
+					
 					<input type="text" id="txt_degree"  value=<?php echo '"'.$degree.'"'?> placeholder="Corso di riferimento">
 				</div>
 
 				<div id="left-bottom">
 					<label id="error_msg"></label>
+					<button type="button" id="back" value="Indietro"><a href="./dashboard.php">Indietro</a></button>
 					<input type="submit" id="submit" value="Salva">
 				</div>
 				

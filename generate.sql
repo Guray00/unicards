@@ -29,7 +29,7 @@ CREATE TABLE `Account`
 
 PRIMARY KEY (`mail`),
 KEY `fkIdx_75` (`mail`),
-CONSTRAINT `user_account` FOREIGN KEY `fkIdx_75` (`mail`) REFERENCES `User` (`mail`)
+CONSTRAINT `user_account` FOREIGN KEY `fkIdx_75` (`mail`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -57,11 +57,11 @@ CREATE TABLE `degree`
 -- ************************************** `school`
 CREATE TABLE `school`
 (
- `id`   integer unsigned NOT NULL AUTO_INCREMENT ,
  `name` varchar(45) NOT NULL ,
 
-PRIMARY KEY (`id`)
+PRIMARY KEY (`name`)
 );
+
 
 -- ************************************** `Deck`
 CREATE TABLE `Deck`
@@ -69,18 +69,19 @@ CREATE TABLE `Deck`
  `id`     integer unsigned NOT NULL AUTO_INCREMENT ,
  `user`   varchar(300) NOT NULL ,
  `name`   varchar(45) NOT NULL ,
- `school` integer unsigned,
- `degree` varchar(45),
- `public` bit NOT NULL ,
+ `school` varchar(45) NULL ,
+ `degree` varchar(45) NULL ,
+ `public` bit NOT NULL DEFAULT 0 ,
 
 PRIMARY KEY (`id`, `user`),
 KEY `fkIdx_21` (`user`),
-CONSTRAINT `deck_user` FOREIGN KEY `fkIdx_21` (`user`) REFERENCES `User` (`mail`),
+CONSTRAINT `deck_user` FOREIGN KEY `fkIdx_21` (`user`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE,
 KEY `fkIdx_39` (`school`),
-CONSTRAINT `deck_school` FOREIGN KEY `fkIdx_39` (`school`) REFERENCES `school` (`id`),
+CONSTRAINT `deck_school` FOREIGN KEY `fkIdx_39` (`school`) REFERENCES `school` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
 KEY `fkIdx_83` (`degree`),
-CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`)
+CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 -- ************************************** `Tag`
 
@@ -102,9 +103,9 @@ CREATE TABLE `deck_tag`
 
 PRIMARY KEY (`deck`, `user`, `name`),
 KEY `fkIdx_46` (`deck`, `user`),
-CONSTRAINT `FK_45` FOREIGN KEY `fkIdx_46` (`deck`, `user`) REFERENCES `Deck` (`id`, `user`),
+CONSTRAINT `FK_45` FOREIGN KEY `fkIdx_46` (`deck`, `user`) REFERENCES `Deck` (`id`, `user`) ON DELETE CASCADE ON UPDATE CASCADE,
 KEY `fkIdx_51` (`name`),
-CONSTRAINT `FK_50` FOREIGN KEY `fkIdx_51` (`name`) REFERENCES `Tag` (`name`)
+CONSTRAINT `FK_50` FOREIGN KEY `fkIdx_51` (`name`) REFERENCES `Tag` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -132,7 +133,7 @@ CREATE TABLE `Session`
 
 PRIMARY KEY (`id`, `mail`),
 KEY `fkIdx_58` (`mail`),
-CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` (`mail`)
+CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -142,8 +143,11 @@ CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` 
 insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 
 insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"deck test", 	1);
-insert into school values (1, "Universita di Pisa");
+
+insert into school values ("Liceo Pontormo");
+insert into school values ("Universita di Pisa");
+
 insert into card (question, answer) values ("domanda di test", "risposta di test");
 INSERT INTO `card` (`id`, `question`, `answer`) VALUES (NULL, 'domanda 2', 'risposta 2');
 insert into Section values (1, "test@test.it", 1, "sezione 1");
-insert into Section values (1, "test@test.it", 2, "sezione 1");
+insert into Section values (1, "test@test.it", 2, "sezione 2");

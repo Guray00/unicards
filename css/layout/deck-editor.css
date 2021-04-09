@@ -7,7 +7,6 @@ html {
 body{
 	height: 100%;
 	width: 100%;
-	background-color: #6188f5;	
 }
 
 form {
@@ -24,7 +23,7 @@ form {
 	
 
 	text-align: start;
-	grid-gap: 20pt;
+	grid-gap: 15pt;
 	grid-template-columns: auto auto auto;
 }
 
@@ -100,19 +99,20 @@ textarea{
 
 	top:0pt;
 	position: sticky;
+
+	margin-bottom: 15pt;
 }
 
 #left-bottom {
 	display: grid;
 	width: 100%;
-	grid-template-columns: 1fr auto;
+	grid-template-columns: 1fr auto auto;
 }
 
 #error_msg {
 	grid-column: 1;
 	grid-row: 1;
 	margin-left: 15pt;
-	color: white;
 
 	font-size: 11pt;
 	font-style: italic;
@@ -120,7 +120,19 @@ textarea{
 	align-self: center;
 }
 
+#back {
+	grid-row: 1;
+	grid-column: 2;
+	margin-right: 5pt;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
+	font-size: 12pt;
+	height: fit-content;
+}
+
+
+
 #submit {
+	display: block;
 	margin-right: 10pt;
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295);
 	font-size: 12pt;
@@ -128,10 +140,7 @@ textarea{
 	height: fit-content;
 
 	grid-row: 1;
-	grid-column: 2;
-
-	background-color: #2dc085;
-	color: #135037;
+	grid-column: 3;
 }
 
 #btn-add{

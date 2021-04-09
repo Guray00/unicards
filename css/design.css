@@ -45,7 +45,7 @@ label.tab {
 	padding-left: 10pt;
 	align-items: center;
 	font-size: 12pt;
-	color: rgba(0, 0, 0, 0.267);
+	color: rgba(0, 0, 0, 0.397);
 	background-image: url("../assets/selected_tab.svg");
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -65,6 +65,7 @@ input[type="radio"].tab {
 
 /*quando il mouse è sopra una tab*/
 .tab:hover{
+	cursor: pointer;
 	outline: none;
 	background-image: url("../assets/tab_hover.svg");
 }
@@ -87,6 +88,7 @@ input[type="radio"].tab {
 	height: 30pt;
 	width: 55pt;
 	margin: 0;
+	margin-right: 8pt;
 	/*margin-left: -15pt;*/
 	border: 0;
 	padding: 0;
@@ -100,11 +102,6 @@ input[type="radio"].tab {
 .add-tab:hover, .add-tab:active {
 	outline: none;
 	background-image: url("../assets/add_tab_hover.svg");
-}
-
-
-.add-tab:focus {
-	margin: 0;
 }
 
 
@@ -131,6 +128,18 @@ button, input[type=submit]{
 	border: none;
 	text-align: center;
   	text-decoration: none;
+}
+
+button > a, button > a:visited, button >a:active {
+	text-decoration: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+input[type=submit]:hover{
+	cursor: pointer;
 }
 
 
