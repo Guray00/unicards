@@ -2,8 +2,50 @@
 // evito di dare lo stesso id a carte differenti quando vengono aggiunte o rimosse
 MAX_CARD = 1;
 
+     /*
+    $.ajax({
+      type: "POST",
+      url: "bin/process.php",
+      data: dataString,
+      success: function () {
+        // Display message back to the user here
+      }
+    });
+ 
+    e.preventDefault();*/
 
-//------->oninvalid="alert('You must fill out the form!');" <--------
+function submitHandler(id){
+	
+	// aggiunge alla chiamata get il nome delle tab per risalire alla sezione
+	let toRemove = [];
+	for(tab of document.getElementsByClassName("tab")){
+		if (tab.nodeName == "LABEL"){
+			let tabs = document.createElement("input");
+			tabs.value = tab.innerText;
+			tabs.name = tab.getAttribute("for");
+
+			document.getElementById("deck_form").appendChild(tabs);
+			toRemove.push(tabs);
+		}
+	}
+	
+	var dataString = $("#deck_form").serialize();
+	dataString+="&id="+id;
+	alert(dataString);
+	// rimuove le caselle di input inserite per formare correttamente la chiamata
+	toRemove.map(x => document.getElementById("deck_form").removeChild(x));
+
+	$.ajax({
+		type: "POST",
+		url: "../php/deck_updater.php",
+		data: dataString,
+		success: function (data) {
+			alert(data);
+		  // Display message back to the user here
+		}
+	});
+}
+
 
 // elimina in automatico le caselle di testo vuote se quelle sotto sono riempite
 function textAreaHandler(q, a, lq, la){
@@ -98,19 +140,7 @@ window.addEventListener("load",function(){
 		}
 	}
 
-	// aggiunge alla chiamata get il nome delle tab per risalire alla sezione
-	document.getElementById("deck_form").onsubmit = function(){
-		for(tab of document.getElementsByClassName("tab")){
-
-			if (tab.nodeName == "LABEL"){
-				tabs = document.createElement("input");
-				tabs.value = tab.innerText;
-				tabs.name = tab.getAttribute("for");
-
-				document.getElementById("deck_form").appendChild(tabs);
-			}
-		}
-	}
+	
 
 	// gestisce il pulsante add-tab
 	for (i of document.getElementsByClassName("add-tab")){

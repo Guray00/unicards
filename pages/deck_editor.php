@@ -11,6 +11,15 @@
 	 			FUNZIONI
 	 *****************************/
 
+	function submitID(){
+		if(isset($_GET["id"])){
+			echo $_GET["id"];
+		}
+
+		else 
+			echo "\"NULL\"";
+	}
+
 	function defaultTabContainer(){
 		echo " <div class=\"tab-container\" id='tab1'> 
 					<div class='cards-container'>
@@ -104,10 +113,10 @@
 			exit();
 		}
 		
-		$name 	= $info["name"];
-		$school = strtoupper($info["school"]) != "NULL" ? $info["school"] : "";
-		$degree = strtoupper($info["degree"]) != "NULL" ? $info["degree"] : "";
-	
+		$name 	 = $info["name"];
+		$school  = strtoupper($info["school"]) != "NULL" ? $info["school"] : "";
+		$degree  = strtoupper($info["degree"]) != "NULL" ? $info["degree"] : "";
+		$deck_id = $_GET["id"];
 	
 		$query = "
 		SELECT C.id as card, S.name as section, C.answer, C.question
@@ -158,13 +167,16 @@
 		<link rel="stylesheet" href="../css/layout/deck-editor.css">
 		<link rel="stylesheet" href="../css/theme.css">
 
+		<!-- Jquery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 		<!-- scripts -->
 		<script type="text/javascript" src="../js/tabs_controller.js"></script>
 		<script type="text/javascript" src="../js/deck_editor.js"></script>
 	</head>
 
 	<body id="deck_editor">	
-		<form id="deck_form" method="GET" action="../php/deck_updater.php" >
+		<form id="deck_form" action="#"	onsubmit='submitHandler(<?php submitID(); ?>);return false'>
 
 			<!-- menu sinistro -->
 			<div id="deck_left">
@@ -202,7 +214,6 @@
 					<button type="button" id="back" value="Indietro"><a href="./dashboard.php">Indietro</a></button>
 					<input type="submit" id="submit" value="Salva">
 				</div>
-				
 			</div>
 
 			
