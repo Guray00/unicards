@@ -5,21 +5,23 @@
 		$deck  = $_POST['deck'];
 		$cards = $_POST['cards'];
 
+		$deck["public"] = strtoupper($deck["public"]) == "TRUE" ? TRUE : FALSE;
 
 		// aggiorno le informazioni del deck
 		if (strtoupper($deck["school"]) == "NULL") $deck["school"] = NULL;
 
-		$query = 'select deckUpdater(:id, :user, :name, :school, NULL, NULL)';
+		$query = 'select deckUpdater(:id, :user, :name, :school, NULL, :public, :color)';
 		$params = ['id' 	  => $deck["id"], 	  'name'   => $deck["name"], 
-					'user' 	  => $deck["user"],   'school' => $deck["school"]];
+					'user' 	  => $deck["user"],   'school' => $deck["school"],
+					'public'  => $deck["public"],  'color' => $deck["color"]];
 		//$response = $pdo->prepare($query)->execute($params);
 		
 		$run = $pdo->prepare($query);
 		$run->execute($params);
 		$response =  $run->fetch(PDO::FETCH_ASSOC);
 
-		if($response["deckUpdater(?, ?, ?, ?, NULL, NULL)"] > 0){
-			$deck["id"] = $response["deckUpdater(?, ?, ?, ?, NULL, NULL)"];
+		if($response["deckUpdater(?, ?, ?, ?, NULL, ?, ?)"] > 0){
+			$deck["id"] = $response["deckUpdater(?, ?, ?, ?, NULL, ?, ?)"];
 		}
 
 		// rimuovo tutte le sezione e le carte connesse al deck
@@ -43,7 +45,7 @@
 			}
 		}
 
-		echo $response["deckUpdater(?, ?, ?, ?, NULL, NULL)"];
+		echo $response["deckUpdater(?, ?, ?, ?, NULL, ?, ?)"];
 	}
 
 	catch(Exception $e){

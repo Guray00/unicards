@@ -12,9 +12,6 @@
 	 *****************************/
 
 	function submitID(){
-
-		
-
 		if(isset($_GET["id"])){
 			echo $_GET["id"] . ", \"" . $_SESSION["session_mail"] . "\"";
 		}
@@ -96,10 +93,12 @@
 	$school = "";
 	$degree = "";
 	$schools = [];
+	$color  = "#6188f5";
+	$public = 0;
 	if (isset($_GET["id"]) == true){
 		
 		$query = "
-				SELECT D.id, D.name, D.school, D.degree, D.public
+				SELECT D.id, D.name, D.school, D.degree, D.public, D.color
 				FROM deck D
 				WHERE D.user = :mail AND D.id= :id";
 
@@ -119,7 +118,9 @@
 		$name 	 = $info["name"];
 		$school  = strtoupper($info["school"]) != "NULL" ? $info["school"] : "";
 		$degree  = strtoupper($info["degree"]) != "NULL" ? $info["degree"] : "";
+		$color   = $info["color"];
 		$deck_id = $_GET["id"];
+		$public  = $info["public"];
 	
 		$query = "
 		SELECT C.id as card, S.name as section, C.answer, C.question
@@ -139,9 +140,7 @@
 		foreach($result as $row) {
 			$cards[$row["section"]][$row["card"]]["question"] = $row["question"];
 			$cards[$row["section"]][$row["card"]]["answer"]   = $row["answer"];
-		}
-
-				
+		}		
 	}
 
 	$query = "
@@ -154,10 +153,6 @@
 		$q3 = $pdo->prepare($query);
 		$q3->execute();
 		$schools =  $q3->fetchAll(PDO::FETCH_ASSOC);
-
-	/* 
-	<input type="text" id="txt_school"	value=<?php echo '"'.$school.'"'?> placeholder="Università collegata">
-*/
 ?>
 
 
@@ -188,20 +183,37 @@
 					<h1>Creazione del mazzo</h1>
 					<label id="lbl_id" name="deck_id"><?php if(isset($_GET["id"])) echo "#".$_GET["id"]; ?></label>
 					<h2>Inserisci le informazioni per procedere</h2>
-					<div id="preview"></div>
+					<div id="preview" style=<?php echo '"background-color:'.$color.';"'; ?> ><label id="lbl_preview"><?php echo $name;?></label></div>
 
 					<label id="lbl_name"  >Nome*:</label>
 					<label id="lbl_school">Università/Scuola:</label>
 					<label id="lbl_degree">Corso:</label>
+
+					<label id="lbl_public">Public:</label>
+					<label class="switch">
+						<?php 
+							if($public == 1)
+								echo "<input type='checkbox' name='public' checked value='TRUE'>";
+							else
+								echo "<input type='checkbox' name='public' value='TRUE'>";
+						?>
+						<span class="slider round"></span>
+					</label>
+
 					<label id="lbl_color" >Colore:</label>
 
-					<input type="text" id="txt_name" 	name="name" value=<?php echo '"'.$name.'"'	?> placeholder="Nome del mazzo" required oninvalid='onInvalidText()'>
+					<input type="color" id="color_picker" name="color" value=<?php echo '"'.$color.'"';?> onchange="colorChange(this)">
+
+					<!-- Rounded switch -->
+					
+
+
+					<input type="text" id="txt_name" 	name="name" value=<?php echo '"'.$name.'"'	?> placeholder="Nome del mazzo" onchange='deckNameChange(this)' required oninvalid='onInvalidText()'>
 					
 					<select name="school" id="txt_school">
 						<option value="NULL">Nessuna</option>
 						<?php
 							foreach($schools as $s){
-								//$tmp = $s['id'] ." - ". $s['name'];
 								$selected = "";
 								if($s['name'] == $school) $selected='selected="selected"';
 
@@ -225,13 +237,8 @@
 			<div id="deck_right">
 				<div class="tab-header" id="tab-header-0">
 					<?php
-						if (isset($cards)){
-							loadTabs($cards);
-						}
-
-						else {
-							defaultTabs();
-						}
+						if (isset($cards)){loadTabs($cards);}
+						else { defaultTabs();}
 
 						echo "<button type='button' class='add-tab'></button>";
 					?>

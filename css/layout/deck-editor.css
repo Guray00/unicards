@@ -21,10 +21,9 @@ form {
 	width: fit-content;
 	height: fit-content;
 	
-
 	text-align: start;
-	grid-gap: 15pt;
-	grid-template-columns: auto auto auto;
+	grid-gap: 10pt;
+	grid-template-columns: auto auto auto 30pt;
 }
 
 
@@ -81,13 +80,28 @@ textarea{
 
 #preview {
 	display: flex;
-	background-color: bisque;
+	/*background-color: #6188f5;*/
 	width: 120pt;
 	height: 120pt;
 
+	border-radius: 10pt;
+
+	max-width: 120pt;
+	max-height: 120pt;
+
 	grid-row-start: 3;
 	grid-row-end: span 3;
-	grid-column: 3;
+	grid-column-start: 3;
+	grid-column-end: span 2;
+
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+#lbl_preview {
+	font-size: 18pt;
+	color: rgb(255, 255, 255);
 }
 
 #deck_left {
@@ -119,6 +133,7 @@ textarea{
 	font-style: italic;
 
 	align-self: center;
+	max-width: 250pt;
 }
 
 #back {
@@ -161,13 +176,20 @@ button {
 
 h1 {
 	grid-row: 1;
-	grid-column-end: span 2;	
+	grid-column-end: span 3;	
 	margin: 0;
+}
+
+#lbl_color {
+	grid-column: 3;
+	text-align: end;
+	margin-right: 0pt;
+	align-self: center;
 }
 
 #lbl_id {
 	grid-row: 1;
-	grid-column: 3;
+	grid-column: 4;
 	text-align: end;
 	vertical-align: middle;
 	align-self:flex-end;
@@ -176,27 +198,33 @@ h1 {
 }
 
 h2 {
-	margin-top: -20pt;
+	margin-top: -15pt;
 	font-weight: 100;
 	font-size: 12pt;
 	grid-row: 2;
-	grid-column-end: span 3;	
+	grid-column-end: span 4;	
 	color: rgb(92, 92, 92);
 }
 
 #lbl_name {
 	grid-row: 3;
 	grid-column: 1;
+
+	align-self: center;
 }
 
 #lbl_school {
 	grid-row: 4;
 	grid-column: 1;	
+
+	align-self: center;
 }
 
 #lbl_degree {
 	grid-row: 5;
 	grid-column: 1;	
+
+	align-self: center;
 }
 
 
@@ -215,3 +243,14 @@ h2 {
 	grid-column: 2;	
 }
 
+
+#color_picker {
+	width: 25pt;
+	height: 25pt;
+	outline: none;
+	background-color: #00000000;
+	padding: 0;
+	margin: 0;
+	border-color: transparent;
+	justify-self: right;
+}

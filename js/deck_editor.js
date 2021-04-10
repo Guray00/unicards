@@ -2,8 +2,17 @@
 // evito di dare lo stesso id a carte differenti quando vengono aggiunte o rimosse
 MAX_CARD = 1;
 
+function colorChange(el){
+	document.getElementById("preview").style.backgroundColor = el.value;
+}
 
-function DECKMAKER(id, user){
+
+function deckNameChange(el){
+	el.value= el.value.trim().charAt(0).toUpperCase() + el.value.trim().slice(1);
+	document.getElementById("lbl_preview").innerText= el.value;
+}
+
+function post_request_deck_maker(id, user){
 	var unindexed_array = $("#deck_form").serializeArray();
     var indexed_array = {};
 
@@ -11,18 +20,21 @@ function DECKMAKER(id, user){
         indexed_array[n['name']] = n['value'];
     });
 
+	let public =  indexed_array["public"] != undefined ? indexed_array["public"] : "FALSE";
 
 	let deck = {
 		"id": id,
 		"user": user,
 		"name": indexed_array["name"],
-		"school": indexed_array["school"]
+		"school": indexed_array["school"],
+		"color": indexed_array["color"],
+		"public": public
 	}
 
 	return deck;
 }
 
-function CARDSMAKER(){
+function post_request_cards_maker(){
 	var unindexed_array = $("#deck_form").serializeArray();
     var indexed_array = {};
 
@@ -79,37 +91,19 @@ function postSuccess(){
 	}, 5000);
 }
 
-function submitHandler(id, user){
-	
-	// aggiunge alla chiamata get il nome delle tab per risalire alla sezione
-	
-	/*let toRemove = [];
-	for(tab of document.getElementsByClassName("tab")){
-		if (tab.nodeName == "LABEL"){
-			let tabs = document.createElement("input");
-			tabs.value = tab.innerText;
-			tabs.name = tab.getAttribute("for");
+function postError(){
+	document.getElementById("error_msg").innerText = "Errore, controlla di aver messo un nome diverso rispetto ai mazzi già esistenti e aver compilato correttamente tutti i dati";
+	//document.getElementById("error_msg").style.color = "#4fc46e";
 
-			document.getElementById("deck_form").appendChild(tabs);
-			toRemove.push(tabs);
-		}
-	}*/
-	
-	/*var dataString = $("#deck_form").serialize();
-	dataString+="&id="+id;*/
-	//let dataString = JSON.stringify({"sas": "sos"});
-	//alert(dataString);
-	// rimuove le caselle di input inserite per formare correttamente la chiamata
-	//toRemove.map(x => document.getElementById("deck_form").removeChild(x));
+	setTimeout( ()=>{
+		document.getElementById("error_msg").innerText = "";
+	}, 5000);
+}
 
+function submitHandler(id, user){	
+	let result = post_request_cards_maker();
+	let deck   = post_request_deck_maker(id, user);
 
-	
-	let result = CARDSMAKER();
-	let deck   = DECKMAKER(id, user);
-
-	
-	console.log(JSON.stringify(result));
-	console.log(JSON.stringify(deck));
 	$.ajax({
 		type: "POST",
 		url: "../php/deck_updater.php",
@@ -123,8 +117,9 @@ function submitHandler(id, user){
 		},
 
 		error: function (xhr, ajaxOptions, thrownError) {
-			alert(xhr.status);
-			alert(thrownError);
+			postError();
+			//alert(xhr.status);
+			//alert(thrownError);
 		}
 	});
 }
@@ -134,6 +129,10 @@ function submitHandler(id, user){
 function textAreaHandler(q, a, lq, la){
 	// quando modifico una domanda, se è vuota e anche la risposta è vuota, cancello
 	q.onchange = function() {
+
+		//rimuovo gli spazi bianchi prima e dopo
+		this.value = this.value.trim();
+
 		if(this.value == "" && a.value == "" && a.parentNode.getElementsByTagName("textarea").length > 2){
 			let p = this.parentNode;
 			p.removeChild(this);
@@ -146,6 +145,10 @@ function textAreaHandler(q, a, lq, la){
 
 	// quando modifico una domanda, se è vuota e anche la risposta è vuota, cancello
 	a.onchange = function() {
+
+		//rimuovo gli spazi bianchi prima e dopo
+		this.value = this.value.trim();
+
 		if(this.value == "" && q.value == ""  && q.parentNode.getElementsByTagName("textarea").length > 2){
 			let p = this.parentNode;
 			p.removeChild(this);
@@ -180,7 +183,6 @@ function tabNameCheck(value){
 
 // si assicura che il nome delle tag sia corretto
 function tabRename(element){
-	console.log("chiamato");
 	number = element.id.substr(0, element.id.indexOf("_"));
 	let found = tabNameCheck(element.value);
 

@@ -72,6 +72,7 @@ CREATE TABLE `Deck`
  `school` varchar(50) NULL ,
  `degree` varchar(50) NULL ,
  `public` bit NOT NULL DEFAULT 0 ,
+ `color`  varchar(7) NOT NULL DEFAULT "#6188f5" ,
 
 PRIMARY KEY (`id`, `user`),
 KEY `fkIdx_21` (`user`),
@@ -143,7 +144,7 @@ CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` 
 drop FUNCTION if EXISTS deckUpdater;
 DELIMITER $$
 
-CREATE FUNCTION deckUpdater(_id int, _user VARCHAR(300), _name varchar(50), _school varchar(50), _degree varchar(50), _public bit) returns int DETERMINISTIC
+CREATE FUNCTION deckUpdater(_id int, _user VARCHAR(300), _name varchar(50), _school varchar(50), _degree varchar(50), _public bit, _color VARCHAR(7)) returns int DETERMINISTIC
 BEGIN
 	DECLARE response int DEFAULT -2;
     
@@ -165,12 +166,14 @@ BEGIN
     	if response <> -1 then  
 
 		if _public is NULL then set _public=0; END IF;
-		insert into deck(id, user, name, school, degree, public) values(_id, _user, _name, _school, _degree, _public)
+		if _color  is NULL then set _color = "#6188f5"; END IF;
+		insert into deck(id, user, name, school, degree, public, color) values(_id, _user, _name, _school, _degree, _public, _color)
 			ON DUPLICATE KEY UPDATE
 				name   = _name,
 				school = _school,
 				degree = _degree,
-				public = _public;
+				public = _public,
+				color  = _color;
 		
 		-- restituisco l'id del nuovo inserimento
 		set response = LAST_INSERT_ID();
@@ -186,7 +189,7 @@ DELIMITER ;
 -- ************************************ 	TEST
 insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 
-insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"deck test", 	1);
+insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"Deck test", 	1);
 
 insert into school values ("Liceo Pontormo");
 insert into school values ("Universita di Pisa");
