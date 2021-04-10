@@ -12,12 +12,15 @@
 	 *****************************/
 
 	function submitID(){
+
+		
+
 		if(isset($_GET["id"])){
-			echo $_GET["id"];
+			echo $_GET["id"] . ", \"" . $_SESSION["session_mail"] . "\"";
 		}
 
 		else 
-			echo "\"NULL\"";
+			echo "\"NULL\"" . ", \"" . $_SESSION["session_mail"] . "\"";
 	}
 
 	function defaultTabContainer(){
@@ -183,18 +186,19 @@
 
 				<div id = "menu" class="content-box">				
 					<h1>Creazione del mazzo</h1>
+					<label id="lbl_id" name="deck_id"><?php if(isset($_GET["id"])) echo "#".$_GET["id"]; ?></label>
 					<h2>Inserisci le informazioni per procedere</h2>
 					<div id="preview"></div>
 
-					<label id="lbl_name" required>Nome*:</label>
+					<label id="lbl_name"  >Nome*:</label>
 					<label id="lbl_school">Università/Scuola:</label>
 					<label id="lbl_degree">Corso:</label>
-					<label id="lbl_color">Colore:</label>
+					<label id="lbl_color" >Colore:</label>
 
 					<input type="text" id="txt_name" 	name="name" value=<?php echo '"'.$name.'"'	?> placeholder="Nome del mazzo" required oninvalid='onInvalidText()'>
 					
 					<select name="school" id="txt_school">
-						<option value="null">Nessuna</option>
+						<option value="NULL">Nessuna</option>
 						<?php
 							foreach($schools as $s){
 								//$tmp = $s['id'] ." - ". $s['name'];

@@ -49,7 +49,7 @@ PRIMARY KEY (`id`)
 -- ************************************** `degree`
 CREATE TABLE `degree`
 (
- `name` varchar(45) NOT NULL ,
+ `name` varchar(50) NOT NULL ,
   PRIMARY KEY (`name`)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE `degree`
 -- ************************************** `school`
 CREATE TABLE `school`
 (
- `name` varchar(45) NOT NULL ,
+ `name` varchar(50) NOT NULL ,
 
 PRIMARY KEY (`name`)
 );
@@ -68,9 +68,9 @@ CREATE TABLE `Deck`
 (
  `id`     integer unsigned NOT NULL AUTO_INCREMENT ,
  `user`   varchar(300) NOT NULL ,
- `name`   varchar(45) NOT NULL ,
- `school` varchar(45) NULL ,
- `degree` varchar(45) NULL ,
+ `name`   varchar(50) NOT NULL ,
+ `school` varchar(50) NULL ,
+ `degree` varchar(50) NULL ,
  `public` bit NOT NULL DEFAULT 0 ,
 
 PRIMARY KEY (`id`, `user`),
@@ -119,10 +119,11 @@ CREATE TABLE `Section`
 
 PRIMARY KEY (`deck_id`, `user`, `card_id`),
 KEY `fkIdx_92` (`deck_id`, `user`),
-CONSTRAINT `FK_91` FOREIGN KEY `fkIdx_92` (`deck_id`, `user`) REFERENCES `Deck` (`id`, `user`),
+CONSTRAINT `FK_91` FOREIGN KEY `fkIdx_92` (`deck_id`, `user`) REFERENCES `Deck` (`id`, `user`) ON DELETE CASCADE ON UPDATE CASCADE,
 KEY `fkIdx_98` (`card_id`),
-CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_98` (`card_id`) REFERENCES `Card` (`id`)
+CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_98` (`card_id`) REFERENCES `Card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 -- ************************************** `Session`
 CREATE TABLE `Session`
@@ -136,6 +137,49 @@ KEY `fkIdx_58` (`mail`),
 CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
+
+-- ************************************** DeckUpdater
+drop FUNCTION if EXISTS deckUpdater;
+DELIMITER $$
+
+CREATE FUNCTION deckUpdater(_id int, _user VARCHAR(300), _name varchar(50), _school varchar(50), _degree varchar(50), _public bit) returns int DETERMINISTIC
+BEGIN
+	DECLARE response int DEFAULT -2;
+    
+	-- controllo non ci siano deck dell'utente con lo stesso nome
+	IF _id is NULL then
+    		select -1
+    		into response
+			from deck
+    		where name = _name AND user = _user limit 1;
+
+	ELSE
+    		select -1
+    		into response
+			from deck
+    		where name = _name AND user = _user AND id<>_id limit 1;
+	END IF;
+
+	-- se non ci sono già deck con lo stesso nome
+    	if response <> -1 then  
+
+		if _public is NULL then set _public=0; END IF;
+		insert into deck(id, user, name, school, degree, public) values(_id, _user, _name, _school, _degree, _public)
+			ON DUPLICATE KEY UPDATE
+				name   = _name,
+				school = _school,
+				degree = _degree,
+				public = _public;
+		
+		-- restituisco l'id del nuovo inserimento
+		set response = LAST_INSERT_ID();
+    	END IF;
+
+	-- IF response = 0 then set response = _id; END IF;
+  	return response;
+END $$
+DELIMITER ;
 
 
 

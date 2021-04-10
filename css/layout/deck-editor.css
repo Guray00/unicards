@@ -161,10 +161,19 @@ button {
 
 h1 {
 	grid-row: 1;
-	grid-column-end: span 3;	
+	grid-column-end: span 2;	
 	margin: 0;
 }
 
+#lbl_id {
+	grid-row: 1;
+	grid-column: 3;
+	text-align: end;
+	vertical-align: middle;
+	align-self:flex-end;
+
+	color:#8a8a8a;
+}
 
 h2 {
 	margin-top: -20pt;

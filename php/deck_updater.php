@@ -1,16 +1,49 @@
 <?php
 	require_once("../php/database.php");
 
-	$name = "Universita di Pisa2";
-	$query = "INSERT INTO school (name) VALUES (?)";
-	
-	//INSERT INTO table (id, name, age) VALUES(1, "A", 19) 
-	//	ON DUPLICATE KEY UPDATE  name="A", age=19
+	try {		
+		$deck  = $_POST['deck'];
+		$cards = $_POST['cards'];
 
 
-	try {
-		//$pdo->prepare($query)->execute([$name]);
-		echo var_dump($_POST);
+		// aggiorno le informazioni del deck
+		if (strtoupper($deck["school"]) == "NULL") $deck["school"] = NULL;
+
+		$query = 'select deckUpdater(:id, :user, :name, :school, NULL, NULL)';
+		$params = ['id' 	  => $deck["id"], 	  'name'   => $deck["name"], 
+					'user' 	  => $deck["user"],   'school' => $deck["school"]];
+		//$response = $pdo->prepare($query)->execute($params);
+		
+		$run = $pdo->prepare($query);
+		$run->execute($params);
+		$response =  $run->fetch(PDO::FETCH_ASSOC);
+
+		if($response["deckUpdater(?, ?, ?, ?, NULL, NULL)"] > 0){
+			$deck["id"] = $response["deckUpdater(?, ?, ?, ?, NULL, NULL)"];
+		}
+
+		// rimuovo tutte le sezione e le carte connesse al deck
+		$query = "DELETE FROM card
+				  WHERE id in (SELECT card_id as id FROM section where deck_id=:deck);";
+
+		$params = ['deck' => $deck["id"]];
+		$pdo->prepare($query)->execute($params);
+		
+
+		foreach($cards as $section_name => $section){
+			foreach ($section as $question => $answer){
+				$query = "REPLACE INTO card values (NULL, :question, :answer);";
+				$params = ['question' => $question, 'answer' => $answer];
+				$pdo->prepare($query)->execute($params);
+				$card_id = $pdo->lastInsertId();
+
+				$query = "REPLACE INTO section values (:deck, :user, :card , :section);";
+				$params = ['deck' => $deck["id"], 'user' => $deck["user"], 'card' => $card_id, 'section' => $section_name];
+				$pdo->prepare($query)->execute($params);
+			}
+		}
+
+		echo $response["deckUpdater(?, ?, ?, ?, NULL, NULL)"];
 	}
 
 	catch(Exception $e){

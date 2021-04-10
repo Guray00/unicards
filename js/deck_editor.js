@@ -2,22 +2,88 @@
 // evito di dare lo stesso id a carte differenti quando vengono aggiunte o rimosse
 MAX_CARD = 1;
 
-     /*
-    $.ajax({
-      type: "POST",
-      url: "bin/process.php",
-      data: dataString,
-      success: function () {
-        // Display message back to the user here
-      }
-    });
- 
-    e.preventDefault();*/
 
-function submitHandler(id){
+function DECKMAKER(id, user){
+	var unindexed_array = $("#deck_form").serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+
+	let deck = {
+		"id": id,
+		"user": user,
+		"name": indexed_array["name"],
+		"school": indexed_array["school"]
+	}
+
+	return deck;
+}
+
+function CARDSMAKER(){
+	var unindexed_array = $("#deck_form").serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+
+	let result = {};
+
+	// carico nel resultset le domande per ogni sezione
+	for (key in indexed_array){
+		if(key.includes("question")){
+			let section = "tab"+key.substr(0, key.indexOf("_")).toString();
+			let pos = key.substr(key.lastIndexOf("_"), key.length -1).replace("_question", "");
+			
+			if(result[section] == null) result[section] = {};
+			result[section][indexed_array[key]] = pos;
+		}
+	}
+
+	// inserisco le risposte per ogni domanda inserita precedentemente
+	for (key in indexed_array){
+		if(key.includes("answer")){
+			let section = "tab"+key.substr(0, key.indexOf("_")).toString();
+			let pos = key.substr(key.lastIndexOf("_"), key.length -1).replace("_answer", "");
+
+			for (k in result[section]){
+				if (result[section][k] == pos){
+					result[section][k] = indexed_array[key];
+				}
+			}
+		}
+	}
+
+	// rinomino le sezioni con i nomi reali
+	for(tab of document.getElementsByClassName("tab")){
+		if (tab.nodeName == "LABEL"){
+			result[tab.innerText] = result[tab.getAttribute("for")];
+			delete result[tab.getAttribute("for")];
+		}
+	}
+
+
+	return result;
+}
+
+function postSuccess(){
+	document.getElementById("error_msg").innerText = "Salvato con successo!";
+	//document.getElementById("error_msg").style.color = "#4fc46e";
+
+	setTimeout( ()=>{
+		document.getElementById("error_msg").innerText = "";
+	}, 5000);
+}
+
+function submitHandler(id, user){
 	
 	// aggiunge alla chiamata get il nome delle tab per risalire alla sezione
-	let toRemove = [];
+	
+	/*let toRemove = [];
 	for(tab of document.getElementsByClassName("tab")){
 		if (tab.nodeName == "LABEL"){
 			let tabs = document.createElement("input");
@@ -27,21 +93,38 @@ function submitHandler(id){
 			document.getElementById("deck_form").appendChild(tabs);
 			toRemove.push(tabs);
 		}
-	}
+	}*/
 	
-	var dataString = $("#deck_form").serialize();
-	dataString+="&id="+id;
-	alert(dataString);
+	/*var dataString = $("#deck_form").serialize();
+	dataString+="&id="+id;*/
+	//let dataString = JSON.stringify({"sas": "sos"});
+	//alert(dataString);
 	// rimuove le caselle di input inserite per formare correttamente la chiamata
-	toRemove.map(x => document.getElementById("deck_form").removeChild(x));
+	//toRemove.map(x => document.getElementById("deck_form").removeChild(x));
 
+
+	
+	let result = CARDSMAKER();
+	let deck   = DECKMAKER(id, user);
+
+	
+	console.log(JSON.stringify(result));
+	console.log(JSON.stringify(deck));
 	$.ajax({
 		type: "POST",
 		url: "../php/deck_updater.php",
-		data: dataString,
-		success: function (data) {
-			alert(data);
-		  // Display message back to the user here
+		data: {cards:result, deck:deck},
+		success: function (data) {	
+			// ricarichiamo la pagina una volta creata
+			postSuccess();
+			if (data > 0){
+				window.location.replace("../pages/deck_editor.php?id="+data);
+			}
+		},
+
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.status);
+			alert(thrownError);
 		}
 	});
 }
