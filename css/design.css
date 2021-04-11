@@ -143,6 +143,20 @@ input[type=submit]:hover{
 }
 
 
+.btn-remove {	
+	padding: 0;
+	margin: 0;
+	background-image: url("../assets/trash-can.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 50pt;
+	outline: none;
+	box-shadow: 0 2px 4px 0 rgba(59, 59, 59, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.027);
+	
+}
+
+
+
 /***********************
 		Text
 ************************/

@@ -11,6 +11,7 @@
 	 			FUNZIONI
 	 *****************************/
 
+	// restituisce id del deck e mail dell utente
 	function submitID(){
 		if(isset($_GET["id"])){
 			echo $_GET["id"] . ", \"" . $_SESSION["session_mail"] . "\"";
@@ -20,6 +21,7 @@
 			echo "\"NULL\"" . ", \"" . $_SESSION["session_mail"] . "\"";
 	}
 
+	// contenitore delle tab
 	function defaultTabContainer(){
 		echo " <div class=\"tab-container\" id='tab1'> 
 					<div class='cards-container'>
@@ -29,6 +31,7 @@
 						<label id='1_lbl_answer1'>Risposta 1</label>
 						<textarea id='1_question1' name='1_question1' form='deck_form' required oninvalid='onInvalidText()'></textarea>
 						<textarea id='1_answer1' name='1_answer1'   form='deck_form' required oninvalid='onInvalidText()'></textarea>
+						<button type='button' class='btn-remove' id='btn-remove-tab' onclick='removeTab(this)'></button> 
 						<button type='button' id='btn-add' onclick='addCard(this)'>Aggiungi carta</button> 
 					</div>
 	 			</div>";
@@ -63,7 +66,8 @@
 							$question_number++;
 						}
 						
-						echo '<button type="button" id="btn-add" onclick="addCard(this)">Aggiungi carta</button>';
+						echo '	<button type="button" class="btn-remove" id="btn-remove-tab" onclick="removeTab(this)"></button> 
+								<button type="button" id="btn-add" onclick="addCard(this)">Aggiungi carta</button>';
 
 			echo 	"</div>
 				</div>";
@@ -202,13 +206,13 @@
 
 					<label id="lbl_color" >Colore:</label>
 
-					<input type="color" id="color_picker" name="color" value=<?php echo '"'.$color.'"';?> onchange="colorChange(this)">
+					<input type="color" id="color_picker" name="color" value=<?php echo '"'.$color.'"';?> oninput="colorChange(this)">
 
 					<!-- Rounded switch -->
 					
 
 
-					<input type="text" id="txt_name" 	name="name" value=<?php echo '"'.$name.'"'	?> placeholder="Nome del mazzo" onchange='deckNameChange(this)' required oninvalid='onInvalidText()'>
+					<input type="text" id="txt_name" 	name="name" value=<?php echo '"'.$name.'"'	?> placeholder="Nome del mazzo" onchange='deckNameChange(this)' oninput='deckNameInput(this)' required oninvalid='onInvalidText()' autocomplete="off">
 					
 					<select name="school" id="txt_school">
 						<option value="NULL">Nessuna</option>
@@ -227,6 +231,7 @@
 
 				<div id="left-bottom">
 					<label id="error_msg"></label>
+					<button type="button" id="delete-deck" class="btn-remove" onclick='deleteDeck(<?php submitID(); ?>)'></button>
 					<button type="button" id="back" value="Indietro"><a href="./dashboard.php">Indietro</a></button>
 					<input type="submit" id="submit" value="Salva">
 				</div>
@@ -258,6 +263,8 @@
 				</div>
 			</div>
 		</form>
+
+		<!-- Footer -->
 		<?php require("../html/footer.php");?>
 	</body>
 </html>

@@ -55,7 +55,15 @@ textarea, input[type=email], input[type=text], input[type=password]{
 .submit {
 	background-color: #2dc085;
 	color: #1a6d4c;
+}
 
+.btn-remove {
+	background-color: rgb(228, 80, 80);
+}
+
+
+.btn-remove:hover {
+	background-color: rgb(241, 112, 112);
 }
 
 /*******************************
