@@ -168,7 +168,7 @@
 		<!-- style -->
 		<link rel="stylesheet" href="../css/layout/deck-editor.css">
 		<link rel="stylesheet" href="../css/theme.css">
-
+		<link rel="stylesheet" href="../css/animations/animation.css">
 		<!-- Jquery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -185,15 +185,15 @@
 
 				<div id = "menu" class="content-box">				
 					<h1>Creazione del mazzo</h1>
-					<label id="lbl_id" name="deck_id"><?php if(isset($_GET["id"])) echo "#".$_GET["id"]; ?></label>
+					<label id="deck_editor_lbl_id" name="deck_id"><?php if(isset($_GET["id"])) echo "#".$_GET["id"]; ?></label>
 					<h2>Inserisci le informazioni per procedere</h2>
 					<div id="preview" style=<?php echo '"background-color:'.$color.';"'; ?> ><label id="lbl_preview"><?php echo $name;?></label></div>
 
-					<label id="lbl_name"  >Nome*:</label>
-					<label id="lbl_school">Università/Scuola:</label>
-					<label id="lbl_degree">Corso:</label>
+					<label id="deck_editor_lbl_name"  >Nome*:</label>
+					<label id="deck_editor_lbl_school">Università/Scuola:</label>
+					<label id="deck_editor_lbl_degree">Corso:</label>
 
-					<label id="lbl_public">Public:</label>
+					<label id="deck_editor_lbl_public">Public:</label>
 					<label class="switch">
 						<?php 
 							if($public == 1)
@@ -232,8 +232,8 @@
 				<div id="left-bottom">
 					<label id="error_msg"></label>
 					<button type="button" id="delete-deck" class="btn-remove" onclick='deleteDeck(<?php submitID(); ?>)'></button>
-					<button type="button" id="back" value="Indietro"><a href="./dashboard.php">Indietro</a></button>
-					<input type="submit" id="submit" value="Salva">
+					<button type="button" id="back" value="Indietro" onclick="window.location.href='./dashboard.php'">Indietro</button>
+					<input type="submit" class="submit" id="deck_editor_submit" value="Salva">
 				</div>
 			</div>
 

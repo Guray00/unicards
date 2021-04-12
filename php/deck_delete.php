@@ -16,8 +16,6 @@
 
 		$params = ['deck' => $deck["id"]];
 		$pdo->prepare($query)->execute($params);
-
-		echo "success";
 	}
 
 	catch(Exception $e){

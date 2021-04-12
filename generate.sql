@@ -22,14 +22,14 @@ PRIMARY KEY (`mail`)
 -- ************************************** `Account`
 CREATE TABLE `Account`
 (
- `mail`    varchar(300) NOT NULL ,
+ `user`    varchar(300) NOT NULL ,
  `name`    varchar(45) NOT NULL ,
  `surname` varchar(45) NOT NULL ,
  `job`     varchar(45) NOT NULL ,
 
-PRIMARY KEY (`mail`),
-KEY `fkIdx_75` (`mail`),
-CONSTRAINT `user_account` FOREIGN KEY `fkIdx_75` (`mail`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
+PRIMARY KEY (`user`),
+KEY `fkIdx_75` (`user`),
+CONSTRAINT `user_account` FOREIGN KEY `fkIdx_75` (`user`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -84,6 +84,21 @@ CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`
 );
 
 
+-- ************************************** `Favourite`
+CREATE TABLE `Favourite`
+(
+ `user`  varchar(300) NOT NULL ,
+ `deck`  integer unsigned NOT NULL ,
+ `owner` varchar(300) NOT NULL ,
+
+PRIMARY KEY (`user`, `deck`, `owner`),
+KEY `fkIdx_108` (`user`),
+CONSTRAINT `FK_107` FOREIGN KEY `fkIdx_108` (`user`) REFERENCES `User` (`mail`),
+KEY `fkIdx_112` (`deck`, `owner`),
+CONSTRAINT `FK_111` FOREIGN KEY `fkIdx_112` (`deck`, `owner`) REFERENCES `Deck` (`id`, `user`)
+);
+
+
 -- ************************************** `Tag`
 
 CREATE TABLE `Tag`
@@ -129,13 +144,13 @@ CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_98` (`card_id`) REFERENCES `Card` (`id`) O
 -- ************************************** `Session`
 CREATE TABLE `Session`
 (
- `id`   integer unsigned NOT NULL ,
- `mail` varchar(300) NOT NULL ,
+ `id`   varchar(256) NOT NULL ,
+ `user` varchar(300) NOT NULL ,
  `time` timestamp NOT NULL ,
 
-PRIMARY KEY (`id`, `mail`),
-KEY `fkIdx_58` (`mail`),
-CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`mail`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
+PRIMARY KEY (`id`, `user`),
+KEY `fkIdx_58` (`user`),
+CONSTRAINT `username_session` FOREIGN KEY `fkIdx_58` (`user`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -193,8 +208,9 @@ insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"Deck tes
 
 insert into school values ("Liceo Pontormo");
 insert into school values ("Universita di Pisa");
+insert into school values ("SSML");
 
-insert into card (question, answer) values ("domanda di test", "risposta di test");
-INSERT INTO `card` (`id`, `question`, `answer`) VALUES (NULL, 'domanda 2', 'risposta 2');
-insert into Section values (1, "test@test.it", 1, "sezione 1");
-insert into Section values (1, "test@test.it", 2, "sezione 2");
+insert into card (question, answer) values ("Domanda di test", "Risposta di test");
+INSERT INTO `card` (`id`, `question`, `answer`) VALUES (NULL, 'Domanda 2', 'Risposta 2');
+insert into Section values (1, "test@test.it", 1, "Sezione 1");
+insert into Section values (1, "test@test.it", 2, "Sezione 2");

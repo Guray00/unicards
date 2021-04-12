@@ -1,6 +1,7 @@
 
 // evito di dare lo stesso id a carte differenti quando vengono aggiunte o rimosse
 MAX_CARD = 1;
+REFRESH = false;
 
 // rimuove dal database il deck
 function deleteDeck(id, user){
@@ -196,6 +197,7 @@ function submitHandler(id, user){
 			//alert(data);
 			// ricarichiamo la pagina una volta creata
 			if (data >= 0){
+				REFRESH = true;
 				postSuccess();
 				if (data > 0){
 					// nel caso in cui è restituito un valore intero maggiore 
@@ -288,6 +290,10 @@ function tabRename(element){
 	else element.value = document.getElementById(number+"_section").innerText;
 }
 
+
+window.onbeforeunload = function(event){
+	if(!REFRESH) return confirm("Confirm refresh");
+};
 
 // gestisco la dinamicità degli elementi inseriti via php nella pagina
 window.addEventListener("load",function(){
@@ -388,7 +394,6 @@ window.addEventListener("load",function(){
 			}
 		})
 	}
-
 })
 
 

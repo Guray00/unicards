@@ -2,6 +2,18 @@
 <?php
 	require("./utils.php");
 	require_once("./database.php");
+	include_once("../php/libs/Browser.php");
+
+	
+
+	function insert_session_table($id, $mail){
+		global $pdo;
+
+		$browser = new Browser();
+		$query = "insert into session(id, user, browser, version, platform) values(:id, :mail, :browser, :version, :platform);";
+		$params = ['id' => $id, 'mail' => $mail, 'browser' => $browser->getBrowser(), 'version' => $browser->getVersion(), 'platform' => $browser->getPlatform()];
+		$pdo->prepare($query)->execute($params);
+	}
 	
 	// se l'utente è già loggato è inutile eseguire il codice
 	if (_isLogged()) {
@@ -43,10 +55,11 @@
 			else {
 				// genero un nuovo id di sessione
 				session_regenerate_id();
-				$_SESSION['session_id'] = session_id();
+				$_SESSION['session_id'] 	  = session_id();
 				$_SESSION['session_username'] = $user['username'];
-				$_SESSION['session_mail'] = $user['mail'];
+				$_SESSION['session_mail'] 	  = $user['mail'];
 
+				insert_session_table(session_id(), $user['mail']);
 				header('Location: ../pages/dashboard.php');
 				exit;
 			}

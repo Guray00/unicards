@@ -1,0 +1,11 @@
+
+#deck_container{
+	display: grid;
+	margin-top: 10pt;
+	margin-left: 10pt;
+	margin-right: 10pt;
+	grid-template-columns: repeat(auto-fill, 100pt);
+	justify-content: space-between;
+	grid-gap: 5pt;
+}
+
