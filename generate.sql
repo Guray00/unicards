@@ -54,6 +54,7 @@ CREATE TABLE `degree`
 );
 
 
+
 -- ************************************** `school`
 CREATE TABLE `school`
 (
@@ -61,6 +62,7 @@ CREATE TABLE `school`
 
 PRIMARY KEY (`name`)
 );
+
 
 
 -- ************************************** `Deck`
@@ -84,6 +86,7 @@ CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`
 );
 
 
+
 -- ************************************** `Favourite`
 CREATE TABLE `Favourite`
 (
@@ -93,14 +96,14 @@ CREATE TABLE `Favourite`
 
 PRIMARY KEY (`user`, `deck`, `owner`),
 KEY `fkIdx_108` (`user`),
-CONSTRAINT `FK_107` FOREIGN KEY `fkIdx_108` (`user`) REFERENCES `User` (`mail`),
+CONSTRAINT `FK_107` FOREIGN KEY `fkIdx_108` (`user`) REFERENCES `User` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE,
 KEY `fkIdx_112` (`deck`, `owner`),
-CONSTRAINT `FK_111` FOREIGN KEY `fkIdx_112` (`deck`, `owner`) REFERENCES `Deck` (`id`, `user`)
+CONSTRAINT `FK_111` FOREIGN KEY `fkIdx_112` (`deck`, `owner`) REFERENCES `Deck` (`id`, `user`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
--- ************************************** `Tag`
 
+-- ************************************** `Tag`
 CREATE TABLE `Tag`
 (
  `name` varchar(45) NOT NULL ,
@@ -125,6 +128,7 @@ CONSTRAINT `FK_50` FOREIGN KEY `fkIdx_51` (`name`) REFERENCES `Tag` (`name`) ON 
 );
 
 
+
 -- ************************************** `Section`
 CREATE TABLE `Section`
 (
@@ -141,12 +145,16 @@ CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_98` (`card_id`) REFERENCES `Card` (`id`) O
 );
 
 
+
 -- ************************************** `Session`
 CREATE TABLE `Session`
 (
- `id`   varchar(256) NOT NULL ,
- `user` varchar(300) NOT NULL ,
- `time` timestamp NOT NULL ,
+ `id`       varchar(256) NOT NULL ,
+ `user`     varchar(300) NOT NULL ,
+ `time`     timestamp NOT NULL ,
+ `browser`  varchar(45) NULL ,
+ `version`  varchar(45) NULL ,
+ `platform` varchar(45) NULL ,
 
 PRIMARY KEY (`id`, `user`),
 KEY `fkIdx_58` (`user`),
@@ -201,16 +209,31 @@ DELIMITER ;
 
 
 
--- ************************************ 	TEST
+-- ************************************ 	POPOLAMENTO
 insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
+insert into User values ("test2@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 
 insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"Deck test", 	1);
+insert into deck (id, user, name, public, color) values (2, 	"test@test.it", 	"Progettazione Web", 	1, "#F5A161");
+
 
 insert into school values ("Liceo Pontormo");
 insert into school values ("Universita di Pisa");
 insert into school values ("SSML");
 
-insert into card (question, answer) values ("Domanda di test", "Risposta di test");
-INSERT INTO `card` (`id`, `question`, `answer`) VALUES (NULL, 'Domanda 2', 'Risposta 2');
+INSERT INTO card (question, answer) values ("Domanda di test", "Risposta di test");
+INSERT INTO card (question, answer) VALUES ('Domanda 2', 'Risposta 2');
+INSERT INTO card (`id`, `question`, `answer`) VALUES
+	(3, 'Cosa è Ajax?', 'AJAX, acronimo di Asynchronous JavaScript and XML, è una tecnica di sviluppo software per la realizzazione di applicazioni web interattive.'),
+	(4, 'Come si recupera un elemento mediante ID?', 'Document.getElementById();'),
+	(5, 'Come si recuperano gli elementi di una classe', 'Document.getElementByClassName();');
+
+
 insert into Section values (1, "test@test.it", 1, "Sezione 1");
 insert into Section values (1, "test@test.it", 2, "Sezione 2");
+
+insert into Section values (2, "test@test.it", 3, "Javascript");
+insert into Section values (2, "test@test.it", 4, "Javascript");
+insert into Section values (2, "test@test.it", 5, "Javascript");
+
+insert into Favourite values("test2@test.it", 2, "test@test.it");

@@ -117,6 +117,7 @@ input[type="radio"].tab {
 	width: 100pt;
 	height: 100pt;
 
+	margin-top:20%;
 	min-width: 100pt;
 	min-height: 100pt;
 }
@@ -165,6 +166,8 @@ input[type="radio"].tab {
 	height: 100%;
 	text-decoration: none;
 	color:white;
+
+	margin-top: -20%;
 }
 
 
@@ -231,6 +234,75 @@ button:focus, input[type=submit]:focus{
 .btn-edit:hover{
 	background-image: url("../assets/icons/edit_hover.svg");
 	box-shadow: none;
+}
+
+
+label.btn-favourite{
+	display: block;
+	padding: 0;
+
+	width: 15%;
+	height: 15%;
+
+	margin-top: -23%;
+	margin-left: 5%;
+	border-radius: 0;
+	margin-right: auto;
+	
+	background-image: url("../assets/icons/star.svg");
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-size: contain;
+	outline: none;
+
+	cursor: pointer;
+}
+
+
+label.btn-favourite:hover{
+	background-image: url("../assets/icons/star_active.svg");
+	box-shadow: none;
+}
+
+
+input.btn-favourite {
+	display: none;
+}
+
+.btn-favourite:checked + label{
+	background-image: url("../assets/icons/star_active.svg");
+}
+
+.btn-favourite:checked:hover + label{
+	background-image: url("../assets/icons/star.svg");
+}
+
+label.btn-lock-close, label.btn-lock-open{
+	display: block;
+	padding: 0;
+
+	width: 15%;
+	height: 15%;
+
+	margin-top: 5%;
+	margin-right: 5%;
+	border-radius: 0;
+	margin-left: auto;
+	
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-size: contain;
+	outline: none;
+
+	cursor: pointer;
+}
+
+label.btn-lock-close {
+	background-image: url("../assets/icons/lock.svg");
+}
+
+label.btn-lock-open {
+	background-image: url("../assets/icons/lock_open.svg");
 }
 
 /***********************
