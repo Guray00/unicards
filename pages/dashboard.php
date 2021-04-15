@@ -13,10 +13,10 @@
 
 
 		$query = "
-		SELECT D.id, D.user, D.name, D.color, D.public, F.owner as favourite	from (	select id, user, name, color, public
-																						FROM deck
-																						where user= :user order by id) as D
-		
+		SELECT D.id, D.user, D.name, D.color, D.public, F.owner as favourite	
+		from (	select id, user, name, color, public
+				FROM deck
+				where user= :user order by id) as D
 		LEFT OUTER JOIN favourite F on D.user = F.user and D.id = F.deck and D.user = F.owner
 		";
 
@@ -28,12 +28,28 @@
 
 
 		$query = "
-			SELECT D.name, D.id, D.color, D.public, D.user from favourite F, Deck D where F.user = :user and D.user = F.owner and D.id = F.deck
+			SELECT D.name, D.id, D.color, D.public, D.user 
+			from favourite F, Deck D where 
+				F.user = :user  and 
+				D.user = F.owner and
+				F.user = D.user and 
+				D.id = F.deck
+			
+			UNION
+			
+			SELECT D.name, D.id, D.color, D.public, D.user 
+			from favourite F, Deck D where 
+				F.user = :user2 and 
+				D.user = F.owner and 
+				F.user <> D.user and
+				D.id = F.deck  and 
+				D.public is TRUE
 		";
 
 		// ottengo le informazioni sul mazzo
 		$request = $pdo->prepare($query);
 		$request->bindParam(':user', $_SESSION["session_mail"], PDO::PARAM_STR);
+		$request->bindParam(':user2', $_SESSION["session_mail"], PDO::PARAM_STR);
 		$request->execute();
 		$favourite_list =  $request->fetchAll(PDO::FETCH_ASSOC);
 

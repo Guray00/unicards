@@ -211,24 +211,25 @@ button:focus, input[type=submit]:focus{
 	align-self: flex-end;
 }
 
-
-.btn-edit {
+.btn-edit, label.btn-favourite, label.btn-lock-close, label.btn-lock-open{
 	display: block;
 	padding: 0;
-
 	width: 15%;
 	height: 15%;
-
-	margin-top: -25%;
-	margin-right: 5%;
 	border-radius: 0;
-	margin-left: auto;
-	
-	background-image: url("../assets/icons/edit.svg");
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-size: contain;
 	outline: none;
+}
+
+.btn-edit {
+	margin-top: -25%;
+	margin-right: 5%;
+	margin-left: auto;
+	
+	background-image: url("../assets/icons/edit.svg");
+	
 }
 
 .btn-edit:hover{
@@ -250,11 +251,6 @@ label.btn-favourite{
 	margin-right: auto;
 	
 	background-image: url("../assets/icons/star.svg");
-	background-color: transparent;
-	background-repeat: no-repeat;
-	background-size: contain;
-	outline: none;
-
 	cursor: pointer;
 }
 
@@ -278,21 +274,13 @@ input.btn-favourite {
 }
 
 label.btn-lock-close, label.btn-lock-open{
-	display: block;
-	padding: 0;
 
-	width: 15%;
-	height: 15%;
 
 	margin-top: 5%;
 	margin-right: 5%;
 	border-radius: 0;
 	margin-left: auto;
 	
-	background-color: transparent;
-	background-repeat: no-repeat;
-	background-size: contain;
-	outline: none;
 
 	cursor: pointer;
 }

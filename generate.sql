@@ -213,8 +213,8 @@ DELIMITER ;
 insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 insert into User values ("test2@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 
-insert into deck (id, user, name, public) values (1, 	"test@test.it", 	"Deck test", 	1);
-insert into deck (id, user, name, public, color) values (2, 	"test@test.it", 	"Progettazione Web", 	1, "#F5A161");
+insert into deck (id, user, name, public) 		 values (1, "test@test.it", "Ricerca Operativa", 	1);
+insert into deck (id, user, name, public, color) values (2, "test@test.it", "Progettazione Web", 	1, "#F5A161");
 
 
 insert into school values ("Liceo Pontormo");
