@@ -7,20 +7,21 @@ if (isset($_POST['signin'])) {
     $password = $_POST['password'] ?? '';
 
     //$isUsernameValid = _isUsernameValid($mail);
-   @$isUsernameValid = true;
+   	$isUsernameValid = true;
 	$pwdLenght = mb_strlen($password);
     
+	// controllo se i campi sono vuoti
     if (empty($mail) || empty($password)) {
         $msg = 'Compila tutti i campi %s';
     } 
 	
 	elseif (false === $isUsernameValid) {
-        $msg = 'Lo username non è valido. Sono ammessi solamente caratteri 
+        $msg = 'L\'username non è valido. Sono ammessi solamente caratteri 
                 alfanumerici e l\'underscore. Lunghezza minina 3 caratteri.
                 Lunghezza massima 20 caratteri %s';
-
     } 
 	
+	// controllo la lunghezza della password
 	elseif ($pwdLenght < 8 || $pwdLenght > 20) {
         $msg = 'Lunghezza minima password 8 caratteri.
                 Lunghezza massima 20 caratteri %s';

@@ -14,6 +14,7 @@
 		$params = ['id' => $id, 'mail' => $mail, 'browser' => $browser->getBrowser(), 'version' => $browser->getVersion(), 'platform' => $browser->getPlatform()];
 		$pdo->prepare($query)->execute($params);
 	}
+
 	
 	// se l'utente è già loggato è inutile eseguire il codice
 	if (_isLogged()) {

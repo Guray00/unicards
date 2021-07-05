@@ -1,3 +1,0 @@
-function yourJsFunction(){
-	alert("aaa");
-}

@@ -24,7 +24,7 @@ body {
 #card-progress {
 	margin-top: 40pt;
 	background-color: #474e5c;
-	width: 45%;
+	width: 500pt;
 	margin-top: 10pt;
 	margin-bottom: 10pt;
 
@@ -34,8 +34,8 @@ body {
 
 #card-content {
 	display: block;
-	width: 45%;
-	height: 35%;
+	width: 500pt;
+	height: 250pt;
 	background-color: #474e5c;
 	align-self: center;
 
