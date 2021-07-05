@@ -26,7 +26,7 @@ Oltre a consentire l’aggiunta o la rimozione di carte e sezioni. Ogni mazzo è
  
 ## Schermata  di gioco
 Il sito mette a disposizione due differenti modalità:
--Singola: l’utente sfida un mazzo confrontando le proprie risposte con quelle già presenti, segnando per ciascuna di esse se è corretta o meno. 
+- Singola: l’utente sfida un mazzo confrontando le proprie risposte con quelle già presenti, segnando per ciascuna di esse se è corretta o meno. 
 - Multigiocatore: l’utente crea un gruppo privato in cui può invitare altri giocatori attraverso un link di invito (eventualmente protetto da password) e sfidarli. In questo caso non è prevista la verifica autonoma delle risposte, ma saranno mostrate a schermo domande con risposta a scelta multipla.
 
 In entrambi i casi, a fine partita verranno mostrati i punteggi e le statistiche (che verranno salvati nel database del sito).
