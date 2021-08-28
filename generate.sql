@@ -4,6 +4,7 @@ DROP DATABASE IF EXISTS unicards;
 CREATE DATABASE unicards 
 	CHARACTER SET utf8 COLLATE utf8_general_ci; -- imposta la codifica dei caratteri a utf8
 
+USE unicards;
 -- ************************************** `User`
 CREATE TABLE `User`
 (
@@ -213,17 +214,17 @@ DELIMITER ;
 insert into User values ("test@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 insert into User values ("test2@test.it", "test", "$2y$10$/MUUE/wL3CrUIxtmr0.EOO1nIAU6t9DY9ijuBPtfS0rXoUkJkEvFu", "it", "light");
 
-insert into deck (id, user, name, public) 		 values (1, "test@test.it", "Ricerca Operativa", 	1);
-insert into deck (id, user, name, public, color) values (2, "test@test.it", "Progettazione Web", 	1, "#F5A161");
+insert into Deck (id, user, name, public) 		 values (1, "test@test.it", "Ricerca Operativa", 	1);
+insert into Deck (id, user, name, public, color) values (2, "test@test.it", "Progettazione Web", 	1, "#F5A161");
 
 
 insert into school values ("Liceo Pontormo");
 insert into school values ("Universita di Pisa");
 insert into school values ("SSML");
 
-INSERT INTO card (question, answer) values ("Domanda di test", "Risposta di test");
-INSERT INTO card (question, answer) VALUES ('Domanda 2', 'Risposta 2');
-INSERT INTO card (`id`, `question`, `answer`) VALUES
+INSERT INTO Card (question, answer) values ("Domanda di test", "Risposta di test");
+INSERT INTO Card (question, answer) VALUES ('Domanda 2', 'Risposta 2');
+INSERT INTO Card (`id`, `question`, `answer`) VALUES
 	(3, 'Cosa è Ajax?', 'AJAX, acronimo di Asynchronous JavaScript and XML, è una tecnica di sviluppo software per la realizzazione di applicazioni web interattive.'),
 	(4, 'Come si recupera un elemento mediante ID?', 'Document.getElementById();'),
 	(5, 'Come si recuperano gli elementi di una classe', 'Document.getElementByClassName();');
