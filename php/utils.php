@@ -1,8 +1,8 @@
 <?php
 	session_start();
 
-	$badWords = file_get_contents('https://raw.githubusercontent.com/shutterstock/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en');
-	$badWords = explode("\n", $badWords);
+	//$badWords = file_get_contents('https://raw.githubusercontent.com/shutterstock/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en');
+	//$badWords = explode("\n", $badWords);
 	//echo 'badWords = ["'.implode('","', $badWords).'"];';
 
 	//controlla se l'utente ha effettuato l'accesso

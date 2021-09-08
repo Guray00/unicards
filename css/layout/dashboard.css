@@ -10,3 +10,149 @@
 	margin-bottom: 40pt;
 }
 
+
+
+#choose-mod {
+	display: none;
+	position: absolute;
+
+	width: 400pt;
+	height: 200pt;
+
+	left: calc(50% - 240pt);
+	top: calc(50% - 140pt);
+
+	padding: 20pt;
+
+	z-index: 5;
+	background-color: aliceblue;
+}
+
+#opacity {
+	display: none;
+	z-index: 4;
+
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+
+	background-color: #000000bb;
+}
+
+#close-menu, #close-menu:hover {
+	display: block;
+	outline: none;
+	border: none;
+
+	width: 30pt;
+	height: 30pt;
+
+	margin-left: auto;
+	background-color: #00000000;
+
+	font-size: 15pt;
+	font-weight:lighter;
+
+	color: #9c0d0dbb;
+
+	margin-right: -10pt;
+	margin-top: -15pt;
+
+}
+
+#game-mod-selector {
+	display: block;
+}
+
+#game-mod-selector > button {
+	display: block;
+	width: 80%;
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5pt;
+
+	height: 30pt;
+
+	color: whitesmoke;
+	background-color: #474e5c;
+}
+
+#game-mod-selector > button {
+	display: block;
+	width: 80%;
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 5pt;
+
+	height: 30pt;
+
+	color: whitesmoke;
+	background-color: #474e5c;
+}
+
+#game-mod-selector > button {
+	display: block;
+	width: 85%;
+
+	margin-left: auto;
+	/*margin-right: auto;*/
+	margin-bottom: 5pt;
+
+	height: 30pt;
+
+	color: whitesmoke;
+	background-color: #474e5c;
+}
+
+
+
+
+#edit-btn {
+	display: block;
+	width: 100%;
+
+	height: 25pt;
+
+	color: whitesmoke;
+
+	background-color: rgb(241, 112, 112);
+	border: none;
+	outline: none;
+
+	margin-top: 5pt;
+	font-size: 12pt;
+}
+
+#selector {
+	display: grid;
+	
+	grid-template-columns: 155pt 6fr;
+}
+
+
+
+#menu-deck-preview {
+	background-image: url("../../assets/card_background.svg");
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.027), 0 6px 20px 0 rgba(0, 0, 0, 0.103);
+
+	background-size: contain;
+	display: inline-flex;
+
+	width: 150pt;
+	height: 150pt;
+
+	background-color: #2196F3;
+	text-align: center;
+	font-size: 14pt;
+	border-radius: 10pt;
+	padding: 2pt;
+
+	align-items: center;
+	justify-content: center;
+	color: aliceblue;
+	font-size: 20pt;
+}
+

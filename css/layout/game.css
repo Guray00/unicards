@@ -7,12 +7,146 @@ html {
 
 body {
 	margin: 0;
-	display: flex;
 	padding: 0;
 	width: 100%;
 	height: 100%;
 	background-color: #282c34;
 	align-content: center;
+	
+}
+/*
+	card-page viene utilizzato per renderizzare
+	l'interfaccia per un singolo giocatore
+*/
+.card-page, .multi-page{
+	margin: 0;
+	display: grid;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.multi-page{
+	grid-template-columns: 4fr 6fr;
+}
+
+.card-page {
+	grid-template-columns:minmax();
+}
+
+.buttons-box {
+	display: grid;
+	height: 35pt;
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.play, .back, .skip {
+	display: block;
+	
+	width:  35pt;
+	height: 35pt;
+
+	margin-left:  5pt;
+	margin-right: 5pt;
+
+	background-size: 35pt 35pt;
+	border-radius: 35pt;
+	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.027), 0 6px 20px 0 rgba(0, 0, 0, 0.103);
+}
+
+.play:hover, .back:hover, .skip:hover {
+	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.2);
+}
+
+.play {
+	background-image: url("../../assets/icons/play.svg");
+}
+
+.back {
+	background-image: url("../../assets/icons/back.svg");
+}
+
+.skip {
+	background-image: url("../../assets/icons/skip.svg");
+}
+
+.navigator {
+	display: flex;
+	margin-right: 10pt;
+	margin-left: 10pt;
+	margin-top: 10pt;
+	height: 30pt;
+
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	
+	
+}
+
+.navigator-item {
+	display: inline;
+	align-content: center;
+	align-self: center;
+	text-align: center;
+	vertical-align: middle;
+	color: white;
+	padding-top: 5pt;
+	padding-bottom: 5pt;
+}
+
+.navigator-item.selected {
+	color:#282c34;
+	background-color: azure;
+}
+
+.navigator-item:hover, .warning:hover, .answer-content:hover {
+	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.2);
+}
+
+.navigator-item.selected:hover {
+	box-shadow: inset 0 0 100pt 100pt rgba(0, 0, 0, 0.308);
+}
+
+.card-content:hover {
+	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.2);
+}
+
+
+
+.warning {
+	display: block;
+	padding: 5pt;
+	width: fit-content;
+
+	background-color: #fde55b;
+	color: #8a7c31;
+	font-weight: bold;
+	font-style: italic;
+
+
+	margin-left: auto;
+	margin-right: auto;
+
+	border-radius: 5pt;
+}
+
+.first {
+	border-bottom-left-radius: 25%;
+	border-top-left-radius: 25%;
+}
+
+.last {
+	border-bottom-right-radius: 25%;
+	border-top-right-radius: 25%;
+}
+
+
+p {
+	font-size: 18pt;
 }
 
 #test {
@@ -22,31 +156,56 @@ body {
 }
 
 #card-progress {
-	margin-top: 40pt;
+	margin-top:20pt;
 	background-color: #474e5c;
-	width: 500pt;
-	margin-top: 10pt;
+	max-width: 500pt;
+	min-width: 150pt;
 	margin-bottom: 10pt;
 
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#card-content {
+
+
+
+.card-content, .answer-content {
 	display: block;
-	width: 500pt;
-	height: 250pt;
-	background-color: #474e5c;
+
+	
 	align-self: center;
 
 	margin-left: auto;
 	margin-right: auto;
+	
+	color: aliceblue;
+	
+}
+
+.answer-content {
+	background-color: #818ca3;
+}
+
+.card-content {
+
+	max-width: 500pt;
+	min-width: 150pt;
+	height: 200pt;
 
 	text-align: center;
-
-	color: aliceblue;
 	align-content: center;
+	align-items: center;
 	justify-content: center;
+
+	background-color: #474e5c;
+}
+
+.card-content > p {
+	font-size: 16pt;
+}
+
+.answer-content > p {
+	font-size: 14pt;
 }
 
  #button-menu{

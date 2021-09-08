@@ -51,7 +51,7 @@ window.addEventListener("load",function(){
 			lbl.setAttribute("for", "tab"+MAX_TAB);
 			lbl.className = "tab";
 			lbl.id = MAX_TAB+"_section";
-			lbl.innerText = "Untitled"+MAX_TAB; 
+			lbl.innerText = "Untitled";//+MAX_TAB; 
 
 			// inserisco il contenitore di elementi
 			let div = document.createElement("div");

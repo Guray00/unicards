@@ -8,15 +8,32 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="40.118202mm"
-   height="10.925982mm"
-   viewBox="0 0 40.118202 10.92598"
+   width="19.405731mm"
+   height="10.92648mm"
+   viewBox="0 0 19.405731 10.92648"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="tab_hover.svg">
+   sodipodi:docname="add_tab.svg">
   <defs
      id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect850"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,0.49277902,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.1166667,0,1 @ F,0,0,1,0,0.7600469,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="8"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect1164"
@@ -73,25 +90,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="64"
-     inkscape:cx="-1.9998046"
-     inkscape:cy="41.656539"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="33.292521"
+     inkscape:cy="28.523223"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="1500"
-     inkscape:window-height="938"
-     inkscape:window-x="-6"
-     inkscape:window-y="-6"
-     inkscape:window-maximized="1"
-     showguides="true"
-     inkscape:guide-bbox="true">
-    <sodipodi:guide
-       position="40.099875,-0.0025321288"
-       orientation="0,-1"
-       id="guide842" />
-  </sodipodi:namedview>
+     inkscape:window-width="1406"
+     inkscape:window-height="960"
+     inkscape:window-x="24"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -100,7 +110,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -108,7 +118,7 @@
      inkscape:label="Livello 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-85.492716,-64.756526)">
+     transform="translate(-106.20519,-64.756507)">
     <image
        width="130.92097"
        height="53.545212"
@@ -120,10 +130,21 @@
        style="fill:#2dc085;fill-opacity:1" />
     <path
        style="fill:#2ddc85;fill-opacity:1;stroke:none;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 85.492716,75.682508 h 40.118204 l -5.25015,-9.092924 a 3.6662973,3.6662973 29.999171 0 0 -3.17506,-1.833056 l -29.576327,-2e-6 a 2.1166666,2.1166666 135 0 0 -2.116667,2.116667 z"
+       d="m 106.69863,75.682519 18.91229,4.68e-4 -5.25019,-9.093403 a 3.6662132,3.6662132 29.999737 0 0 -3.17502,-1.833077 h -10.22052 a 0.75999751,0.75999751 134.99814 0 0 -0.76,0.760047 l 6.3e-4,9.673174 a 0.49282323,0.49282323 44.998847 0 0 0.49281,0.492791 z"
        id="path847"
        sodipodi:nodetypes="ccccc"
-       inkscape:path-effect="#path-effect1164"
-       inkscape:original-d="m 85.492716,75.682508 h 40.118204 l -6.30854,-10.92598 -33.809664,-2e-6 z" />
+       inkscape:path-effect="#path-effect850"
+       inkscape:original-d="m 106.20585,75.682507 19.40507,4.8e-4 -6.30854,-10.92648 h -13.09724 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:12.2176px;line-height:1.25;font-family:sans-serif;fill:#1d7b55;fill-opacity:1;stroke:none;stroke-width:0.536805;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="110.05332"
+       y="74.684319"
+       id="text854"><tspan
+         sodipodi:role="line"
+         id="tspan852"
+         x="110.05332"
+         y="74.684319"
+         style="fill:#1d7b55;fill-opacity:1;stroke:none;stroke-width:0.536805;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">+</tspan></text>
   </g>
 </svg>

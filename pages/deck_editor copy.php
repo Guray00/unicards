@@ -21,36 +21,19 @@
 			echo "\"NULL\"" . ", \"" . $_SESSION["session_mail"] . "\"";
 	}
 
-	function echoButtonLastDiv(){
-		echo "
-		<div class='buttons-last-div'>
-			<button type='button' class='btn-remove' id='btn-remove-tab' onclick='removeTab(this)'></button> 
-			<button type='button' id='radio-add' onclick='addCard(this, 4)'>Aggiungi scelta multipla</button> 
-			<button type='button' id='btn-add' onclick='addCard(this, 1)'>Aggiungi carta</button> 
-		</div>
-		";
-	}
-
 	// contenitore delle tab
 	function defaultTabContainer(){
 		echo " <div class=\"tab-container\" id='tab1'> 
 					<div class='cards-container'>
-
-						<div class='section-info-div'>
-							<label id='1_lbl_section'>Nome sezione:</label>
-							<input class='section_name' id='1_section_name' type='text' value='Untitled' required oninvalid='onInvalidText()'></input>
-						</div>
-
-						<div class='card-div'>
-							<label id='1_lbl_question1'>Domanda 1</label>
-							<label id='1_lbl_answer1'>Risposta 1</label>
-							<textarea id='1_question1' name='1_question1' form='deck_form' required oninvalid='onInvalidText()'></textarea>
-							<textarea id='1_answer1' name='1_answer1'   form='deck_form' required oninvalid='onInvalidText()'></textarea>
-						</div>";
-
-		echoButtonLastDiv();						
-
-		echo	"		</div>
+						<label id='1_lbl_section'>Nome sezione:</label>
+						<input class='section_name' id='1_section_name' type='text' value='Untitled' required oninvalid='onInvalidText()'></input>
+						<label id='1_lbl_question1'>Domanda 1</label>
+						<label id='1_lbl_answer1'>Risposta 1</label>
+						<textarea id='1_question1' name='1_question1' form='deck_form' required oninvalid='onInvalidText()'></textarea>
+						<textarea id='1_answer1' name='1_answer1'   form='deck_form' required oninvalid='onInvalidText()'></textarea>
+						<button type='button' class='btn-remove' id='btn-remove-tab' onclick='removeTab(this)'></button> 
+						<button type='button' id='btn-add' onclick='addCard(this)'>Aggiungi carta</button> 
+					</div>
 	 			</div>";
 	}
 
@@ -62,101 +45,30 @@
 	function loadCards($cards){
 		$tab_number = 1;
 		foreach ($cards as $section => $value){
-
 			echo "<div class=\"tab-container\" id='tab{$tab_number}'> 
 					<div class='cards-container'>
-
-					<div class='section-info-div'>
-						<label id='1_lbl_section'>Nome sezione:</label>
-						<input class='section_name' id='{$tab_number}_section_name' type='text' value='{$section}' required oninvalid='onInvalidText()'></input>
-					</div>
+					<label id='1_lbl_section'>Nome sezione:</label>
+					<input class='section_name' id='{$tab_number}_section_name' type='text' value='{$section}' required oninvalid='onInvalidText()'></input>
 					";
 
 						$question_number = 1;
 						foreach($value as $c){
-
 							$lbl_question = $tab_number.'_lbl_question'.$question_number;
+							$lbl_answer   = $tab_number.'_lbl_answer'.$question_number;
 							$question = $tab_number.'_question'.$question_number;
-							$question_type =  $tab_number.'_type'.$question_number;
+							$answer   = $tab_number.'_answer'.$question_number;
+							echo 	"	
+										<label 	  id='{$lbl_question}'>Domanda {$question_number}</label>
+										<label 	  id='{$lbl_answer}'  >Risposta {$question_number}</label>
 
-							// se la carta è una domanda semplice
-							if (count($c["answer"]) == 1){
-								$lbl_answer   = $tab_number.'_lbl_answer'.$question_number;
-								$answer   = $tab_number.'_answer'.$question_number;
-								$correct   	= $tab_number.'_correct'.$question_number;
-
-								echo 	"	
-											<div class='card-div' id= 'card-div-{$question_number}'>
-												<label 	  id='{$lbl_question}'>Domanda {$question_number}</label>
-												<label 	  id='{$lbl_answer}'  >Risposta {$question_number}</label>
-
-												<textarea id='{$question}' name='{$question}' form='deck_form' required oninvalid='onInvalidText()'>{$c['question']}</textarea>
-												<textarea id='{$answer}'   name='{$answer}' form='deck_form' required oninvalid='onInvalidText()'>{$c['answer'  ][0][0]}</textarea>
-												
-												<!-- servono per il form -->
-												<input id='{$question_type}' name='{$question_type}' value='0' style='display:none;'  form='deck_form' />
-												<input id='{$correct}' name='{$correct}' value='1' style='display:none;'  form='deck_form' />
-											</div>
-										";
-											
-								$question_number++;
-							}
-
-							else if (count($c["answer"]) == 4){
-
-								//$lbl_question = $tab_number.'_lbl_question'.$question_number;
-								//$question = $tab_number.'_question'.$question_number;
-								$type_radio = $c["type"] == 1 ? "ctr-radio-selected" : "ctr-radio";
-								$type_check = $c["type"] == 2 ? "ctr-check-selected" : "ctr-check";
-
-								
-								// disegnamo la domanda e il selettore check / radio
-								echo 	"<div class='multichoice-4-div' id= 'card-div-{$question_number}'>
-											<label 	  id='{$lbl_question}'>Domanda {$question_number}</label>
-											<textarea id='{$question}' name='{$question}' form='deck_form' required oninvalid='onInvalidText()'>{$c['question']}</textarea>
-
-											<div class='check-to-radio'>
-											<input type='button' class='{$type_radio}'  onclick='ctr_radio(this);'/>
-											<input type='button' class='{$type_check}'  onclick='ctr_check(this);'/>
-											
-											<!-- serve per il form -->
-											<input id='{$question_type}' class='question-type' name='{$question_type}' value='{$c["type"]}' style='display:none;' form='deck_form'/>
-										</div>
-								";
-
-								$letters = ["A", "B", "C", "D"];
-								for($i = 0; $i < 4; $i++){
-
-									$lbl_answer = $tab_number.'_lbl_answer'.$question_number."_".$letters[$i];
-									$answer   	= $tab_number.'_answer'.$question_number."_".$letters[$i];
-									$correct   	= $tab_number.'_correct'.$question_number."_".$letters[$i];
-
-									$shape = $c["type"] == 1 ? "style='border-radius:50pt;'" : "style='border-radius:2pt;'";
-									//style="property:value;"
-
-									$value = $c['answer'  ][$i][1];
-									$set_true = $c['answer'  ][$i][1] == 1 ? "set-true-selected" : "set-true";
-
-
-									echo 	"				
-										<label 	  id='{$lbl_answer}'  >{$letters[$i]}</label>
-										<textarea id='{$answer}'   name='{$answer}' form='deck_form' required oninvalid='onInvalidText()'>{$c['answer'  ][$i][0]}</textarea>
-										<input type='label' class='{$set_true}' id='{$correct}' name='{$correct}' value='{$value}' form='deck_form' {$shape} onclick='set_answer_true(this)'/>
-								";
-								}
-
-								echo "</div>";
-
-								
-											
-								$question_number++;
-							}
-
+										<textarea id='{$question}' name='{$question}' form='deck_form' required oninvalid='onInvalidText()'>{$c['question']}</textarea>
+										<textarea id='{$answer}'   name='{$answer}' form='deck_form' required oninvalid='onInvalidText()'>{$c['answer'  ]}</textarea>";
+							$question_number++;
 						}
 						
-						echoButtonLastDiv();
-			
-			// 		chiude cards-container e tabs-container 
+						echo '	<button type="button" class="btn-remove" id="btn-remove-tab" onclick="removeTab(this)"></button> 
+								<button type="button" id="btn-add" onclick="addCard(this)">Aggiungi carta</button>';
+
 			echo 	"</div>
 				</div>";
 
@@ -215,7 +127,7 @@
 		$public  = $info["public"];
 	
 		$query = "
-		SELECT C.id as card, S.name as section, C.question, C.type
+		SELECT C.id as card, S.name as section, C.answer, C.question
 		FROM section S, card C
 		WHERE deck_id = :deck AND user= :id	AND S.card_id = C.id
 		order by C.id";
@@ -228,37 +140,10 @@
 		$q2->execute();
 		$result =  $q2->fetchAll(PDO::FETCH_ASSOC);
 
-		/*$query = "
-		SELECT A.card_id as card, A.id as id, A.answer
-		FROM Answers
-		WHERE deck_id = :deck AND user= :id	AND S.card_id = C.id
-		order by C.id";*/
-
 		// imposto tutte le carte
 		foreach($result as $row) {
-			$query = "
-				SELECT A.answer, A.correct
-				FROM Answers A, card C
-				WHERE A.card_id = C.id AND C.id = :id
-				order by A.id";
-
-			$q2 = $pdo->prepare($query);
-			$q2->bindParam(':id', $row["card"], PDO::PARAM_STR);
-			$q2->execute();
-
-			$r2 =  $q2->fetchAll(PDO::FETCH_ASSOC);
-
-			$answer = [];
-
-			for ($i = 0; $i < count($r2); $i++){
-				$answer[$i][0] = $r2[$i]["answer"];
-				$answer[$i][1] = $r2[$i]["correct"];
-			}
-
-
 			$cards[$row["section"]][$row["card"]]["question"] = $row["question"];
-			$cards[$row["section"]][$row["card"]]["answer"]   = $answer;
-			$cards[$row["section"]][$row["card"]]["type"] = $row["type"];
+			$cards[$row["section"]][$row["card"]]["answer"]   = $row["answer"];
 		}		
 	}
 
@@ -275,7 +160,6 @@
 ?>
 
 
-<!-- PAGE -->
 <!DOCTYPE html>
 <html>
 	<head>

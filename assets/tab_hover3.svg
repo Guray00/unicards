@@ -9,12 +9,12 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40.118202mm"
-   height="10.925982mm"
-   viewBox="0 0 40.118202 10.92598"
+   height="10.926mm"
+   viewBox="0 0 40.118202 10.925997"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="tab_hover.svg">
+   sodipodi:docname="selected_tab3.svg">
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -22,7 +22,7 @@
        id="path-effect1164"
        is_visible="true"
        lpeversion="1"
-       satellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.1166667,0,1 @ F,0,0,1,0,2.1166667,0,1"
+       satellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,1.7528646,0,1 @ F,0,0,1,0,2.1166667,0,1"
        unit="px"
        method="auto"
        mode="F"
@@ -73,9 +73,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="64"
-     inkscape:cx="-1.9998046"
-     inkscape:cy="41.656539"
+     inkscape:zoom="128"
+     inkscape:cx="-1.2773398"
+     inkscape:cy="39.701747"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -88,9 +88,12 @@
      showguides="true"
      inkscape:guide-bbox="true">
     <sodipodi:guide
-       position="40.099875,-0.0025321288"
+       position="-0.27698564,-0.11415334"
        orientation="0,-1"
        id="guide842" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid2615" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -100,7 +103,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -120,10 +123,10 @@
        style="fill:#2dc085;fill-opacity:1" />
     <path
        style="fill:#2ddc85;fill-opacity:1;stroke:none;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 85.492716,75.682508 h 40.118204 l -5.25015,-9.092924 a 3.6662973,3.6662973 29.999171 0 0 -3.17506,-1.833056 l -29.576327,-2e-6 a 2.1166666,2.1166666 135 0 0 -2.116667,2.116667 z"
+       d="m 85.492716,75.682508 40.118204,1.8e-5 -5.43206,-9.407999 a 3.0361494,3.0361494 29.999192 0 0 -2.62934,-1.518001 H 87.609383 a 2.1166667,2.1166667 135 0 0 -2.116667,2.116667 z"
        id="path847"
        sodipodi:nodetypes="ccccc"
-       inkscape:path-effect="#path-effect1164"
-       inkscape:original-d="m 85.492716,75.682508 h 40.118204 l -6.30854,-10.92598 -33.809664,-2e-6 z" />
+       inkscape:original-d="m 85.492716,75.682508 40.118204,1.8e-5 -6.30854,-10.926 H 85.492716 Z"
+       inkscape:path-effect="#path-effect1164" />
   </g>
 </svg>

@@ -66,14 +66,13 @@ body {
 	/*background-color: var(--background-color);*/
 }
 
-.side-box {
-	backdrop-filter: saturate(180%) blur(20px);
-}
 
+
+/*
 .content-box {
 	background-color: var(--background-paper);
 }
-
+*/
 
 
 /*******************************
@@ -89,9 +88,7 @@ body {
 		Navigation bar
 *******************************/
 
-nav {
-	backdrop-filter: saturate(180%) blur(20px);
-}
+
 
 nav > a.selected {
 	color: rgb(29, 149, 230);

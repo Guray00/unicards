@@ -24,6 +24,12 @@
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.side-box, nav {
+	/*funziona solamente in chrome, non disponibile su firefox*/
+	backdrop-filter: saturate(180%) blur(20px);
+}
+
+
 /***********************
 	  tabs
 ************************/
@@ -48,7 +54,7 @@ label.tab {
 	align-items: center;
 	font-size: 12pt;
 	color: rgba(0, 0, 0, 0.397);
-	background-image: url("../assets/selected_tab.svg");
+	background-image: url("../assets/unselected_tab3.svg");
 	background-size: contain;
 	background-repeat: no-repeat;
 }
@@ -60,7 +66,7 @@ input[type="radio"].tab {
 
 /*quando una tab è selezionata*/
 .tab:checked + label {
-	background-image: url("../assets/selected_tab2.svg");
+	background-image: url("../assets/selected_tab3.svg");
 	font-weight: bold;
 	z-index: 90;
 }
@@ -69,7 +75,7 @@ input[type="radio"].tab {
 .tab:hover{
 	cursor: pointer;
 	outline: none;
-	background-image: url("../assets/tab_hover.svg");
+	background-image: url("../assets/tab_hover3.svg");
 }
 
 /*selettore di tab*/
@@ -78,6 +84,7 @@ input[type="radio"].tab {
 	height: auto;
 	width: 100%;
 	z-index: 9999;
+	/*background-color: aquamarine;*/
 }
 
 .tab-container {
@@ -98,13 +105,13 @@ input[type="radio"].tab {
 	border-radius: 0;
 	z-index: 0;
 	background-color: rgba(240, 248, 255, 0);
-	background-image: url("../assets/add_tab.svg");
+	background-image: url("../assets/add_tab3.svg");
 }
 
 .add-tab:hover, .add-tab:active {
 	outline: none;
 	box-shadow: none;
-	background-image: url("../assets/add_tab_hover.svg");
+	background-image: url("../assets/add_tab_hover3.svg");
 }
 
 
@@ -127,9 +134,11 @@ input[type="radio"].tab {
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.027), 0 6px 20px 0 rgba(0, 0, 0, 0.103);
 
 	background-size: contain;
-	display: flex;
+	display: inline-block;
 	flex-wrap: wrap;
 
+
+	display: flex;
 	width: 100pt;
 	height: 100pt;
 
@@ -195,9 +204,10 @@ button:hover, input[type=submit]:hover {
 	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.24);
 }
 
+/*
 button:focus, input[type=submit]:focus{
-	/*outline: none;*/
-}
+	outline: none;
+}*/
 
 .btn-remove {	
 	padding: 0;
@@ -293,6 +303,49 @@ label.btn-lock-open {
 	background-image: url("../assets/icons/lock_open.svg");
 }
 
+.check-to-radio {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.ctr-radio, .ctr-radio-selected, .ctr-check, .ctr-check-selected {
+	display: block;
+	width: 100%;
+	height: 50%;
+
+	background-position: center;
+	background-size: 15pt 15pt;
+	background-repeat: no-repeat;
+	outline: none;
+	border: none;
+	cursor:pointer;
+}
+
+.ctr-radio:hover, .ctr-radio-selected:hover, .ctr-check:hover, .ctr-check-selected:hover {
+	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.24);
+}
+
+.ctr-radio, .ctr-radio-selected {
+	border-top-left-radius: 10pt;
+	border-top-right-radius: 10pt;
+	background-image: url("../assets/check_to_radio/circle.svg");
+}
+
+.ctr-check, .ctr-check-selected {
+	border-bottom-left-radius: 10pt;
+	border-bottom-right-radius: 10pt;
+	background-image: url("../assets/check_to_radio/rectangle.svg");
+}
+
+.ctr-radio, .ctr-check{
+	background-color: #cccccc8f;
+}
+
+.ctr-radio-selected, .ctr-check-selected {
+	background-color: #2196f3;
+}
+
 /***********************
 		Text
 ************************/
@@ -352,6 +405,8 @@ footer {
 	align-items: center;
 	font-family: openSans-Regular;
 	font-style: italic;
+
+	z-index: 100;
 }
 
 

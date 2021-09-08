@@ -40,8 +40,6 @@ CREATE TABLE `Card`
 (
  `id`       integer unsigned NOT NULL AUTO_INCREMENT ,
  `question` text NOT NULL ,
- `type` 	tinyint(2) NOT NULL,
-
 -- `answer`   text NOT NULL ,
 
 PRIMARY KEY (`id`)
@@ -52,8 +50,7 @@ CREATE TABLE `Answers`
 (
  `card_id`  integer unsigned NOT NULL,
  `id`		integer unsigned NOT NULL AUTO_INCREMENT,
- `answer`   text 			 NOT NULL,
- `correct`	tinyint(1) 		 NOT NULL,
+ `answer`   text NOT NULL,
 
  PRIMARY KEY (`id`),
  FOREIGN KEY(`card_id`) REFERENCES `Card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -62,7 +59,7 @@ CREATE TABLE `Answers`
 
 -- ************************************** `Multichoice`
 -- CREATE TABLE `Multichoice`
--- (
+(
 --  `id`       integer unsigned NOT NULL AUTO_INCREMENT ,
 --  `type`		CHAR(5),
 --  `question` text NOT NULL ,
@@ -251,24 +248,13 @@ insert into school values ("Liceo Pontormo");
 insert into school values ("Universita di Pisa");
 insert into school values ("SSML");
 
-INSERT INTO Card (id, question, `type`) VALUES (1, "Domanda di test", 0);
-INSERT INTO Card (id, question, `type`) VALUES (2, 'Domanda 2', 0);
+INSERT INTO Card (question, answer) values ("Domanda di test", "Risposta di test");
+INSERT INTO Card (question, answer) VALUES ('Domanda 2', 'Risposta 2');
+INSERT INTO Card (`id`, `question`, `answer`) VALUES
+	(3, 'Cosa è Ajax?', 'AJAX, acronimo di Asynchronous JavaScript and XML, è una tecnica di sviluppo software per la realizzazione di applicazioni web interattive.'),
+	(4, 'Come si recupera un elemento mediante ID?', 'Document.getElementById();'),
+	(5, 'Come si recuperano gli elementi di una classe', 'Document.getElementByClassName();');
 
-INSERT INTO Answers (`card_id`, `id`, `answer`, `correct`) VALUES (1, 1, "Risposta di test", 1);
-INSERT INTO Answers (`card_id`, `id`, `answer`, `correct`) VALUES (2, 2, "Risposta di test2", 1);
-
-INSERT INTO Card (`id`, `question`, `type`) VALUES
-	(3, 'Cosa è Ajax?', 0),
-	(4, 'Come si recupera un elemento mediante ID?', 0),
-	(5, 'Come si recuperano gli elementi di una classe', 1);
-
-INSERT INTO Answers (`card_id`, `id`, `answer`, `correct`) VALUES
-	(3, 3, 'AJAX, acronimo di Asynchronous JavaScript and XML, è una tecnica di sviluppo software per la realizzazione di applicazioni web interattive.', 1),
-	(4, 4, 'Document.getElementById();', 1),
-	(5, 5, 'Document.getElementByClassName();', 1), 
-	(5, 6, 'Risposta alternativa1', 0),
-	(5, 7, 'Risposta alternativa2', 0),
-	(5, 8, 'Risposta alternativa3', 0);
 
 insert into Section values (1, "test@test.it", 1, "Sezione 1");
 insert into Section values (1, "test@test.it", 2, "Sezione 2");

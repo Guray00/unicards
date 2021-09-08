@@ -1,0 +1,40 @@
+@import "../design.css";
+
+/*  necessario per far espandere
+	la griglia in verticale */
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	display: grid;
+	width: 100%;
+
+	/*il footer non deve essere visibile
+	senza scroll, perciò richiedo che la
+	griglia sia più grande per nasconderlo*/
+	grid-template-rows: 1fr;
+}
+
+div.left {
+	/*posizione*/
+	grid-column-start: 1;
+	grid-column-end: 1;
+}
+
+div.right {
+	/*posizione*/
+	grid-column-start: 2;
+	grid-column-end: 2;
+}
+
+div.content-box {
+	min-width: 200pt;
+}
+
+
+
+
+
+

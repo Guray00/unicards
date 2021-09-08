@@ -68,21 +68,37 @@
 
 		global $cards, $deck, $pdo;
 
+		
+
 		foreach($cards as $section_name => $section){
+
 			foreach ($section as $question => $answer){
+
 
 				// eseguo il trim per la rimozione dis spazi e rendo maiuscola la prima lettera
 				$question = ucfirst(trim($question));
-				$answer   = ucfirst(trim($answer));
 
-				$query = "REPLACE INTO card values (NULL, :question, :answer);";
-				$params = ['question' => $question, 'answer' => $answer];
+
+				$query = "REPLACE INTO card values (NULL, :question, :mod);";
+				$params = ['question' => $question, 'mod' => $answer[0]];
 				$pdo->prepare($query)->execute($params);
 				$card_id = $pdo->lastInsertId();
 
+
+				foreach($answer[1] as $y => $x){
+
+
+					$a = ucfirst(trim($x[0]));
+					$c = $x[1];
+
+					$query = "REPLACE INTO answers values (:cardid, NULL, :answer, :correct);";
+					$params = ['cardid'=>$card_id, 'answer' => $a, 'correct' => $c];
+					$pdo->prepare($query)->execute($params);
+				}
+
 				$query = "REPLACE INTO section values (:deck, :user, :card , :section);";
 				$params = ['deck' => $deck["id"], 'user' => $deck["user"], 'card' => $card_id, 'section' => $section_name];
-				$pdo->prepare($query)->execute($params);
+				$pdo->prepare($query)->execute($params);				
 			}
 		}
 	}

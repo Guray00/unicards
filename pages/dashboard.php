@@ -57,17 +57,17 @@
 		function make_deck_preview($deck, $favourite_id="preview_list_normal"){
 			$favourite = ($deck["favourite"] == NULL) ? "" : "checked";
 			$public    = ($deck["public"   ] == 1) ? "btn-lock-open" : "btn-lock-close";
+
 			echo "	
 					<div class='dashboard-deck-preview'	style='background-color:{$deck["color"]};'>
 						
 						<label class='{$public}'></label>
-						<a class='preview_link' href='#'>{$deck["name"]}</a>
+						<a class='preview_link' href='#' onclick='openMenu(\"{$deck["id"]}\", \"{$deck["user"]}\", \"{$deck["name"]}\", \"{$deck["color"]}\");' >{$deck["name"]}</a>
 						<input type='checkbox' class='btn-favourite' id='{$favourite_id}{$deck["id"]}' value='{$deck["id"]}' onchange='setFavourite(this, \"{$_SESSION["session_mail"]}\")' {$favourite}>
 						<label class='btn-favourite' for='{$favourite_id}{$deck["id"]}'></label>";
 							
 			if ($_SESSION["session_mail"] == $deck["user"])
-				echo "<button class='btn-edit' onclick='window.location.href=\"./deck_editor.php?id={$deck["id"]}\"';></button>";
-
+				echo "<button class='btn-edit' onclick='window.location.href=\"./deck_editor.php?id={$deck["id"]}\"'></button>";
 			echo "</div>";
 		}
 	?>
@@ -91,6 +91,31 @@
 		<!-- Navbar -->
 		<?php require("../html/nav.php");?>
 
+		<div id="choose-mod" class="content-box">
+
+			<button id="close-menu" onclick="closeMenu()">✕</button>
+
+			<div id="selector">
+					<div>
+						<div id="menu-deck-preview">
+						</div>
+
+						<button id="edit-btn">Modifica</button>
+					</div>
+					
+
+				<div id="game-mod-selector">
+					<button id="sassonero">Singolo giocatore</button>
+					<button>Multigiocatore</button>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="opacity">
+
+		</div>
+
 		<!-- Menu sinistro -->
 		<div class="left content-box">	
 			<div id="your-deck-list">
@@ -98,8 +123,7 @@
 				<div class="deck_container">
 					<?php 
 						for ($i = 0;  $i < count($deck_list); $i++) {
-							make_deck_preview($deck_list[$i]);
-							
+							make_deck_preview($deck_list[$i]);	
 						}
 					?>
 
