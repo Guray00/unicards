@@ -105,6 +105,9 @@ CREATE TABLE `deck`
  `degree` varchar(50) NULL ,
  `public` bit NOT NULL DEFAULT 0 ,
  `color`  varchar(7) NOT NULL DEFAULT "#6188f5" ,
+ `tpq`  int unsigned NOT NULL DEFAULT 60,
+ `tpa`  int unsigned NOT NULL DEFAULT 15,
+
 
 PRIMARY KEY (`id`, `user`),
 KEY `fkIdx_21` (`user`),
