@@ -6,22 +6,38 @@ DEBUG = false;
 
 // rimuove dal database il deck
 function deleteDeck(id, user){
-	if (confirm('Sei sicuro di voler eliminare il deck')) {
-		let deck   = post_request_deck_maker(id, user);
 
-		$.ajax({
-			type: "POST",
-			url: "../php/deck_delete.php",
-			data: {deck:deck},
-			success: function (data) {
-				window.location.replace("../pages/dashboard.php");	
-			},
 
-			error: function (xhr, ajaxOptions, thrownError) {
-				postError();
-			}
-		});
-	} 
+	alertbox({
+		title: "Sei sicuro di cancellare il mazzo?",
+		content: "L'eliminazione è irrimediabile, tutte le carte e le statistiche andranno perse.",
+		
+		yes: function(){
+			let deck   = post_request_deck_maker(id, user);
+
+			$.ajax({
+				type: "POST",
+				url: "../php/deck_delete.php",
+				data: {deck:deck},
+				success: function (data) {
+					REFRESH=false;
+					window.location.replace("../pages/dashboard.php");	
+				},
+
+				error: function (xhr, ajaxOptions, thrownError) {
+					postError();
+				}
+			});
+		},
+
+		no: function(){
+			return false;
+		}
+	});
+
+
+	
+		
 }
 
 // rimuove una tab della schermo
@@ -246,19 +262,22 @@ function submitHandler(id, user){
 	let cards  = post_request_cards_maker();
 	let deck   = post_request_deck_maker(id, user);
 	
+	alert(JSON.stringify(deck));
+
 	// eseguo la chiamata ajax passandovi le informazioni di sopra
 	$.ajax({
 		type: "POST",
 		url: "../php/deck_updater.php",
 		data: {cards:cards, deck:deck},
 
+		
 		// in caso di successo
 		success: function (data) {	
-			//alert(data); /* da attivare in caso di debug */
+			alert(data); /* da attivare in caso di debug */
 
 			// ricarichiamo la pagina una volta creata
 			if (data >= 0){
-				REFRESH = true;
+				REFRESH = false;
 				postSuccess();
 				if (data > 0){
 					// nel caso in cui è restituito un valore intero maggiore 
@@ -316,9 +335,9 @@ function tabRename(element){
 	else element.value = document.getElementById(number+"_section").innerText;
 }
 
-
+// caso estremo, se non è già gestito chiediamo se siamo sicuri di voler uscire
 window.onbeforeunload = function(event){
-	if(!REFRESH) return confirm("Confirm refresh");
+	if(REFRESH) return confirm("Confirm refresh");
 };
 
 // gestisco la dinamicità degli elementi inseriti via php nella pagina
@@ -328,7 +347,6 @@ window.addEventListener("load",function(){
 	if (document.getElementsByClassName("tab-container").length < 2){
 		document.getElementById("btn-remove-tab").style.display = "none";
 	}
-
 
 	// aggiungo gli handler per le textarea aggiunte via php in automatico
 	for(i of document.getElementsByTagName("textarea")){
@@ -437,15 +455,24 @@ window.addEventListener("load",function(){
 			}
 		})
 	}
+
+	for (let x of this.document.getElementsByTagName("textarea")){
+		x.addEventListener("input", ()=>{REFRESH=true;});
+	}
+
+	for (let x of this.document.getElementsByTagName("input")){
+		x.addEventListener("input", ()=>{REFRESH=true;});
+	}
+
 })
 
 
+/* serve per gestire la pressione del toggle radio-check*/
 function ctr_radio(obj){
 	obj.className = "ctr-radio-selected";
 
 	for (x of obj.parentNode.parentNode.getElementsByClassName("question-type")){
 		x.value="1";
-		alert("aggiornato il tipo");
 	}
 
 	for (x of obj.parentNode.getElementsByClassName("ctr-check-selected")){
@@ -752,13 +779,6 @@ function textAreaHandler2(container){
 correttamente le etichette delle domande
 e delle risposte*/
 function updateLabels(p){
-	/*q = 0; 
-	for (i of p.parentNode.parentNode.getElementsByTagName("label")){
-		if(i.innerText.includes("Domanda")) 		i.innerText = "Domanda " + Math.round(q);
-		else if(i.innerText.includes("Risposta")) 	i.innerText = "Risposta " +Math.round(q);
-		q+=0.5;
-	}*/
-
 
 	// sto passando il padre del container
 	let n = 1;
@@ -777,5 +797,44 @@ function updateLabels(p){
 
 		n++;
 	}
-
 }
+
+// mostra l'alert alternativo per tornare indietro
+function goBack(){
+
+	if(REFRESH)
+		alertbox({
+			title: "Vuoi annullare le modifiche?",
+			content: "Tornando indietro tutte le modifiche effettuate non saranno salvate.",
+			
+			yes: function(){
+				//alert("yes");
+				REFRESH=false;
+				window.location.href='./dashboard.php';
+			},
+
+			no: function(){
+				//alert("not");
+			}
+		});
+
+	else window.location.href='./dashboard.php';
+}
+
+
+/* serve a rendere in movimento il background 
+	ispirazione: https://stackoverflow.com/questions/34364330/make-background-image-of-div-move-continuously
+*/
+function slideBackground() {
+
+	var background = document.body;
+	var x = 0;
+	
+	setInterval(function(){
+		background.style.backgroundPosition = x + 'px ' + x+"px";
+		x-=0.25;
+	}, 10);
+	
+}
+	
+window.addEventListener('load',slideBackground,false);

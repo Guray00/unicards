@@ -1,0 +1,97 @@
+
+
+.content-box.alertbox {
+	display: block;
+	position: absolute;
+
+	width: 400pt;
+	height: max-content;
+
+	left: calc(50% - 240pt);
+	top: calc(50% - 140pt);
+
+	padding: 30pt;
+
+	z-index: 5;
+	background-color: white;
+}
+
+
+.alertbox >h1, .alertbox > p {
+	width: 100%;
+}
+
+.alertbox > h1 {
+	text-align: center;
+	font-size: 25pt;
+}
+
+
+.alertbox > p {
+	font-size: 14pt;
+	margin-top: 5pt;
+	margin-bottom: 5pt;
+	color: #3a3a3a;
+}
+
+.close, .close:hover {
+	display: block;
+	outline: none;
+	border: none;
+
+	width: 20pt;
+	height: 30pt;
+
+	margin-left: auto;
+	background-color: #00000000;
+
+	font-size: 15pt;
+	font-weight:lighter;
+
+	color: #9c0d0dbb;
+
+	margin-right: -22pt;
+	margin-top: -25pt;
+	margin-bottom: -20pt;
+	margin-left: auto;
+}
+
+.buttons-container {
+	display: block;
+	width: max-content;
+	margin-left: auto;
+	margin-bottom: -15pt;
+	margin-right: -15pt;
+}
+
+.buttons-container > button {
+	margin: 1pt;
+	width: 60pt;
+	height: 22pt;
+	padding: 2pt;
+	font-weight: bolder;
+}
+
+.alert_yes {
+	background-color: var(--true);
+	color: rgb(54, 104, 47);
+}
+
+.alert_no {
+	background-color: var(--false);
+	color: rgb(87, 28, 28);
+}
+
+.opacity {
+	display: block;
+	position: absolute;
+	top: 0;
+
+	z-index: 4;
+
+	width: 100%;
+	height: 100%;
+
+
+	background-color: #000000bb;
+}

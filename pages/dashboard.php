@@ -112,9 +112,7 @@
 			</div>
 		</div>
 
-		<div id="opacity">
-
-		</div>
+		<div id="opacity"></div>
 
 		<!-- Menu sinistro -->
 		<div class="left content-box">	

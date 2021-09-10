@@ -18,6 +18,10 @@ html, body{
 	justify-content: center;
 	align-items: center;
 	
+
+	background-image: url("../assets/wall.svg");
+	background-size: 25%;
+	background-color:var(--login-background);
 }
 
 #login-side {
@@ -27,7 +31,7 @@ html, body{
 #login-side > h1 {
 	font-size: 50pt;
 	margin: 0;
-	text-shadow: 0px 0px 2px rgb(175, 175, 175);
+	text-shadow: 0px 0px 2pt rgb(175, 175, 175);
 }
 
 #login-side > h2{
@@ -46,8 +50,11 @@ html, body{
 	grid-gap: 8pt;
 
 	grid-template-columns: auto 1fr;
-	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: var(--box-shadow);
 	margin: 15pt;
+
+	background-color:var(--login-paper);
+
 }
 
 
@@ -91,4 +98,13 @@ html, body{
 	grid-row: 5;
 	width: fit-content;
 	justify-self:flex-end;
+}
+
+
+
+
+
+
+#login > h1, #login > label {
+	color: var(--login-paper-text);
 }

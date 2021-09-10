@@ -10,13 +10,13 @@
    version="1.1"
    x="0px"
    y="0px"
-   viewBox="0 0 980 980"
+   viewBox="0 0 277.125 489.25"
    enable-background="new 0 0 1000 1000"
    xml:space="preserve"
    id="svg945"
    sodipodi:docname="back.svg"
-   width="980"
-   height="980"
+   width="277.125"
+   height="489.25"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"><defs
    id="defs949" /><sodipodi:namedview
    pagecolor="#ffffff"
@@ -31,13 +31,14 @@
    inkscape:window-height="938"
    id="namedview947"
    showgrid="false"
-   inkscape:zoom="0.373"
-   inkscape:cx="479.59627"
-   inkscape:cy="443.47539"
+   inkscape:zoom="0.52750166"
+   inkscape:cx="349.76994"
+   inkscape:cy="406.61294"
    inkscape:window-x="-6"
    inkscape:window-y="-6"
    inkscape:window-maximized="1"
-   inkscape:current-layer="svg945" />
+   inkscape:current-layer="svg945"
+   inkscape:document-rotation="0" />
 <metadata
    id="metadata903"> Svg Vector Icons : http://www.onlinewebfonts.com/icon <rdf:RDF><cc:Work
      rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
@@ -45,16 +46,13 @@
 <g
    id="g943"
    style="fill:#0080ff;fill-opacity:1"
-   transform="translate(-10,-10)"><g
+   transform="translate(-528.46859,-240.20917)"><g
      id="g911"
      style="fill:#0080ff;fill-opacity:1"><g
        id="g909"
        style="fill:#0080ff;fill-opacity:1"><g
          id="g907"
-         style="fill:#0080ff;fill-opacity:1"><path
-           d="M 500,10 C 229.4,10 10,229.4 10,500 10,770.7 229.4,990 500,990 770.7,990 990,770.7 990,500 990,229.4 770.7,10 500,10 Z m 104.5,678.9 c 12.7,12.7 12.7,33.5 0,46.2 -12.7,12.7 -33.5,12.7 -46.2,0 L 346.5,523.2 c -6.4,-6.4 -9.5,-14.8 -9.5,-23.2 0,-8.4 3.1,-16.8 9.5,-23.2 L 558.4,264.9 c 12.7,-12.7 33.5,-12.7 46.2,0 12.7,12.7 12.7,33.5 0,46.2 L 415.7,500 Z"
-           id="path905"
-           style="fill:#0080ff;fill-opacity:1" /></g></g></g><g
+         style="fill:#0080ff;fill-opacity:1" /></g></g><g
      id="g913"
      style="fill:#0080ff;fill-opacity:1" /><g
      id="g915"
@@ -85,4 +83,8 @@
      style="fill:#0080ff;fill-opacity:1" /><g
      id="g941"
      style="fill:#0080ff;fill-opacity:1" /></g>
-</svg>
+<path
+   id="rect1440"
+   style="fill:#ffffff;stroke-width:31.601;stroke-linejoin:round"
+   d="m 267.5,433.525 c 12.7,12.7 12.7,33.5 0,46.2 -12.7,12.7 -33.5,12.7 -46.2,0 L 9.5,267.825 c -6.4,-6.4 -9.5,-14.8 -9.5,-23.2 0,-8.4 3.1,-16.8 9.5,-23.2 L 221.4,9.525 c 12.7,-12.7 33.5,-12.7 46.2,0 12.7,12.7 12.7,33.5 0,46.2 l -188.9,188.9 z"
+   sodipodi:nodetypes="csccssssscc" /></svg>

@@ -10,7 +10,11 @@
 	margin-bottom: 40pt;
 }
 
-
+.add {
+	background-image: url("../../assets/add.png");
+	object-fit: cover;
+	background-size: cover;
+}
 
 #choose-mod {
 	display: none;
@@ -58,7 +62,6 @@
 
 	margin-right: -10pt;
 	margin-top: -15pt;
-
 }
 
 #game-mod-selector {
@@ -144,7 +147,7 @@
 	width: 150pt;
 	height: 150pt;
 
-	background-color: #2196F3;
+	/*background-color: #2196F3;*/
 	text-align: center;
 	font-size: 14pt;
 	border-radius: 10pt;
@@ -156,3 +159,31 @@
 	font-size: 20pt;
 }
 
+
+/* COLORI */
+.left, .right {
+	background-color: var(--dashboard-paper-color);
+
+	color: var(--dashboard-text-color);
+}
+
+body {
+	background-color: var(--dashboard-background-color);
+}
+
+
+nav > a.selected {
+	color: var(--secondary-color);
+	font-weight: bold;
+	text-decoration: none;	
+	text-shadow: var(--text-shadow);
+}
+
+nav > a.unselected {
+	color: var(--dashboard-text-color);
+	text-decoration: none;	
+}
+
+nav {
+	background-color: var(--dashboard-paper-color);
+}

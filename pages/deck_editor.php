@@ -46,6 +46,8 @@
 							<label id='1_lbl_answer1'>Risposta 1</label>
 							<textarea id='1_question1' name='1_question1' form='deck_form' required oninvalid='onInvalidText()'></textarea>
 							<textarea id='1_answer1' name='1_answer1'   form='deck_form' required oninvalid='onInvalidText()'></textarea>
+							<input id='1_type1' name='1_type1' value='0' style='display:none;'  form='deck_form' />
+							<input id='1_correct1' name='1_correct1' value='1' style='display:none;'  form='deck_form' />
 						</div>";
 
 		echoButtonLastDiv();						
@@ -291,6 +293,8 @@
 		<!-- scripts -->
 		<script type="text/javascript" src="../js/tabs_controller.js"></script>
 		<script type="text/javascript" src="../js/deck_editor.js"></script>
+		<script type="text/javascript" src="../js/alertbox.js"></script>
+
 	</head>
 
 	<body id="deck_editor">	
@@ -348,13 +352,13 @@
 				<div id="left-bottom">
 					<label id="error_msg"></label>
 					<button type="button" id="delete-deck" class="btn-remove" onclick='deleteDeck(<?php submitID(); ?>)'></button>
-					<button type="button" id="back" value="Indietro" onclick="window.location.href='./dashboard.php'">Indietro</button>
+					<button type="button" id="back" value="Indietro" onclick="goBack()">Indietro</button>
 					<input type="submit" class="submit" id="deck_editor_submit" value="Salva">
 				</div>
 			</div>
 
 			
-			<!-- menu destro -->
+			<!-- menu destro  window.location.href='./dashboard.php'   -->
 			<div id="deck_right">
 				<div class="tab-header" id="tab-header-0">
 					<?php

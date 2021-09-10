@@ -1,4 +1,6 @@
 @import "./elements/slider.css"; 
+@import "./elements/alertbox.css"; 
+
 
 /***********************
 		general
@@ -24,10 +26,12 @@
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+
 .side-box, nav {
 	/*funziona solamente in chrome, non disponibile su firefox*/
 	backdrop-filter: saturate(180%) blur(20px);
 }
+
 
 
 /***********************
@@ -55,8 +59,17 @@ label.tab {
 	font-size: 12pt;
 	color: rgba(0, 0, 0, 0.397);
 	background-image: url("../assets/unselected_tab3.svg");
-	background-size: contain;
 	background-repeat: no-repeat;
+}
+
+/* firefox, non sono a conoscenza del motivo, lascia
+	un px dal margine dell'immagine (svg) rendendo
+	sgradevole la vista
+*/
+@-moz-document url-prefix() {
+	label.tab {
+		background-position: -1px;
+	}
 }
 
 /*nel caso di una tab nascondo il radio button*/
@@ -68,7 +81,7 @@ input[type="radio"].tab {
 .tab:checked + label {
 	background-image: url("../assets/selected_tab3.svg");
 	font-weight: bold;
-	z-index: 90;
+	z-index: 2;
 }
 
 /*quando il mouse è sopra una tab*/
@@ -83,7 +96,7 @@ input[type="radio"].tab {
 	display: flex;
 	height: auto;
 	width: 100%;
-	z-index: 9999;
+	z-index: 1;
 	/*background-color: aquamarine;*/
 }
 
@@ -106,6 +119,7 @@ input[type="radio"].tab {
 	z-index: 0;
 	background-color: rgba(240, 248, 255, 0);
 	background-image: url("../assets/add_tab3.svg");
+	background-repeat: no-repeat;
 }
 
 .add-tab:hover, .add-tab:active {
@@ -202,6 +216,21 @@ button > a, button > a:visited, button >a:active {
 button:hover, input[type=submit]:hover {
 	cursor: pointer;
 	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.24);
+}
+
+.submit {
+	background-color: var(--true);
+	color: #186445;
+}
+
+.btn-remove {
+	background-color: rgb(228, 80, 80);
+}
+
+
+.btn-remove:hover {
+	background-color: rgb(241, 112, 112);
+	/*box-shadow: inset 0 0 10pt 10pt rgba(255, 255, 255, 0.774);*/
 }
 
 /*
@@ -349,6 +378,7 @@ label.btn-lock-open {
 /***********************
 		Text
 ************************/
+
 input[type=email], input[type=text], input[type=password]{
 	padding: 3%;
 	border-radius: 3pt;
@@ -356,16 +386,23 @@ input[type=email], input[type=text], input[type=password]{
   	text-decoration: none;
 }
 
+
 textarea {
 	border-radius: 3pt;
 }
-
 
 
 input:focus{
 	outline: none;
 	box-shadow: 0 4px 4px 0 rgba(59, 59, 59, 0.068), 0 6px 20px 0 rgba(0, 0, 0, 0.048);
 }
+
+
+textarea,select, input[type=email], input[type=text], input[type=password]{
+	border: var(--textarea-border);
+	border-radius: 3pt;
+}
+
 
 /***********************
 		  nav

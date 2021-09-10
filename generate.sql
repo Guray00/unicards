@@ -96,7 +96,7 @@ PRIMARY KEY (`name`)
 
 
 -- ************************************** `Deck`
-CREATE TABLE `Deck`
+CREATE TABLE `deck`
 (
  `id`     integer unsigned NOT NULL AUTO_INCREMENT ,
  `user`   varchar(300) NOT NULL ,
@@ -115,6 +115,47 @@ KEY `fkIdx_83` (`degree`),
 CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- ************************************** `Match`
+CREATE TABLE `match`
+(
+ `id`  		integer unsigned NOT NULL AUTO_INCREMENT,
+  `mode`	tinyint(1) 		 NOT NULL,
+ `deck_id`	integer unsigned NOT NULL,
+ `owner`   	varchar(300) 	 NOT NULL, 
+ `finish`	timestamp,
+ `status`	tinyint(1) 		 NOT NULL,
+
+ PRIMARY KEY (`id`),
+ FOREIGN KEY(`deck_id`) REFERENCES `deck` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(`owner`) REFERENCES `deck` (`user`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- ************************************** `Points`
+CREATE TABLE `points`
+(
+ `match_id` integer unsigned NOT NULL AUTO_INCREMENT,
+ `user`	varchar(300) NOT NULL,
+ `answer_id` 	integer unsigned  NOT NULL, 
+ `time`	timestamp not null,
+
+ PRIMARY KEY (`match_id`, `user`, `answer_id`),
+ FOREIGN KEY(`match_id`) REFERENCES `match` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(`user`) REFERENCES `user` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(`answer_id`) REFERENCES `answers` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+);
+
+
+-- ************************************** `Player`
+CREATE TABLE `player`
+(
+ `match_id` integer unsigned NOT NULL,
+ `user`		varchar(300) NOT NULL,
+
+ PRIMARY KEY (`match_id`, `user`),
+ FOREIGN KEY(`match_id`) REFERENCES `match` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(`user`) REFERENCES `user` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 
 -- ************************************** `Favourite`

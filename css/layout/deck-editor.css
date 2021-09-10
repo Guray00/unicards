@@ -15,8 +15,9 @@ form {
 	display: flex;
 }
 
+
 div.content-box {
-	background-color: white;
+	background-color: var(--editor-paper-color);
 }
 
 #menu {
@@ -36,6 +37,8 @@ div.content-box {
 	margin-right: 15pt;
 	margin-top: 15pt;
 
+	max-height: calc(100vh - 15pt);
+
 	grid-template-columns: 1fr;
 	grid-template-rows: auto 1fr;
 }
@@ -49,6 +52,36 @@ div.content-box {
 	border-top-left-radius: 0pt;
 	margin-bottom: 15pt;
 
+	max-height: 100%;
+	overflow-y: scroll;
+}
+
+
+
+/*SOLO SU CHROME*/
+::-webkit-scrollbar {
+	width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+#deck_right > ::-webkit-scrollbar-track {
+	border-top-right-radius: 15pt;
+	border-bottom-right-radius: 15pt;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 15pt;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
 
 
@@ -85,6 +118,8 @@ textarea{
 .card-div {
 	display: grid;
 	width: 100%;
+	margin-top: 15pt;
+
 
 	grid-template-columns: 40fr 60fr;
 	height: fit-content;
@@ -94,13 +129,12 @@ textarea{
 .multichoice-4-div {
 	display: grid;
  
-	border: #cccccc solid 1px;
+	border: var(--textarea-border);
 	border-radius: 5pt;
 
 	padding: 10pt;
 
 	margin-top: 15pt;
-	margin-bottom: 15pt;
 	margin-right: 0pt;
 	grid-template-columns: max-content 4fr min-content;
 	height: fit-content;
@@ -143,16 +177,19 @@ textarea{
 }
 
 .set-true-selected {
-	background-color: rgb(17, 240, 136);	
+	background-color: var(--true);	
 }
 
 .set-true:hover, .set-true-selected:hover {
-	box-shadow: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.24);
+	box-shadow: var(--box-hover-lighter);
 }
 
 .buttons-last-div {
 	display: grid;
 	width: 100%;
+
+	margin-top: 10pt;
+	margin-bottom: 10pt;
 
 	grid-template-columns: 1fr min-content min-content;
 	height: fit-content;
@@ -299,7 +336,7 @@ textarea{
 }
 
 #back:hover, #deck_editor_submit:hover {
-	box-shadow: inset 0 0 10pt 10pt rgba(255, 255, 255, 0.178);
+	box-shadow: var(--box-hover-lighter);
 }
 
 
@@ -386,4 +423,34 @@ h2 {
 	margin: 0;
 	border-color: transparent;
 	justify-self: right;
+}
+
+
+/*COLORI*/
+
+#deck_editor {
+	background-color: var(--editor-background-color);	
+}
+
+#back {
+	background-color: var(--false);
+	color: #ffffff;
+}
+
+#back > a, #back > a:visited, #back >a:active {
+	color: white;
+}
+
+
+#error_msg {
+	color: white;
+}
+
+#lbl_preview {
+	color: rgb(255, 255, 255);
+}
+
+
+#deck_editor_lbl_id {
+	color:#8a8a8a;
 }

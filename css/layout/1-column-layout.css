@@ -41,7 +41,7 @@ div.content-box {
 div.side-box {
 	min-width: 150pt;
 	min-height: 150pt;
-	height: fit-content;
+	height: max-content;
 
 	/* consente al menu di muoversi*/
 	position: sticky;

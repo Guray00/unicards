@@ -11,11 +11,12 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   viewBox="0 0 455 455"
-   style="enable-background:new 0 0 455 455;"
+   viewBox="0 0 258.59601 206.79625"
    xml:space="preserve"
    sodipodi:docname="skip.svg"
-   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"><metadata
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   width="258.59601"
+   height="206.79625"><metadata
    id="metadata1588"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
@@ -33,59 +34,76 @@
    id="namedview1584"
    showgrid="false"
    inkscape:zoom="0.81978022"
-   inkscape:cx="172.73952"
-   inkscape:cy="358.09227"
+   inkscape:cx="74.53752"
+   inkscape:cy="234.88852"
    inkscape:window-x="-6"
    inkscape:window-y="-6"
    inkscape:window-maximized="1"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="Layer_1"
+   inkscape:document-rotation="0" />
 <path
-   d="M227.5,0C101.855,0,0,101.855,0,227.5S101.855,455,227.5,455S455,353.145,455,227.5S353.145,0,227.5,0z M356.798,330h-55  v-78.981L179.64,321.575v-47.038l-81.438,47.038V133.425l81.438,47.038v-47.038l122.157,70.557V125h55V330z"
+   d="m 131.73768,0 c -151.666669,0 -75.83333,0 0,0 z M 258.596,206.79625 h -55 v -78.981 l -122.158,70.556 v -47.038 L 0,198.37125 v -188.15 l 81.438,47.038 v -47.038 l 122.157,70.557 v -78.982 h 55 v 205 z"
    id="path1551"
-   style="fill:#fde55b;fill-opacity:1" />
+   style="fill:#ffffff;fill-opacity:1"
+   sodipodi:nodetypes="cccccccccccccccc" />
 <g
-   id="g1553">
+   id="g1553"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1555">
+   id="g1555"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1557">
+   id="g1557"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1559">
+   id="g1559"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1561">
+   id="g1561"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1563">
+   id="g1563"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1565">
+   id="g1565"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1567">
+   id="g1567"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1569">
+   id="g1569"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1571">
+   id="g1571"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1573">
+   id="g1573"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1575">
+   id="g1575"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1577">
+   id="g1577"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1579">
+   id="g1579"
+   transform="translate(-98.202,-123.20375)">
 </g>
 <g
-   id="g1581">
+   id="g1581"
+   transform="translate(-98.202,-123.20375)">
 </g>
 </svg>

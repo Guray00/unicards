@@ -5,6 +5,62 @@
 	font-family: openSans-Regular;
 }
 
+
+:root {
+
+	/* COLORI PRIMARI */
+	--primary-color: #F00;
+	--secondary-color: #0080ffff;
+
+	/* TEMA BIANCO*/
+	--light-background-color: #ffffff;
+	--light-paper-color: #ffffff;
+	--light-text-primary: #000000;
+	--light-text-secondary: #454545;
+	
+	/*Errore*/
+	--text-error: #B33;
+	--warning-color: #8a7c31;
+	--warning-background-color:  #fde55b;
+
+	/*bordi delle text-area*/
+	--textarea-border: solid rgb(211, 211, 211) 1pt;	
+
+	/*Ombre*/
+	--text-shadow: 0pt 0pt 8pt #0000007c;
+	--box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	--box-hover-lighter: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.4);
+
+
+	/* LOGIN page */
+	--login-background: #fde55b;
+	--login-paper: #6188f5;
+	--login-paper-text: white;
+
+
+	/* GAME page */
+	--game-background-color: #282c34;
+	--game-question-background-color: #474e5c;
+	--game-answer-background-color: #818ca3;
+	--game-question-color: aliceblue;
+	--game-answer-color: aliceblue;
+
+	/* EDITOR page */
+	--editor-background-color: #6188f5;
+	--editor-paper-color: white;
+	--editor-text-color: black;
+
+	/* DASHBOARD page */
+	--dashboard-background-color: #FFFFFF;
+	--dashboard-paper-color: #FFFFFF;
+	--dashboard-text-color: black;
+
+	/*UTILIZZATI*/
+	--selected: #e4c413;
+	--true: #42ce81;
+	--false: #fa7c66;
+}
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: rgb(156, 156, 156);
 	font-style: italic;
@@ -12,54 +68,12 @@
 }
 
 
-:root {
-	--primary-color: #F00;
-	--secondary-color: #0F0;
-
-	--background-color: #ffffff;
-	--background-paper: #ffffff;
-
-	--text-primary: #000000;
-	--text-secondary: #454545;
-	--text-error: #B33;
-}
-
-
-.save {
-	background-color: #0fe260;
-	color: rgb(0, 0, 0);
-}
-
-
-/*******************************
-			Text
-*******************************/
-textarea, input[type=email], input[type=text], input[type=password]{
-	border: solid rgb(211, 211, 211) 1pt;
-}
-
-
-/*******************************
-			Buttons
-*******************************/
-.submit {
-	background-color: #2dc085;
-	color: #186445;
-}
-
-.btn-remove {
-	background-color: rgb(228, 80, 80);
-}
-
-
-.btn-remove:hover {
-	background-color: rgb(241, 112, 112);
-	/*box-shadow: inset 0 0 10pt 10pt rgba(255, 255, 255, 0.774);*/
-}
 
 /*******************************
 			container
 *******************************/
+
+
 body {
 	background-image: url("../assets/wall.svg");
 	background-size: 25%;
@@ -67,39 +81,6 @@ body {
 }
 
 
-
-/*
-.content-box {
-	background-color: var(--background-paper);
-}
-*/
-
-
-/*******************************
-			Dashboard
-*******************************/
-.add {
-	background-image: url("../assets/add.png");
-	object-fit: cover;
-	background-size: cover;
-}
-
-/*******************************
-		Navigation bar
-*******************************/
-
-
-
-nav > a.selected {
-	color: rgb(29, 149, 230);
-	font-weight: bold;
-	text-decoration: none;	
-}
-
-nav > a.unselected {
-	color: black;
-	text-decoration: none;	
-}
 
 /*******************************
 			Footer
@@ -112,51 +93,3 @@ footer {
 	background-size: 25%;
 }
 
-/*******************************
-			Login
-*******************************/
-#login_container {
-	background-image: url("../assets/wall.svg");
-	background-size: 25%;
-	background-color: #fde55b;
-}
-
-#login {
-	background-color: #6188f5;
-}
-
-#login > h1, #login > label {
-	color: #ffffff;
-}
-
-
-/*******************************
-			Deck Editor
-*******************************/
-
-#deck_editor {
-	background-color: #6188f5;	
-}
-
-#back {
-	background-color: #fa7c66;
-	color: #ffffff;
-}
-
-#back > a, #back > a:visited, #back >a:active {
-	color: white;
-}
-
-
-#error_msg {
-	color: white;
-}
-
-#lbl_preview {
-	color: rgb(255, 255, 255);
-}
-
-
-#deck_editor_lbl_id {
-	color:#8a8a8a;
-}
