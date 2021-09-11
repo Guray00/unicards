@@ -7,6 +7,7 @@
 
 	// 
 	$card_id = $_POST["card_id"];
+	$match = $_SESSION["match_id"];
 
 	// recuperiamo l'id della risposta associata alla domanda
 	// con singola risposta da cui è partita la richiesta.
@@ -31,7 +32,7 @@
 		insert into points values(:match, :user, :id, CURRENT_TIMESTAMP);
 	";
 	$request = $pdo->prepare($query);
-	$request->bindParam(':match', $_SESSION["match_id"], PDO::PARAM_STR);
+	$request->bindParam(':match', $match, PDO::PARAM_STR);
 	$request->bindParam(':user', $_SESSION["session_mail"], PDO::PARAM_STR);
 	$request->bindParam(':id', $answer_id, PDO::PARAM_STR);
 

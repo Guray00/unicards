@@ -22,18 +22,22 @@ function chooseAnswer(obj){
 		obj.className = "content-box answer-content-selected";
 	}
 
-	else {
-		obj.className = "content-box answer-content";
-	}	
-
+	else { obj.className = "content-box answer-content";}	
 }
 
 
-
+// mostra la risposta per le domande singole
 function spShowAnswer(obj, answer){
 
 	// mostra il pannello a destra per selezionare se la domanda è corretta o meno
 	document.getElementsByClassName("card-enabled")[0].getElementsByClassName("single-right")[0].style.display = "block";
+
+	obj.className = obj.className.replace("play", "").replace("next", "") + " play next";
+
+
+	/*var press = document.createElement("div");
+	press.className="suggestion press-this-true";
+	document.getElementsByClassName("card-enabled")[0].appendChild(press);*/
 
 	let parent = document.getElementsByClassName("card-enabled")[0].getElementsByClassName("card-content")[0];
 	
@@ -44,36 +48,30 @@ function spShowAnswer(obj, answer){
 	h1.innerText = h1.innerText.replace("Domanda", "Risposta");
 	
 	// aggiorna il contenuto della domanda con la risposta
-	p.innerText = answer;
-
-	// imposta lo sfondo come colore selezionato per segnalare che si ha la risposta
-	//parent.style.backgroundColor = "var(--selected)";
-
-	obj.style.backgroundColor = "var(--selected)";
-
+	p.innerText = answer;	
 
 	// se si ripreme sul pulsante, scorre alla prossima domanda
 	obj.onclick = ( ()=>{nextQuestion(0);});
 }
 
-
+// aggiorna il navigatore delle pagine
 function updateNavigation(id, type){
-
-
 	for(let x of document.getElementsByClassName("navigator")){
 		for (let y of x.getElementsByClassName("navigator-item")){
 			if(y.id == ("navigator"+(id+1))){
-				y.className+= (" "+type);
+				y.className = y.className.replace(type, "") + (" "+type);
 			}
 		}
 	}
 }
 
+// imposta la risposta singola come corretta
 function setSpCorrect(obj){
 
 	// tutte le carte hanno il prefisso card prima dell'id della carta
 	let card_id = obj.parentNode.parentNode.id.replace("card", "");
 	let card = document.getElementsByClassName("card-enabled")[0].getElementsByClassName("card-content")[0];
+	document.getElementsByClassName("card-enabled")[0].className+=" answered";
 	card.style.backgroundColor = "var(--true)";
 
 	$.ajax({
@@ -93,9 +91,9 @@ function setSpCorrect(obj){
 
 
 	let i;
-	for (i=0; i < document.body.children.length; i++){
+	for (i=0; i < document.getElementById("cards-container").children.length; i++){
 		
-		if(document.body.children[i].id == ("card"+card_id)){
+		if(document.getElementById("cards-container").children[i].id == ("card"+card_id)){
 			break;
 		}
 	}
@@ -104,18 +102,20 @@ function setSpCorrect(obj){
 	nextQuestion(0);
 }
 
+// imposta la risposta singola come errata
 function setSpWrong(){
 
 	let card = document.getElementsByClassName("card-enabled")[0].getElementsByClassName("card-content")[0];
 	card.style.backgroundColor = "var(--false)";
+	document.getElementsByClassName("card-enabled")[0].className+=" answered";
 
 	let card_id = card.parentElement.parentElement.id;
 
 
 	let i;
-	for (i=0; i < document.body.children.length; i++){
+	for (i=0; i < document.getElementById("cards-container").children.length; i++){
 		
-		if(document.body.children[i].id == (card_id)){
+		if(document.getElementById("cards-container").children[i].id == (card_id)){
 			break;
 		}
 	}
@@ -124,10 +124,14 @@ function setSpWrong(){
 	nextQuestion(0);
 }
 
+// porta alla prossima domanda
 function nextQuestion(type){
+	// se nel classname è presente answered, allora abbiamo già risposto
+
+	let answered = document.getElementsByClassName("card-enabled")[0].className.indexOf("answered") != -1;
 
 	// nascondo il menu per l'invio della risposta (tipo 0)
-	if (type == 0)
+	if (type == 0 && answered)
 		document.getElementsByClassName("card-enabled")[0].getElementsByClassName("single-right")[0].style.display="none";
 	
 
@@ -136,13 +140,15 @@ function nextQuestion(type){
 
 	let next = false;
 	let count = 1;
-	for (let x of document.body.children){
+	for (let x of document.getElementById("cards-container").children){
 
-		if(next){
+		// trova la prossima domanda non risposta
+		if(next && x.className.indexOf("answered") == -1){
 			goToAnswer(count);
 			return;
 		}
 
+		// se abbiamo trovato la carta, la prossima non risposta è quella giusta
 		if (card_id == x.id){
 			next = true;
 		}
@@ -153,42 +159,85 @@ function nextQuestion(type){
 	// se siamo qua e next=true siamo all'ultima domanda e dovremmo 
 	// mostrare la classifica
 	if(next){
+		count=1;
 
-		alertbox({
-			title: "Vuoi consegnare?",
-			content: "Le domande a tua disposizione sono finite, vuoi consegnare? Le domande senza una risposta verranno considerate sbagliate.",
-			
-			yes: function(){
-				alert("yes");
-			},
-
-			no: function(){
-				alert("not");
+		// consente di trovare la prossima domanda non risposta
+		for (let x of document.getElementById("cards-container").children){
+			if(x.className.indexOf("answered") == -1){
+				goToAnswer(count);
+				return; // se la trova, esce
 			}
-		});
+
+			count++;	
+		}
+
+		// se non la trova abbiamo risposta a tutto, perciò parte la consegna
+		submit();
 	}
 }
+
+function submit(){
+	alertbox({
+		title: "Vuoi consegnare?",
+		content: "Le domande a tua disposizione sono finite, vuoi consegnare? Le domande senza una risposta verranno considerate sbagliate.",
+		
+		yes: function(){
+			alert("yes");
+		},
+
+		no: function(){
+			alert("not");
+		}
+	});
+}
+
+// serve per mostrare il pulsante di fine
+function checkShowFinish(){
+	let all_seen 		= document.getElementsByClassName("card-enabled")[0].getElementsByClassName("seen").length;
+	let all_elements 	= document.getElementById("cards-container").children.length;
+	let selected_seen 	= document.getElementsByClassName("card-enabled")[0].getElementsByClassName("selected seen").length;
+
+	if((all_elements) == (all_seen - selected_seen + 1) ){
+		for (let x of document.getElementsByClassName("finish")){
+			x.style.display = "block";
+		}
+	}
+}
+
 
 // serve a muoversi tra le domande
 function goToAnswer(id){
 
-	for (let i = 0; i < document.body.children.length; i++){
-		
-		let x = document.body.children[i];
+	let answered = 0;
+	for (let i = 0; i < document.getElementById("cards-container").children.length; i++){
+		let x = document.getElementById("cards-container").children[i];
 
 		if (i == (id-1)){
 			x.className = x.className.replace("card-enabled", "") + " card-enabled";
 		}
 
 		else {
-			x.className = x.className.replace("card-enabled", "");			
+
+			if (x.className.indexOf("card-enabled") != -1){
+				updateNavigation(i, "seen");
+				x.className = x.className.replace("card-enabled", "");
+			}
+				
 		}
+
+		if (x.className.indexOf("answered") != -1) {answered++;}
 	}
+
+
+	checkShowFinish();
 }
 
 function sendAnswer(obj){
 
-	obj.style.backgroundColor = "var(--selected)";
+	//obj.style.backgroundColor = "var(--selected)";
+	obj.className = obj.className.replace("play", "").replace("next", "") + " play next";
+	document.getElementsByClassName("card-enabled")[0].className+=" answered";
+
 
 	let carte_selezionate = false;
 	obj.onclick = (()=>{
@@ -199,8 +248,8 @@ function sendAnswer(obj){
 	// serva a contare dove dobbiamo aggiorare
 	let card_id = document.getElementsByClassName("card-enabled")[0].id;
 	let i=0;
-	for (i=0; i < document.body.children.length; i++){
-		if(document.body.children[i].id == (card_id)){
+	for (i=0; i < document.getElementById("cards-container").children.length; i++){
+		if(document.getElementById("cards-container").children[i].id == (card_id)){
 			break;
 		}
 	}
@@ -285,7 +334,7 @@ function sendAnswer(obj){
 }
 
 
-
+// mette in movimento lo sfondo
 function slideBackground() {
 
 	var background = document.body;
@@ -299,3 +348,14 @@ function slideBackground() {
 }
 	
 window.addEventListener('load',slideBackground,false);
+
+window.addEventListener('load', ()=>{
+	if(document.getElementById("cards-container").children.length == 0){
+		okbox({
+			title: "Non è possibile accedere alla partita", 
+			content:"La partita alla quale stai cercando di accedere non esiste o è già iniziata, siamo spiacenti.",
+
+			ok: function(){window.location.href="../pages/dashboard.php";}
+		});
+	}
+});

@@ -1,3 +1,11 @@
+
+<?php
+
+$pass = strtoupper(substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 4));
+echo $pass;
+
+?>
+
 <html>
 <head>
 	<DOCTYPE html>

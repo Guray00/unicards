@@ -83,6 +83,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/dashboard.js"></script>
+		<script type="text/javascript" src="../js/alertbox.js"></script>
 	</head>
 
 	<!-- griglia -->
@@ -105,8 +106,8 @@
 					
 
 				<div id="game-mod-selector">
-					<button id="sassonero">Singolo giocatore</button>
-					<button>Multigiocatore</button>
+					<button id="sp">Singolo giocatore</button>
+					<button id="mp">Multigiocatore</button>
 				</div>
 
 			</div>

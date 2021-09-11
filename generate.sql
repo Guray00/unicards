@@ -121,7 +121,7 @@ CONSTRAINT `FK_82` FOREIGN KEY `fkIdx_83` (`degree`) REFERENCES `degree` (`name`
 -- ************************************** `Match`
 CREATE TABLE `match`
 (
- `id`  		integer unsigned NOT NULL AUTO_INCREMENT,
+ `id`  		CHAR(4) NOT NULL,
   `mode`	tinyint(1) 		 NOT NULL,
  `deck_id`	integer unsigned NOT NULL,
  `owner`   	varchar(300) 	 NOT NULL, 
@@ -137,7 +137,7 @@ CREATE TABLE `match`
 -- ************************************** `Points`
 CREATE TABLE `points`
 (
- `match_id` integer unsigned NOT NULL AUTO_INCREMENT,
+ `match_id` CHAR(4) NOT NULL,
  `user`	varchar(300) NOT NULL,
  `answer_id` 	integer unsigned  NOT NULL, 
  `time`	timestamp not null,
@@ -152,7 +152,7 @@ FOREIGN KEY(`answer_id`) REFERENCES `answers` (`id`) ON DELETE NO ACTION ON UPDA
 -- ************************************** `Player`
 CREATE TABLE `player`
 (
- `match_id` integer unsigned NOT NULL,
+ `match_id` CHAR(4) NOT NULL,
  `user`		varchar(300) NOT NULL,
 
  PRIMARY KEY (`match_id`, `user`),

@@ -237,11 +237,13 @@ function post_request_cards_maker(){
 
 // richiamato in caso di successo della richiesta post
 function postSuccess(){
-	document.getElementById("error_msg").innerText = "Salvato con successo!";
+	//document.getElementById("error_msg").innerText = "Salvato con successo!";
 	//document.getElementById("error_msg").style.color = "#4fc46e";
 
+	dialogbox({title: "Salvataggio avvenuto", content:"Complimenti! Le tue modifiche sono andate a buon fine."});
+
 	setTimeout( ()=>{
-		document.getElementById("error_msg").innerText = "";
+		//document.getElementById("error_msg").innerText = "";
 	}, 5000);
 }
 

@@ -3,8 +3,46 @@
 	require_once("../php/database.php");
 
 
-	// gestisce il menu di navigazione tra le carte
 
+	// controllo di aver inserito id e utente per individuare un mazzo
+	if 	( 	!isset($_SESSION["match_deck_id"]) or
+			!isset($_SESSION["match_deck_owner"]) or
+			!isset($_SESSION["match_mode"]) or
+			!isset($_SESSION["match_deck_id"]) or 
+			$_SESSION["match_logged"]
+		){
+		// non mette le carte
+	}
+
+
+	else {
+		// imposto le variabili con quanto passato in post
+		$deck = $_SESSION["match_deck_id"];
+		$user = $_SESSION["match_deck_owner"];
+		$mode = $_SESSION["match_mode"];
+		$match = $_SESSION["match_id"];
+		$_SESSION["match_logged"] = true;
+
+
+		// prendo l'elenco delle carte
+		$query="
+			select S.name as section, C.question, C.id, C.type
+			from card C, section S, Deck D
+			where C.id = S.card_id and S.deck_id = :deck and S.deck_id = D.id and D.user = :user order by S.name, rand()";
+
+
+		$q1 = $pdo->prepare($query);
+		$q1->bindParam(':deck', $deck, PDO::PARAM_STR);
+		$q1->bindParam(':user', $user, PDO::PARAM_STR);
+		$q1->execute();
+		$cards =  $q1->fetchAll(PDO::FETCH_ASSOC);
+
+	}
+
+	/* INIZIO SVILUPPO */
+
+
+	// gestisce il menu di navigazione tra le carte
 	function create_navigator($index, $cards){
 
 		global $mode;
@@ -49,50 +87,6 @@
 			$class = "";
 		}
 	}
-	
-	/*
-		prendo dal database un elenco di domande, risposte e e sezioni
-	
-		// creo un elenco di elementi per sezioni
-
-		nella modalità multiplayer faccio una chiamata ajax che in base al tempo
-		di inizio della partita calcola la domanda che attualmente è mostrata a 
-		tutti i giocatori
-	*/
-
-	// controllo di aver inserito id e utente per individuare un mazzo
-	if (isset($_GET["id"]) != true or isset($_GET["owner"]) != true or !isset($_GET["mode"])){
-		echo "error loading";
-		exit();
-	}
-
-	$deck = $_GET["id"];
-	$user = $_GET["owner"];
-	$mode = $_GET["mode"];
-
-	$_SESSION["match_id"] = 1;	
-
-
-	$query="
-		select S.name as section, C.question, C.id, C.type
-		from card C, section S, Deck D
-		where C.id = S.card_id and S.deck_id = :deck and S.deck_id = D.id and D.user = :user order by S.name, rand()";
-
-
-	$q1 = $pdo->prepare($query);
-	$q1->bindParam(':deck', $deck, PDO::PARAM_STR);
-	$q1->bindParam(':user', $user, PDO::PARAM_STR);
-	$q1->execute();
-	$cards =  $q1->fetchAll(PDO::FETCH_ASSOC);
-
-	/* 	
-		inserisco un div dove cambio man mano che premo il contenuto
-	 	e con un indice tengo traccia della domanda sulla quale stiamo
-		attualmente navigando. E' meglio di creare tutti i div perchè 
-		sennò l'utente finale potrebbe barare navigando tra le domande.
-	*/
-
-	/* INIZIO SVILUPPO */
 
 
 	function makeMultichoice($card){
@@ -155,12 +149,14 @@
 							create_navigator($index, $size);
 
 				echo "	</div>
+						<!-- container della domanda -->
 						<div class='content-box card-content'>
 							<h1>Domanda: {$index}</h1>
 							<p>{$card["question"]}
 							</p>
 						</div>
 
+						<!-- pulsanti di gioco -->
 						<div class= 'buttons-box'>
 							<div class='back'>
 							</div>
@@ -168,8 +164,20 @@
 							</div>
 							<div class='skip'>
 							</div>
-						</div>";
+						</div>
+
+						<!-- pulsante di fine partita -->
+						<div class='finish' onclick='submit()'>
+						</div>
+					
+						";
 	}
+
+	/*
+	<div class='lbl_match_id'>
+								#{$_SESSION["match_id"]}
+						</div>
+	*/
 
 
 	/* funzione che si occupa di creare i div per tutte le pagine */
@@ -269,9 +277,16 @@
 	
 	<body>
 
-		<?php 
-			global $cards;
-			loadCards();
-		?>
+		<div id="cards-container">
+			<?php 
+				global $cards;
+				if(isset($cards))
+					loadCards();
+			?>
+		</div>
+
+		<div class='lbl_match_id'>
+			<?php echo "#{$_SESSION["match_id"]}"; ?>
+		</div>
 	</body>
 </html>
