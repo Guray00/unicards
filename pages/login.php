@@ -7,6 +7,7 @@
 		if (_isLogged()){
 			echo "Utente già connesso <br>";
 			echo '<a href="../php/logout.php">disconnetti</a>';
+			header("location: ./dashboard.php");
 			exit();
 		}
 ?>
