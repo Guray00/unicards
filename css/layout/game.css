@@ -115,16 +115,7 @@ body {
 	background-position-x: 9pt;
 }
 
-/*
-.finish_container {
-	display: grid;
-	width: 100%;
-	height: 35pt;
-	margin-top: -35pt;
 
-	grid-template-columns: 1fr;
-}
-*/
 .finish {
 	display: none;
 	
@@ -308,18 +299,6 @@ p {
 	height: 100%;
 }
 
-/*
-#card-progress {
-	margin-top:20pt;
-	background-color: #474e5c;
-	max-width: 500pt;
-	min-width: 150pt;
-	margin-bottom: 10pt;
-
-	margin-left: auto;
-	margin-right: auto;
-}
-*/
 
 
 .right{
@@ -380,10 +359,7 @@ p {
 	font-size: 16pt;
 }
 
-/*
-.info {
-	display: none;
-}*/
+
 
 .single-center {
 	display: block;
