@@ -18,10 +18,9 @@ html, body{
 	justify-content: center;
 	align-items: center;
 	
-
-	background-image: url("../assets/wall.svg");
-	background-size: 25%;
 	background-color:var(--login-background);
+	background-image: var(--login-background-image);
+	background-size: 25%;
 }
 
 #login-side {

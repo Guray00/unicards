@@ -426,6 +426,7 @@ h2 {
 /*COLORI*/
 
 #deck_editor {
+	background-image: var(--editor-background-image);
 	background-color: var(--editor-background-color);	
 }
 

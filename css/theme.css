@@ -31,15 +31,22 @@
 	--box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	--box-hover-lighter: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.4);
 
+	/* WALLPAPER page */
+	--bg-image-1: url("../../assets/wall.svg");
+	--bg-image-2: url("../../assets/wall2.svg");
+	--bg-image-3: url("../../assets/wall3.svg");
+
 
 	/* LOGIN page */
 	--login-background: #fde55b;
+	--login-background-image: var(--bg-image-2);
 	--login-paper: #6188f5;
 	--login-paper-text: white;
 
 
 	/* GAME page */
 	--game-background-color: #282c34;
+	--game-background-image: var(--bg-image-3);
 	--game-question-background-color: #474e5c;
 	--game-answer-background-color: #818ca3;
 	--game-question-color: aliceblue;
@@ -47,11 +54,13 @@
 
 	/* EDITOR page */
 	--editor-background-color: #6188f5;
+	--editor-background-image: var(--bg-image-2);
 	--editor-paper-color: white;
 	--editor-text-color: black;
 
 	/* DASHBOARD page */
 	--dashboard-background-color: #FFFFFF;
+	--dashboard-background-image: var(--bg-image-1);
 	--dashboard-paper-color: #FFFFFF;
 	--dashboard-text-color: black;
 
@@ -75,7 +84,7 @@
 
 
 body {
-	background-image: url("../assets/wall.svg");
+	/*background-image: url("../assets/wall2.svg");*/
 	background-size: 25%;
 	/*background-color: var(--background-color);*/
 }
