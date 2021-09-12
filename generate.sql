@@ -60,22 +60,6 @@ CREATE TABLE `Answers`
 );
 
 
--- ************************************** `Multichoice`
--- CREATE TABLE `Multichoice`
--- (
---  `id`       integer unsigned NOT NULL AUTO_INCREMENT ,
---  `type`		CHAR(5),
---  `question` text NOT NULL ,
---  `answer1`  text NOT NULL ,
---  `answer2`  text NOT NULL ,
---  `answer3`  text NOT NULL ,
---  `answer4`  text NOT NULL ,
-
--- PRIMARY KEY (`id`)
--- );
-
-
-
 -- ************************************** `degree`
 CREATE TABLE `degree`
 (
@@ -137,15 +121,17 @@ CREATE TABLE `match`
 -- ************************************** `Points`
 CREATE TABLE `points`
 (
- `match_id` CHAR(4) NOT NULL,
- `user`	varchar(300) NOT NULL,
- `answer_id` 	integer unsigned  NOT NULL, 
- `time`	timestamp not null,
+ `match_id` 	CHAR(4) NOT NULL,
+ `user`			varchar(300) NOT NULL,
+ `card_id` 		integer unsigned  NOT NULL,
+ `answer_id` 	integer unsigned, 
+ `time`			timestamp not null,
 
- PRIMARY KEY (`match_id`, `user`, `answer_id`),
- FOREIGN KEY(`match_id`) REFERENCES `match` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
- FOREIGN KEY(`user`) REFERENCES `user` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY(`answer_id`) REFERENCES `answers` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+  PRIMARY KEY (`match_id`, `user`, `card_id`),
+  FOREIGN KEY(`match_id`) REFERENCES `match` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`user`) REFERENCES `user` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`card_id`) REFERENCES `card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`answer_id`) REFERENCES `answers` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 

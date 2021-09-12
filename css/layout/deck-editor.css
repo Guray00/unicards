@@ -339,9 +339,6 @@ textarea{
 	box-shadow: var(--box-hover-lighter) !important;
 }
 
-
-
-
 h1 {
 	grid-row: 1;
 	grid-column-end: span 3;	

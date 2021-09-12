@@ -76,8 +76,8 @@ function setSpCorrect(obj){
 
 	$.ajax({
 		type: "POST",
-		url: "../php/game/set_sp_correct.php",
-		data: {card_id:card_id},
+		url: "../php/game/set_sp_answer.php",
+		data: {card_id:card_id, correct:true},
 
 		// in caso di successo
 		success: function (data) {	
@@ -110,6 +110,20 @@ function setSpWrong(){
 	document.getElementsByClassName("card-enabled")[0].className+=" answered";
 
 	let card_id = card.parentElement.parentElement.id;
+	$.ajax({
+		type: "POST",
+		url: "../php/game/set_sp_answer.php",
+		data: {card_id:card_id.replace("card", ""), correct:false},
+
+		// in caso di successo
+		success: function (data) {	
+			alert(data);
+		},
+
+		// in caso di errore
+		error: function (xhr, ajaxOptions, thrownError) {
+		}
+	});
 
 
 	let i;
@@ -232,6 +246,10 @@ function goToAnswer(id){
 	checkShowFinish();
 }
 
+function getActiveCardId(){
+	return document.getElementsByClassName("card-enabled")[0].id.replace("card", "");
+}
+
 function sendAnswer(obj){
 
 	//obj.style.backgroundColor = "var(--selected)";
@@ -257,16 +275,18 @@ function sendAnswer(obj){
 	updateNavigation(i, "correct");
 
 
+	card_number = getActiveCardId();
 	for (let x of document.getElementsByClassName("card-enabled")[0].getElementsByClassName("answer-content-selected")){
 		carte_selezionate = true;
 
 		$.ajax({
 			type: "POST",
 			url: "../php/game/set_answer.php",
-			data: {id:x.id},
+			data: {card_id:card_number, id:x.id},
 	
 			// in caso di successo
 			success: function (data) {	
+				alert(data);
 				if (data == 1){
 					x.className = "content-box answer-content-true";
 				}
@@ -284,6 +304,7 @@ function sendAnswer(obj){
 	
 			// in caso di errore
 			error: function (xhr, ajaxOptions, thrownError) {
+				alert("ops");
 			}
 		});
 	}
@@ -293,7 +314,7 @@ function sendAnswer(obj){
 		$.ajax({
 			type: "POST",
 			url: "../php/game/set_answer.php",
-			data: {id:-1}, // -1 specifica che non è stato scelta nessuna alternativa
+			data: {card_id: card_number, id:-1}, // -1 specifica che non è stato scelta nessuna alternativa
 	
 			// in caso di successo
 			success: function (data) {	
@@ -314,6 +335,7 @@ function sendAnswer(obj){
 	
 		// in caso di successo
 		success: function (data) {	
+			alert(data);
 			data = JSON.parse(data);
 
 			for (let x of document.getElementsByClassName("card-enabled")[0].getElementsByClassName("answer-content")){
