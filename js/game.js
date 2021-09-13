@@ -196,7 +196,8 @@ function submit(){
 		content: "Le domande a tua disposizione sono finite, vuoi consegnare? Le domande senza una risposta verranno considerate sbagliate.",
 		
 		yes: function(){
-			alert("yes");
+			let id = document.body.id.replace("match", "");
+			window.location.href="../pages/ranking.php?id="+id;
 		},
 
 		no: function(){
@@ -250,13 +251,18 @@ function getActiveCardId(){
 	return document.getElementsByClassName("card-enabled")[0].id.replace("card", "");
 }
 
+
+// serve per inviare la risposta per le risposte multiple
 function sendAnswer(obj){
 
-	//obj.style.backgroundColor = "var(--selected)";
+	// imposta il pulsante come premuto
 	obj.className = obj.className.replace("play", "").replace("next", "") + " play next";
+
+	// imposta la carta come "a cui è stata risposta"
 	document.getElementsByClassName("card-enabled")[0].className+=" answered";
 
 
+	// controlla se ci sono carte selezionate
 	let carte_selezionate = false;
 	obj.onclick = (()=>{
 		nextQuestion(1);
@@ -279,6 +285,8 @@ function sendAnswer(obj){
 	for (let x of document.getElementsByClassName("card-enabled")[0].getElementsByClassName("answer-content-selected")){
 		carte_selezionate = true;
 
+
+		// invia le risposte al database
 		$.ajax({
 			type: "POST",
 			url: "../php/game/set_answer.php",
@@ -293,6 +301,7 @@ function sendAnswer(obj){
 
 				else if(data==-1){
 					/* TODO: segnalare che esiste già una risposta alla domanda */
+					alert("errore, esiste già una risposta a questa domanda");
 				}
 
 				else {
@@ -309,23 +318,7 @@ function sendAnswer(obj){
 		});
 	}
 
-	/* faccio avvenire la chiamata se non ho risposto nulla segnado come vuoto */
-	if (!carte_selezionate){
-		$.ajax({
-			type: "POST",
-			url: "../php/game/set_answer.php",
-			data: {card_id: card_number, id:-1}, // -1 specifica che non è stato scelta nessuna alternativa
 	
-			// in caso di successo
-			success: function (data) {	
-				//alert(data);
-			},
-	
-			// in caso di errore
-			error: function (xhr, ajaxOptions, thrownError) {
-			}
-		});
-	}
 
 	// serve per segnare quali erano le giuste totali se non selezionate tutte
 	$.ajax({
@@ -335,16 +328,32 @@ function sendAnswer(obj){
 	
 		// in caso di successo
 		success: function (data) {	
-			alert(data);
 			data = JSON.parse(data);
+			alert(JSON.stringify(data));
 
+			let da_aggiornare = [];
+
+			// oer ogni risposta nella pagina attiva
 			for (let x of document.getElementsByClassName("card-enabled")[0].getElementsByClassName("answer-content")){
+
+				// scorro tutte le chiavi di data
 				for (let y of data){
+					
+
 					if (y["id"]== x.id && y["correct"]){
-						x.className = "content-box answer-content-wrong";
+
+						// salvo che deve essere segnata come che in realà era vera
+						da_aggiornare.push(x);
 						updateNavigation(i, "wrong");
+
+
 					}
 				}
+			}
+
+			// le aggiorno
+			for (let z of da_aggiornare){
+				z.className = "content-box answer-content-wrong";
 			}
 			
 		},
@@ -353,6 +362,26 @@ function sendAnswer(obj){
 		error: function (xhr, ajaxOptions, thrownError) {
 		}
 	});
+
+	// devo segnare come null solo se ho selezionato qualche carta ma non tutte, in modo da evideniare il fatto che ho sbagliato
+	if (carte_selezionate){
+		$.ajax({
+			type: "POST",
+			url: "../php/game/set_answer.php",
+			data: {card_id: card_number, id:-1}, // -1 specifica che non è stato scelta nessuna alternativa
+		
+				// in caso di successo
+			success: function (data) {	
+					//alert(data);
+			},
+		
+			// in caso di errore
+			error: function (xhr, ajaxOptions, thrownError) {
+			}
+		});
+	}
+
+	/* faccio avvenire la chiamata se non ho risposto nulla segnado come vuoto */
 }
 
 

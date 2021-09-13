@@ -10,15 +10,16 @@
 	
 	
 
-	function createUser($username, $position, $user, $correct, $wrong, $skip){
+	function createUser($username, $position, $user, $correct, $wrong, $total){
 
-		$total = $correct + $wrong + $skip;
+		//$total = $correct + $wrong + $skip;
+		echo $total;
 
 
 	
 		$sc = ($correct/$total)*100;
 		$sw = ($wrong/$total)*100;
-		$ss = ($skip/$total)*100;
+		$ss = (($total-$correct-$wrong)/$total)*100;
 
 
 		$size = 12;
@@ -34,10 +35,10 @@
 					<div class='progressbar true'  style='width: {$sc}%;'>
 					</div>
 
-					<div class='progressbar skip style='width: {$sw}%;'>
+					<div class='progressbar skip' style='width: {$ss}%;'>
 					</div>
 
-					<div class='progressbar false' style='width: {$ss}%;'>
+					<div class='progressbar false' style='width: {$sw}%;'>
 					</div>
 				</div>
 			</div>";
@@ -54,42 +55,37 @@
 
 
 		// conto quante sono quelle esatte
-		$query=" 	select sum(correct) as correct, sum(wrong) as wrong, sum(skip) as skip, user, match_id from (
-			(select count(*) as correct, 0 as wrong, 0 as skip, P.user, P.match_id
-		from answers A, card C, `points` P
-		where 
-			C.id = A.card_id AND
-			A.correct = 1 and
-			P.card_id = C.id AND
-			P.answer_id IS NOT NULL and
-			P.match_id = :match_1
-			
-		GROUP BY P.match_id, P.user) 
+		$query=" 	
 		
-		UNION
-
-		(
-			select count(*) as wrong, 0 as correct, 0 as skip, P.user, P.match_id
-			from answers A, card C, `points` P
-			where 
-				C.id = A.card_id AND
-				A.correct = 0 and
-				P.card_id = C.id AND
-				P.answer_id IS NOT NULL and
-				P.match_id = :match_2
-				
-			GROUP BY P.match_id, P.user			
-		) 
-
-		UNION (
-
-			select 0 as correct, 0 as wrong, count(*) as skip, P.user, P.match_id
-				from `points` P
+		select sum(correct) as correct, sum(wrong) as wrong, sum(total) as total, user, match_id from 
+		
+		(			
+			-- trova tutte le risposte segnate sbagliate
+			(
+				select 0 as correct, 1 as wrong, 0 as total, P.user, P.match_id
+				from answers A, card C, `points` P
 				where 
-					P.answer_id IS NULL and
-					P.match_id = :match_3
+				C.id = A.card_id AND
+				P.card_id = C.id AND
+				(	
+					(P.answer_id IS NOT NULL and P.answer_id = A.id AND A.correct = 0) or 
+					(P.answer_id is null)) AND 
+				
+				P.match_id = :match_2
+					
+				GROUP BY P.match_id, P.user, C.id		
+			) 
+
+			-- calcola il totale delle domande
+			UNION (
+				select 0 as correct, 0 as wrong, COUNT(DISTINCT C.id) as total, P.match_id, P.user
+				from card C, `match` M, section S, player P
+				where S.card_id = C.id AND
+				M.deck_id = S.deck_id AND
+				M.id = P.match_id and
+				M.id=:match_3
 				GROUP BY P.match_id, P.user
-		)
+			)
 
 		) as D;";
 					
@@ -97,6 +93,7 @@
 		$q1->bindParam(':match_1', $match_id, PDO::PARAM_STR);
 		$q1->bindParam(':match_2', $match_id, PDO::PARAM_STR);
 		$q1->bindParam(':match_3', $match_id, PDO::PARAM_STR);
+		//$q1->bindParam(':match_4', $match_id, PDO::PARAM_STR);
 
 		$q1->execute();
 		$result =  $q1->fetchAll(PDO::FETCH_ASSOC);
@@ -105,8 +102,10 @@
 		if (count($result) > 1) $username = $_SESSION["session_username"];
 
 		foreach($result as $i => $x){
-			createUser($username, $i, $x["user"], $x["correct"], $x["wrong"], $x["skip"]);
+			createUser($username, $i, $x["user"], $x["correct"], $x["wrong"], $x["total"]);
 		}
+
+		//var_dump($result);
 	}
 
 	/* INIZIO SVILUPPO */
@@ -132,7 +131,7 @@
 	<body>
 
 		<div class="container">	
-			<h1>CLASSIFICA</h1>
+			<h1 id="title">CLASSIFICA</h1>
 
 			<?php loadUsers();?>
 			

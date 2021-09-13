@@ -5,7 +5,7 @@
 
 
 	// controllo di aver inserito id e utente per individuare un mazzo
-	if 	( 	!isset($_SESSION["match_deck_id"]) or
+	if 	( 	!isset($_SESSION["match_id"]) or
 			!isset($_SESSION["match_deck_owner"]) or
 			!isset($_SESSION["match_mode"]) or
 			!isset($_SESSION["match_deck_id"]) or 
@@ -275,7 +275,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
 	
-	<body>
+	<body id='match<?php echo $_SESSION["match_id"];?>'>
 
 		<div id="cards-container">
 			<?php 

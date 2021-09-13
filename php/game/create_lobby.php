@@ -70,7 +70,7 @@
 	
 
 
-
+	// creiamo la partita
 	$query="
 			insert into `match` (id, `mode`, `deck_id`, `owner`, `finish`, `status`) values (:id, :mode, :deck, :owner, FROM_UNIXTIME(:finish), :status);";
 
@@ -81,6 +81,14 @@
 	$q1->bindParam(':owner', $user, PDO::PARAM_STR);
 	$q1->bindParam(':status', $fast_start, PDO::PARAM_STR);
 	$q1->bindParam(':mode', $mode, PDO::PARAM_STR);
+	$q1->execute();
+
+	$query="
+			insert into `player` (match_id, `user`) values (:matchid, :user);";
+
+	$q1 = $pdo->prepare($query);
+	$q1->bindParam(':matchid', $match_id, PDO::PARAM_STR);
+	$q1->bindParam(':user', $_SESSION["session_mail"], PDO::PARAM_STR);
 	$q1->execute();
 
 	$_SESSION["match_deck_id"] = $deck;
