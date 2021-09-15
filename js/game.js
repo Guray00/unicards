@@ -118,6 +118,7 @@ function setSpWrong(){
 		// in caso di successo
 		success: function (data) {	
 			alert(data);
+			alert("dovrei aver dato sbagliato");
 		},
 
 		// in caso di errore

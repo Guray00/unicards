@@ -58,5 +58,7 @@
 		$request->bindParam(':user', $_SESSION["session_mail"], PDO::PARAM_STR);
 		$request->bindParam(':id', $card_id, PDO::PARAM_STR);
 		$a = $request->execute();
+
+		echo $a;
 	}
 ?>

@@ -10,16 +10,16 @@
 	
 	
 
-	function createUser($username, $position, $user, $correct, $wrong, $total){
+	function createUser($username, $position, $user, $total, $wrong, $skip){
 
 		//$total = $correct + $wrong + $skip;
-		echo $total;
+		echo $wrong;
 
 
 	
-		$sc = ($correct/$total)*100;
+		$sc = (($total - $wrong - $skip)/$total)*100;
 		$sw = ($wrong/$total)*100;
-		$ss = (($total-$correct-$wrong)/$total)*100;
+		$ss = ($skip/$total)*100;
 
 
 		$size = 12;
@@ -57,55 +57,73 @@
 		// conto quante sono quelle esatte
 		$query=" 	
 		
-		select sum(correct) as correct, sum(wrong) as wrong, sum(total) as total, user, match_id from 
+		select sum(wrong) as wrong, sum(skip) as skip, user from 
 		
-		(			
+		(	
+
 			-- trova tutte le risposte segnate sbagliate
 			(
-				select 0 as correct, 1 as wrong, 0 as total, P.user, P.match_id
-				from answers A, card C, `points` P
-				where 
-				C.id = A.card_id AND
-				P.card_id = C.id AND
-				(	
-					(P.answer_id IS NOT NULL and P.answer_id = A.id AND A.correct = 0) or 
-					(P.answer_id is null)) AND 
-				
-				P.match_id = :match_2
+				select 1 as wrong, 0 as skip, P.user
+				from points P, answers A
+				where
+					P.card_id = A.card_id AND
+					P.match_id = :match_2 AND
+					(  (P.answer_id IS NULL) OR (P.answer_id IS NOT NULL AND P.answer_id = A.id AND A.correct = 0)) 
+
 					
-				GROUP BY P.match_id, P.user, C.id		
+					GROUP BY P.user, P.card_id	
 			) 
 
 			-- calcola il totale delle domande
-			UNION (
-				select 0 as correct, 0 as wrong, COUNT(DISTINCT C.id) as total, P.match_id, P.user
-				from card C, `match` M, section S, player P
-				where S.card_id = C.id AND
-				M.deck_id = S.deck_id AND
-				M.id = P.match_id and
-				M.id=:match_3
-				GROUP BY P.match_id, P.user
+			UNION ALL (
+				Select 0 as wrong, count(distinct c.card_id) as skip, PP.user 
+				from section C, `match` M, player PP
+				Where 
+				C.deck_id = m.deck_id AND
+				PP.match_id = M.id AND
+				M.id = :match_3
+				
+				And C.card_id not in 
+					(
+						Select P.card_id 
+						from points P
+						Where 
+							P.match_id = :match_4
+					)
+
+				Group by PP.user
 			)
 
 		) as D;";
 					
 		$q1 = $pdo->prepare($query);
-		$q1->bindParam(':match_1', $match_id, PDO::PARAM_STR);
 		$q1->bindParam(':match_2', $match_id, PDO::PARAM_STR);
 		$q1->bindParam(':match_3', $match_id, PDO::PARAM_STR);
-		//$q1->bindParam(':match_4', $match_id, PDO::PARAM_STR);
-
+		$q1->bindParam(':match_4', $match_id, PDO::PARAM_STR);
 		$q1->execute();
 		$result =  $q1->fetchAll(PDO::FETCH_ASSOC);
+
+
+		$query = "(
+			select count(DISTINCT S.card_id) as total
+			from section S, `match` M
+			WHERE S.deck_id = M.deck_id and M.id = :match
+			);";
+
+		$q1 = $pdo->prepare($query);
+		$q1->bindParam(':match', $match_id, PDO::PARAM_STR);
+		$q1->execute();
+		$total =  $q1->fetch()["total"];
+
 
 		$username = "";
 		if (count($result) > 1) $username = $_SESSION["session_username"];
 
 		foreach($result as $i => $x){
-			createUser($username, $i, $x["user"], $x["correct"], $x["wrong"], $x["total"]);
+			createUser($username, $i, $x["user"], $total, $x["wrong"], $x["skip"]);
 		}
 
-		//var_dump($result);
+		var_dump($result);
 	}
 
 	/* INIZIO SVILUPPO */
