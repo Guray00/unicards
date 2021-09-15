@@ -13,7 +13,7 @@
 	function createUser($username, $position, $user, $total, $wrong, $skip){
 
 		//$total = $correct + $wrong + $skip;
-		echo $wrong;
+		//echo $wrong;
 
 
 	
@@ -74,7 +74,7 @@
 					GROUP BY P.user, P.card_id	
 			) 
 
-			-- calcola il totale delle domande
+			-- calcola le domande skippate
 			UNION ALL (
 				Select 0 as wrong, count(distinct c.card_id) as skip, PP.user 
 				from section C, `match` M, player PP
@@ -105,10 +105,10 @@
 
 
 		$query = "(
-			select count(DISTINCT S.card_id) as total
-			from section S, `match` M
-			WHERE S.deck_id = M.deck_id and M.id = :match
-			);";
+					select count(DISTINCT S.card_id) as total
+					from section S, `match` M
+					WHERE S.deck_id = M.deck_id and M.id = :match
+				);";
 
 		$q1 = $pdo->prepare($query);
 		$q1->bindParam(':match', $match_id, PDO::PARAM_STR);
@@ -123,7 +123,7 @@
 			createUser($username, $i, $x["user"], $total, $x["wrong"], $x["skip"]);
 		}
 
-		var_dump($result);
+		//var_dump($result);
 	}
 
 	/* INIZIO SVILUPPO */

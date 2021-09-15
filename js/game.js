@@ -34,7 +34,7 @@ function spShowAnswer(obj, answer){
 
 	obj.className = obj.className.replace("play", "").replace("next", "") + " play next";
 
-
+	document.getElementsByClassName("card-enabled")[0].className = document.getElementsByClassName("card-enabled")[0].className.replace("answered", "") + " answered";
 	/*var press = document.createElement("div");
 	press.className="suggestion press-this-true";
 	document.getElementsByClassName("card-enabled")[0].appendChild(press);*/
@@ -71,7 +71,7 @@ function setSpCorrect(obj){
 	// tutte le carte hanno il prefisso card prima dell'id della carta
 	let card_id = obj.parentNode.parentNode.id.replace("card", "");
 	let card = document.getElementsByClassName("card-enabled")[0].getElementsByClassName("card-content")[0];
-	document.getElementsByClassName("card-enabled")[0].className+=" answered";
+	//document.getElementsByClassName("card-enabled")[0].className+=" answered";
 	card.style.backgroundColor = "var(--true)";
 
 	$.ajax({
@@ -107,7 +107,7 @@ function setSpWrong(){
 
 	let card = document.getElementsByClassName("card-enabled")[0].getElementsByClassName("card-content")[0];
 	card.style.backgroundColor = "var(--false)";
-	document.getElementsByClassName("card-enabled")[0].className+=" answered";
+	//document.getElementsByClassName("card-enabled")[0].className+=" answered";
 
 	let card_id = card.parentElement.parentElement.id;
 	$.ajax({
@@ -117,8 +117,8 @@ function setSpWrong(){
 
 		// in caso di successo
 		success: function (data) {	
-			alert(data);
-			alert("dovrei aver dato sbagliato");
+			//alert(data);
+			//alert("dovrei aver dato sbagliato");
 		},
 
 		// in caso di errore
@@ -202,7 +202,7 @@ function submit(){
 		},
 
 		no: function(){
-			alert("not");
+			//alert("not");
 		}
 	});
 }
@@ -295,7 +295,7 @@ function sendAnswer(obj){
 	
 			// in caso di successo
 			success: function (data) {	
-				alert(data);
+				//alert(data);
 				if (data == 1){
 					x.className = "content-box answer-content-true";
 				}
@@ -330,7 +330,7 @@ function sendAnswer(obj){
 		// in caso di successo
 		success: function (data) {	
 			data = JSON.parse(data);
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
 
 			let da_aggiornare = [];
 
