@@ -80,6 +80,7 @@
 				from section C, `match` M, player PP
 				Where 
 				C.deck_id = m.deck_id AND
+				C.user = m.owner AND
 				PP.match_id = M.id AND
 				M.id = :match_3
 				

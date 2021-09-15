@@ -109,12 +109,15 @@ CREATE TABLE `match`
   `mode`	tinyint(1) 		 NOT NULL,
  `deck_id`	integer unsigned NOT NULL,
  `owner`   	varchar(300) 	 NOT NULL, 
- `finish`	timestamp,
+ `master`  	varchar(300) 	 NOT NULL, 
+ `finish`	integer unsigned NOT NULL,
  `status`	tinyint(1) 		 NOT NULL,
 
  PRIMARY KEY (`id`),
- FOREIGN KEY(`deck_id`) REFERENCES `deck` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
- FOREIGN KEY(`owner`) REFERENCES `deck` (`user`) ON DELETE CASCADE ON UPDATE CASCADE
+ FOREIGN KEY(`deck_id`) REFERENCES `deck` (`id`)   ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(`owner`)   REFERENCES `deck` (`user`) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(`master`)  REFERENCES `deck` (`user`) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
 

@@ -50,7 +50,7 @@
 	if (!$fast_start) $finish = null;
 
 
-	$finish = time() + ($times["tpq"]*$counter + $times["tpa"]*$counter);
+	$finish = ($times["tpq"]*$counter + $times["tpa"]*$counter);
 
 	$match_id = "";
 	$found = 0;
@@ -72,15 +72,16 @@
 
 	// creiamo la partita
 	$query="
-			insert into `match` (id, `mode`, `deck_id`, `owner`, `finish`, `status`) values (:id, :mode, :deck, :owner, FROM_UNIXTIME(:finish), :status);";
+			insert into `match` (id, `mode`, `deck_id`, `owner`, `master`, `finish`, `status`) values (:id, :mode, :deck, :owner, :master, :finish, :status);";
 
 	$q1 = $pdo->prepare($query);
-	$q1->bindParam(':id', $match_id, PDO::PARAM_STR);
-	$q1->bindParam(':deck', $deck, PDO::PARAM_STR);
+	$q1->bindParam(':id'    , $match_id, 	PDO::PARAM_STR);
+	$q1->bindParam(':deck'  , $deck, 	 	PDO::PARAM_STR);
 	$q1->bindParam(':finish', $finish);
-	$q1->bindParam(':owner', $user, PDO::PARAM_STR);
-	$q1->bindParam(':status', $fast_start, PDO::PARAM_STR);
-	$q1->bindParam(':mode', $mode, PDO::PARAM_STR);
+	$q1->bindParam(':owner' , $user, 	 	PDO::PARAM_STR);
+	$q1->bindParam(':master', $user, 		PDO::PARAM_STR);
+	$q1->bindParam(':status', $fast_start, 	PDO::PARAM_STR);
+	$q1->bindParam(':mode'  , $mode, 		PDO::PARAM_STR);
 	$q1->execute();
 
 	$query="
