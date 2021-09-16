@@ -45,6 +45,11 @@
 		}
 	}
 
+	if ($counter < 3) {
+		echo "-1";
+		return;
+	}
+
 	// se è multigiocatore non parto subito
 	if (!$fast_start) $finish = null;
 

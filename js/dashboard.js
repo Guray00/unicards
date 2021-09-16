@@ -55,7 +55,10 @@ function openMenu(id, user, name, color){
 	})
 
 	
+	// gestisco il pulsante per il singleplayer
 	document.getElementById("sp").addEventListener("click", ()=> {
+		closeMenu();
+
 		$.ajax({
 			type: "POST",
 			url: "../php/game/create_lobby.php",
@@ -78,7 +81,9 @@ function openMenu(id, user, name, color){
 	});
 
 
+	// gestisco il pulsante per il multiplayer
 	document.getElementById("mp").addEventListener("click", ()=> {
+		closeMenu();
 		$.ajax({
 			type: "POST",
 			url: "../php/game/create_lobby.php",
@@ -88,8 +93,19 @@ function openMenu(id, user, name, color){
 			// in caso di successo
 			success: function (data) {	
 				//alert(data); /* da attivare in caso di debug */
-				
-				window.location.replace("../pages/lobby.php?id="+data);
+
+				// controllo di aver un numero sufficiente di carte per poter giocare
+				if (data == "-1") {
+					okbox({
+						title: "Modalità non disponibile", 
+						content:"Per poter avviare una partita devono essere presenti almeno 3 carte della modalità selezionata.",
+			
+						ok: function(){}
+					});	
+				}
+
+				else
+					window.location.replace("../pages/lobby.php?id="+data);
 			},
 	
 			// in caso di errore
