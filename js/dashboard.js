@@ -9,7 +9,10 @@ function setFavourite(el, owner){
 			data: {deck: deck_id, owner:owner},
 	
 			// in caso di successo
-			success: function (data) {	
+			success: function (data) {
+				// evitiamo un aggiornamento completo della pagina, carichiamo soltanto le carte
+				$('#favourites-list').load("../pages/dashboard.php"  + ' #favourites-list');
+				$('#your-deck-list') .load("../pages/dashboard.php"  + ' #your-deck-list');	
 			},
 	
 			// in caso di errore
@@ -28,6 +31,9 @@ function setFavourite(el, owner){
 	
 			// in caso di successo
 			success: function (data) {	
+				// evitiamo un aggiornamento completo della pagina, carichiamo soltanto le carte
+				$('#favourites-list').load("../pages/dashboard.php"  + ' #favourites-list');
+				$('#your-deck-list') .load("../pages/dashboard.php"  + ' #your-deck-list');
 			},
 	
 			// in caso di errore
@@ -38,9 +44,7 @@ function setFavourite(el, owner){
 		})
 	}
 
-	// evitiamo un aggiornamento completo della pagina, carichiamo soltanto le carte
-	$('#favourites-list').load("../pages/dashboard.php"  + ' #favourites-list');
-	$('#your-deck-list') .load("../pages/dashboard.php"  + ' #your-deck-list');
+	
 }
 
 function openMenu(id, user, name, color){
@@ -58,6 +62,7 @@ function openMenu(id, user, name, color){
 	// gestisco il pulsante per il singleplayer
 	document.getElementById("sp").addEventListener("click", ()=> {
 		closeMenu();
+		
 
 		$.ajax({
 			type: "POST",
@@ -68,7 +73,17 @@ function openMenu(id, user, name, color){
 			// in caso di successo
 			success: function (data) {	
 				//alert(data); /* da attivare in caso di debug */
-				window.location.replace("../pages/game.php");
+
+				if (data == "-1") {
+					okbox({
+						title: "Modalità non disponibile", 
+						content:"Per poter avviare una partita devono essere presenti almeno 3 carte della modalità selezionata.",
+			
+						ok: function(){}
+					});	
+				}
+				else {window.location.replace("../pages/game.php");}
+					
 			},
 	
 			// in caso di errore
@@ -104,8 +119,8 @@ function openMenu(id, user, name, color){
 					});	
 				}
 
-				else
-					window.location.replace("../pages/lobby.php?id="+data);
+				else{window.location.replace("../pages/lobby.php?id="+data);}
+					
 			},
 	
 			// in caso di errore
