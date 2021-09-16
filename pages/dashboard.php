@@ -62,7 +62,7 @@
 					<div class='dashboard-deck-preview'	style='background-color:{$deck["color"]};'>
 						
 						<label class='{$public}'></label>
-						<a class='preview_link' href='#' onclick='openMenu(\"{$deck["id"]}\", \"{$deck["user"]}\", \"{$deck["name"]}\", \"{$deck["color"]}\");' >{$deck["name"]}</a>
+						<a class='preview_link' href='#' onclick='openMenu(\"{$deck["id"]}\", \"{$deck["user"]}\", \"{$deck["name"]}\", \"{$deck["color"]}\", \"{$_SESSION["session_mail"]}\");' >{$deck["name"]}</a>
 						<input type='checkbox' class='btn-favourite' id='{$favourite_id}{$deck["id"]}' value='{$deck["id"]}' onchange='setFavourite(this, \"{$_SESSION["session_mail"]}\")' {$favourite}>
 						<label class='btn-favourite' for='{$favourite_id}{$deck["id"]}'></label>";
 							
