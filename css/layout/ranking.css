@@ -25,7 +25,7 @@ h1 {
 
 .user {
 	display: grid;
-	grid-template-columns: max-content 1fr;
+	grid-template-columns: 75pt 1fr;
 	margin-top: 10pt;
 }
 
@@ -57,7 +57,7 @@ p {
 
 	/*margin-left: 10pt;*/
 	max-width: calc(100%-  10pt);
-	width: calc(100% - 10pt);
+	width: calc(100% - 50pt);
 
 	min-height: 25pt;
 	

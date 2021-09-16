@@ -130,7 +130,7 @@ CREATE TABLE `points`
  `answer_id` 	integer unsigned, 
  `time`			timestamp not null,
 
-  PRIMARY KEY (`match_id`, `user`, `card_id`),
+  PRIMARY KEY (`match_id`, `user`, `card_id`, `answer_id`),
   FOREIGN KEY(`match_id`) REFERENCES `match` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(`user`) REFERENCES `user` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(`card_id`) REFERENCES `card` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
