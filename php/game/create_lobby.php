@@ -78,7 +78,7 @@
 	$q1->bindParam(':deck'  , $deck, 	 	PDO::PARAM_STR);
 	$q1->bindParam(':finish', $finish);
 	$q1->bindParam(':owner' , $user, 	 	PDO::PARAM_STR);
-	$q1->bindParam(':master', $user, 		PDO::PARAM_STR);
+	$q1->bindParam(':master', $_SESSION["session_mail"], PDO::PARAM_STR);
 	$q1->bindParam(':status', $fast_start, 	PDO::PARAM_STR);
 	$q1->bindParam(':mode'  , $mode, 		PDO::PARAM_STR);
 	$q1->execute();
