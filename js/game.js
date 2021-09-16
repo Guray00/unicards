@@ -283,7 +283,6 @@ function sendAnswer(obj){
 
 
 	card_number = getActiveCardId();
-	alert("arrivato");
 
 	// per la carta attiva, per ogni risposta selezionata invio al database
 	for (let x of document.getElementsByClassName("card-enabled")[0].getElementsByClassName("answer-content-selected")){
@@ -298,7 +297,7 @@ function sendAnswer(obj){
 	
 			// in caso di successo
 			success: function (data) {	
-				alert(data);
+				//alert(data);
 
 				if (data == 1){
 					x.className = "content-box answer-content-true";
@@ -377,8 +376,8 @@ function sendAnswer(obj){
 		
 				// in caso di successo
 			success: function (data) {	
-					alert(data);
-					alert("mostrato");
+					//alert(data);
+					//alert("mostrato");
 			},
 		
 			// in caso di errore
