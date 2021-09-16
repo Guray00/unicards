@@ -67,7 +67,7 @@ function openMenu(id, user, name, color, mail){
 
 	
 	// gestisco il pulsante per il singleplayer
-	document.getElementById("sp").addEventListener("click", ()=> {
+	document.getElementById("sp").onclick = ()=> {
 		closeMenu();
 		
 
@@ -100,11 +100,11 @@ function openMenu(id, user, name, color, mail){
 				//alert(thrownError);
 			}
 		});
-	});
+	};
 
 
 	// gestisco il pulsante per il multiplayer
-	document.getElementById("mp").addEventListener("click", ()=> {
+	document.getElementById("mp").onclick = ()=> {
 		closeMenu();
 		$.ajax({
 			type: "POST",
@@ -124,6 +124,7 @@ function openMenu(id, user, name, color, mail){
 			
 						ok: function(){}
 					});	
+					
 				}
 
 				else{window.location.replace("../pages/lobby.php?id="+data);}
@@ -137,13 +138,13 @@ function openMenu(id, user, name, color, mail){
 				//alert(thrownError);
 			}
 		});
-	});
+	};
 
 }
 
 function closeMenu(){
 	document.getElementById("choose-mod").style.display = "none";
-	document.getElementById("opacity").style.display = "none";
+	document.getElementById("opacity").style.display    = "none";
 }
 
 function edit_deck(id, user){
