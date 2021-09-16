@@ -15,6 +15,27 @@
 	padding: 0;
 }
 
+.warning {
+	display: block;
+	padding: 5pt;
+	width: max-content;
+
+	background-color: var(--warning-background-color);
+	color: var(--warning-color);
+	font-weight: bold;
+	font-style: italic;
+
+	margin-top: 10pt;
+	margin-left: auto;
+	margin-right: auto;
+
+	border-radius: 5pt;
+}
+
+.warning:hover {
+	box-shadow: var(--box-hover-lighter);
+}
+
 /***********************
 	  Content/side
 ************************/
@@ -232,6 +253,32 @@ button:hover, input[type=submit]:hover {
 	background-color: rgb(241, 112, 112);
 	/*box-shadow: inset 0 0 10pt 10pt rgba(255, 255, 255, 0.774);*/
 }
+
+.back-circle-absolute {
+
+	display: flex;
+	position: absolute;
+	background-image: url("../assets/icons/back.svg");
+
+	width:  30pt;
+	height: 30pt;
+
+	background-size: 20pt 20pt;
+	background-color: var(--false);
+	background-position: 3pt 5pt;
+	background-repeat: no-repeat;
+	border-radius: 100%;
+
+	bottom: 10pt;
+	left: 10pt;
+}
+
+
+.back-circle-absolute:hover {
+	box-shadow: var(--box-hover-lighter);
+	cursor: pointer;
+}
+
 
 /*
 button:focus, input[type=submit]:focus{

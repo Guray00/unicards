@@ -71,8 +71,7 @@
 
 
 	// creiamo la partita
-	$query="
-			insert into `match` (id, `mode`, `deck_id`, `owner`, `master`, `finish`, `status`) values (:id, :mode, :deck, :owner, :master, :finish, :status);";
+	$query="insert into `match` (id, `mode`, `deck_id`, `owner`, `master`, `finish`, `status`) values (:id, :mode, :deck, :owner, :master, :finish, :status);";
 
 	$q1 = $pdo->prepare($query);
 	$q1->bindParam(':id'    , $match_id, 	PDO::PARAM_STR);
@@ -84,8 +83,7 @@
 	$q1->bindParam(':mode'  , $mode, 		PDO::PARAM_STR);
 	$q1->execute();
 
-	$query="
-			insert into `player` (match_id, `user`) values (:matchid, :user);";
+	$query="insert into `player` (match_id, `user`) values (:matchid, :user);";
 
 	$q1 = $pdo->prepare($query);
 	$q1->bindParam(':matchid', $match_id, PDO::PARAM_STR);

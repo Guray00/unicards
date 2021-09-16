@@ -37,6 +37,13 @@
 		$q1->execute();
 		$cards =  $q1->fetchAll(PDO::FETCH_ASSOC);
 
+
+		$query="select finish from `match` where id = :id";
+
+		$q1 = $pdo->prepare($query);
+		$q1->bindParam(':id', $match, PDO::PARAM_STR);
+		$q1->execute();
+		$finish =  $q1->fetch()["finish"];
 	}
 
 	/* INIZIO SVILUPPO */
@@ -128,7 +135,9 @@
 	 */
 	function makeQuestionSide($index, $card, $size){
 
-			global $mode, $pdo;
+			global $mode, $pdo, $finish;
+
+			$formatted_time = gmdate("i:s", $finish);
 
 			$onclick="onclick='sendAnswer(this)'";
 			$load_answer_if_sp = "";
@@ -169,7 +178,8 @@
 						<!-- pulsante di fine partita -->
 						<div class='finish' onclick='submit()'>
 						</div>
-					
+
+						<div class='time-container'>Trascorso <div class='timer'>00:00</div> di <div class='end-time'>{$formatted_time}</div></div>
 						";
 	}
 
@@ -277,6 +287,13 @@
 	
 	<body id='match<?php echo $_SESSION["match_id"];?>'>
 
+		<div class='lbl_match_id'>
+			<?php echo "#{$_SESSION["match_id"]}"; ?>
+		</div>
+
+		<div class="back-circle-absolute" onclick="window.location.href='./dashboard.php'"></div>
+
+
 		<div id="cards-container">
 			<?php 
 				global $cards;
@@ -285,8 +302,6 @@
 			?>
 		</div>
 
-		<div class='lbl_match_id'>
-			<?php echo "#{$_SESSION["match_id"]}"; ?>
-		</div>
+		
 	</body>
 </html>

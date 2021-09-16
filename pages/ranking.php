@@ -95,7 +95,7 @@
 				Group by PP.user
 			)
 
-		) as D;";
+		) as D group by user;";
 					
 		$q1 = $pdo->prepare($query);
 		$q1->bindParam(':match_2', $match_id, PDO::PARAM_STR);
@@ -107,8 +107,8 @@
 
 		$query = "(
 					select count(DISTINCT S.card_id) as total
-					from section S, `match` M
-					WHERE S.deck_id = M.deck_id and M.id = :match
+					from section S, `match` M, card C
+					WHERE S.deck_id = M.deck_id and M.id = :match and M.mode <= C.type and C.id = S.card_id
 				);";
 
 		$q1 = $pdo->prepare($query);
@@ -124,7 +124,7 @@
 			createUser($username, $i, $x["user"], $total, $x["wrong"], $x["skip"]);
 		}
 
-		//var_dump($result);
+		var_dump($result);
 	}
 
 	/* INIZIO SVILUPPO */
@@ -149,11 +149,12 @@
 	
 	<body>
 
+		<div class="back-circle-absolute" onclick="window.location.href='./dashboard.php'"></div>
+
 		<div class="container">	
 			<h1 id="title">CLASSIFICA</h1>
-
-			<?php loadUsers();?>
-			
+			<?php loadUsers();?>			
 		</div>
+
 	</body>
 </html>

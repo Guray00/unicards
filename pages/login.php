@@ -17,6 +17,8 @@
 		<title>unicards</title>
 		<link rel="stylesheet" href="../css/layout/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
+		
+		<script type="text/javascript" src="../js/login.js"></script>
 	</header>
 
 

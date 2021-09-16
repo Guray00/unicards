@@ -1,0 +1,99 @@
+@import "../design.css";
+
+
+body {
+	display: block;
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: var(--game-background-color);
+	background-image: var(--game-background-image);
+	text-align: center;
+}
+
+
+
+h1 {
+	display: inline-block;
+	margin-top: 5vh;
+	height: max-content;
+	font-size: 6vh;
+	letter-spacing: 3pt;
+	color: white;
+	color: var(--game-question-color);
+}
+
+h2, h3 {
+	color: var(--game-question-color);
+	font-weight: 100;
+}
+
+h3 {
+	margin: 10pt;
+	margin-bottom: 20pt;
+	background-color: rgba(255, 255, 255, 0.164);
+	padding: 3pt;
+	width: max-content;
+	margin-left: auto;
+	margin-right: auto;
+
+	
+}
+
+
+.user {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	margin-top: 10pt;
+
+	max-width: 400pt;
+	min-width: 100pt;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	background-color: var(--game-question-background-color);
+}
+
+.user > img {
+	max-width: 50pt;
+	max-height: 50pt;
+}
+
+.user.master {
+	background-color: var(--false);
+}
+
+.user.player {
+	background-color: var(--secondary-color);
+}
+
+
+.user.master.player {
+	background-color: var(--secondary-color);
+}
+
+
+.user:hover {
+	box-shadow: var(--box-hover-lighter);
+}
+
+.start {
+	background-color: var(--true);
+	width: 100pt;
+	font-size: 20pt;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+}
+
+.user > p {
+	display: inline-block;
+	color: var(--game-answer-color);
+	margin-top: auto;
+	margin-bottom: auto;
+	font-size: 18pt;
+}

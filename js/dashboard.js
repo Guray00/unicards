@@ -77,6 +77,30 @@ function openMenu(id, user, name, color){
 		});
 	});
 
+
+	document.getElementById("mp").addEventListener("click", ()=> {
+		$.ajax({
+			type: "POST",
+			url: "../php/game/create_lobby.php",
+			data: {id:id, owner:user, mode:"1", status:"0"},
+	
+			
+			// in caso di successo
+			success: function (data) {	
+				alert(data); /* da attivare in caso di debug */
+				
+				window.location.replace("../pages/lobby.php?id="+data);
+			},
+	
+			// in caso di errore
+			error: function (xhr, ajaxOptions, thrownError) {
+				postError();
+				//alert(xhr.status);
+				//alert(thrownError);
+			}
+		});
+	});
+
 }
 
 function closeMenu(){

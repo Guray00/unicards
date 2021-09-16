@@ -410,4 +410,43 @@ window.addEventListener('load', ()=>{
 			ok: function(){window.location.href="../pages/dashboard.php";}
 		});
 	}
+
+	setInterval( ()=>{
+		let time    = document.getElementsByClassName("timer")[0].innerText;
+		let tempo   = time.split(':');
+
+		let secondi = (+tempo[0]) * 60 + (+tempo[1]);
+		
+		secondi++;
+
+		let minutes = Math.floor(secondi / 60);
+		secondi = secondi - minutes * 60;
+
+		if (minutes < 10) minutes = "0"+minutes;
+		if (secondi < 10) secondi = "0"+secondi;
+
+		let t = minutes+":"+secondi;
+
+		for (let x of document.getElementsByClassName("timer")){
+			x.innerText = t;
+		}
+
+	}, 1000);
+
+	let end 	= document.getElementsByClassName("end-time")[0].innerText;
+	var tempo   = end.split(':');
+	var secondi = (+tempo[0]) * 60 + (+tempo[1]);
+
+	//console.log(secondi);
+	let id = document.body.id.replace("match", "");
+
+	setTimeout(()=> {
+		okbox({
+			title: "Partita conclusa", 
+			content:"Il tempo a disposizione è terminato. Sarai reindirizzato alla classifica.",
+
+			ok: function(){	window.location.href="../pages/ranking.php?id="+id;}
+		});
+
+	}, secondi*1000);
 });

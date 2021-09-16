@@ -52,4 +52,6 @@ window.addEventListener('load', ()=>{
 
 	//}, 10000);
 
+	setInterval(()=>{window.location = window.location; console.log("fatto");}, 1000);
+
 });
