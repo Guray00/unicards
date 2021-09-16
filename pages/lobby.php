@@ -108,6 +108,7 @@
 		<link rel="stylesheet" href="../css/theme.css">
 		<link rel="stylesheet" href="../css/animations/animation.css">
 		<link rel="stylesheet" href="../css/layout/lobby.css">
+		<link rel="stylesheet" href="../css/elements/alertbox.css">
 
 		<script type="text/javascript" src="../js/alertbox.js"></script>
 		<script type="text/javascript" src="../js/lobby.js"></script>
@@ -119,9 +120,10 @@
 	<body id="<?php echo $_GET["id"];?>">
 		<div class="back-circle-absolute" onclick="window.location.href='./dashboard.php'"></div>
 
-		<h1>LOBBY #<?php getId();?></h1>
+		<div class="title">LOBBY #<?php getId();?></div>
 		<h2>Per aggiungere altri giocatori alla lobby invia il link che segue:</h2>
-		<h3><?php getPath();?>?id=<?php echo getId();?> </h3>
+		<h3><div id="text-url" onclick="copyUrl();"><?php getPath();?>?id=<?php echo getId();?></div> <button id="copy" onclick="copyUrl();">Copia</button></h3>
+		
 
 		
 		<?php 

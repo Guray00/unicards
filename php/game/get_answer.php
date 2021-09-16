@@ -25,6 +25,7 @@
 	// se non è stata trovata nessuna domanda
 	if($found < 1) exit(-1);*/
 
+	// recupero le risposte relative alla domanda appena posta
 	$query = "select id, correct from answers where card_id=:id";
 		
 	$request = $pdo->prepare($query);

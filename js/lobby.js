@@ -1,3 +1,20 @@
+
+
+function copyUrl(){
+	var copyText = document.getElementById("text-url");
+
+	/* Select the text field */
+	//copyText.select();
+	//copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+	/* Copy the text inside the text field */
+  	navigator.clipboard.writeText(copyText.innerText);
+
+	  alert("Testo copiato!");
+}
+
+
+// funzione che si occupa di avviare il match alla pressione del pulsante start
 function startMatch(){
 
 	let id = document.body.id;
@@ -24,9 +41,9 @@ function startMatch(){
 
 
 
+// viene notifica all'uscita dell'utente dalla pagina al database
 window.onbeforeunload = function(event) {
 	let id = document.body.id;
-
 
 	$.ajax({
 		type: "POST",
@@ -44,7 +61,7 @@ window.onbeforeunload = function(event) {
 }
 
 
-
+// rende in movimento il background
 function slideBackground() {
 	var background = document.body;
 	var x = 0;
@@ -57,7 +74,7 @@ function slideBackground() {
 }
 
 
-
+// recupera le informazioni sui giocatori
 function updatePlayers(data){
 	let users = document.getElementsByClassName("user");
 
@@ -103,7 +120,8 @@ window.addEventListener('load',slideBackground,false);
 window.addEventListener('load', ()=>{
 	let id = document.body.id;
 
-	setInterval(()=>{
+	// recupera lo stato dei giocatori
+	let a = setInterval(()=>{
 		$.ajax({
 			type: "POST",
 			url: "../php/game/get_players.php",
@@ -125,7 +143,7 @@ window.addEventListener('load', ()=>{
 		});
 
 
-
+		// recupera lo stato della partita
 		$.ajax({
 			type: "POST",
 			url: "../php/game/get_status.php",
@@ -134,10 +152,23 @@ window.addEventListener('load', ()=>{
 			
 			// in caso di successo
 			success: function (data) {	
-				console.log(data);
 
+				// controlla se la partita è iniziata, nel caso reindirizza alla schermata di gioco
 				if (data == "1"){
 					window.location.href='./game.php';
+				}
+
+				// se lo stato è null, allora il master si è disconnesso e la partita viene conclusa
+				else if (data == ""){
+
+					// elimino l'intervallo per evitare di generare messaggi infiniti
+					clearInterval(a);
+					okbox({
+						title: "Master disconnesso dalla partita", 
+						content:"Il master della lobby si è disconnesso, la partita è stata annullata e verrai reindirizzato alla dashboard.",
+			
+						ok: function(){window.location.href='./dashboard.php';}
+					});	
 				}
 			},
 	

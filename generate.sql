@@ -111,7 +111,7 @@ CREATE TABLE `match`
  `owner`   	varchar(300) 	 NOT NULL, 
  `master`  	varchar(300) 	 NOT NULL, 
  `finish`	integer unsigned NOT NULL,
- `status`	tinyint(1) 		 NOT NULL,
+ `status`	tinyint(1),
 
  PRIMARY KEY (`id`),
  FOREIGN KEY(`deck_id`) REFERENCES `deck` (`id`)   ON DELETE CASCADE ON UPDATE CASCADE,

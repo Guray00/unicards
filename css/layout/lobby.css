@@ -16,7 +16,7 @@ body {
 
 
 
-h1 {
+.title {
 	display: inline-block;
 	margin-top: 5vh;
 	height: max-content;
@@ -24,6 +24,17 @@ h1 {
 	letter-spacing: 3pt;
 	color: white;
 	color: var(--game-question-color);
+	font-weight: 700;
+}
+
+h3 > div {
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 0.164);
+	padding: 3pt;
+}
+
+h3 > div:hover {
+	cursor: pointer;
 }
 
 h2, h3 {
@@ -34,7 +45,6 @@ h2, h3 {
 h3 {
 	margin: 10pt;
 	margin-bottom: 20pt;
-	background-color: rgba(255, 255, 255, 0.164);
 	padding: 3pt;
 	width: max-content;
 	margin-left: auto;

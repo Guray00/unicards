@@ -8,7 +8,7 @@
 
 	$match = $_POST["id"];
 
-
+	// recupero lo stato della partita della lobby attuale
 	$query= "select status from `match` where id = :id";
 	$request = $pdo->prepare($query);
 	$request->bindParam(':id', $match, PDO::PARAM_STR);

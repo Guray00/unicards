@@ -8,7 +8,7 @@
 
 	$match = $_POST["id"];
 
-
+	// recupero la lista degli utenti della lobby attuale
 	$query= "select user as id, username from player P, user S where match_id = :id and P.user = S.mail";
 	$request = $pdo->prepare($query);
 	$request->bindParam(':id', $match, PDO::PARAM_STR);

@@ -18,8 +18,8 @@ function updateProgressBar(user, correct, wrong, skip){
 	let total = correct + wrong + skip;
 
 	let sc = (correct/total)*100;
-	let sw = (wrong/total)*100;
-	let ss = (skip/total)*100;
+	let sw = (wrong/total  )*100;
+	let ss = (skip/total   )*100;
 
 	document.getElementById(user).getElementsByClassName("true")[0].style.width  = sc+"%";
 	document.getElementById(user).getElementsByClassName("false")[0].style.width = sw+"%";
@@ -39,19 +39,6 @@ function updateSize(user, position){
 
 
 window.addEventListener('load', ()=>{
-
-		
-		/*updateProgressBar("marco", 1, 2, 2);
-		//updateSize("marco", 0);
-
-		updateProgressBar("angelo", 1, 3, 2);
-		//updateSize("angelo", 1);
-
-		updateProgressBar("gabriel", 0, 3, 2);*/
-		//updateSize("gabriel", 2);
-
-	//}, 10000);
-
-	setInterval(()=>{window.location = window.location; console.log("fatto");}, 1000);
+	setInterval(()=>{window.location = window.location; console.log("fatto");}, 5000);
 
 });

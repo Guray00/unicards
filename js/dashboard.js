@@ -87,7 +87,7 @@ function openMenu(id, user, name, color){
 			
 			// in caso di successo
 			success: function (data) {	
-				alert(data); /* da attivare in caso di debug */
+				//alert(data); /* da attivare in caso di debug */
 				
 				window.location.replace("../pages/lobby.php?id="+data);
 			},

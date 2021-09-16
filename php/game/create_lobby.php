@@ -5,11 +5,10 @@
 
 	require_once("../database.php");
 
-
+	// recupero le informazioni di base
 	$deck = $_POST["id"];
 	$user = $_POST["owner"];
 	$mode = $_POST["mode"];
-	
 	$fast_start = $_POST["status"];
 
 
@@ -26,7 +25,6 @@
 		select S.name as section, C.question, C.id, C.type
 		from card C, section S, Deck D
 		where C.id = S.card_id and S.deck_id = :deck and S.deck_id = D.id and D.user = :user order by S.name, rand()";
-
 
 	$q1 = $pdo->prepare($query);
 	$q1->bindParam(':deck', $deck, PDO::PARAM_STR);
@@ -47,6 +45,7 @@
 		}
 	}
 
+	// se è multigiocatore non parto subito
 	if (!$fast_start) $finish = null;
 
 
@@ -54,6 +53,7 @@
 
 	$match_id = "";
 	$found = 0;
+
 	do {
 		// generiamo un id per il match
 		$match_id = strtoupper(substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 4));
@@ -70,7 +70,7 @@
 	
 
 
-	// creiamo la partita
+	// creo la partita
 	$query="insert into `match` (id, `mode`, `deck_id`, `owner`, `master`, `finish`, `status`) values (:id, :mode, :deck, :owner, :master, :finish, :status);";
 
 	$q1 = $pdo->prepare($query);
@@ -83,19 +83,20 @@
 	$q1->bindParam(':mode'  , $mode, 		PDO::PARAM_STR);
 	$q1->execute();
 
+	// inserisco l'utente come giocatore della partita
 	$query="insert into `player` (match_id, `user`) values (:matchid, :user);";
-
 	$q1 = $pdo->prepare($query);
 	$q1->bindParam(':matchid', $match_id, PDO::PARAM_STR);
 	$q1->bindParam(':user', $_SESSION["session_mail"], PDO::PARAM_STR);
 	$q1->execute();
 
-	$_SESSION["match_deck_id"] = $deck;
-	$_SESSION["match_deck_owner"] = $user;
-	$_SESSION["match_mode"] = $mode;
-	$_SESSION["match_id"] = $match_id;
-	$_SESSION["match_logged"] = false;
+	// reimposto le variabili di sessione per accedere in seguito al match
+	$_SESSION["match_deck_id"] 		= $deck;
+	$_SESSION["match_deck_owner"] 	= $user;
+	$_SESSION["match_mode"] 		= $mode;
+	$_SESSION["match_id"] 			= $match_id;
+	$_SESSION["match_logged"] 		= false;
 
+	// restituisco l'id del match appena creato
 	echo $match_id;
-
 ?>
