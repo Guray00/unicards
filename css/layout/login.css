@@ -44,15 +44,18 @@ html, body{
 #login {
 	display: grid;
 
-	padding: 15pt;
+	padding: 25pt;
 	border-radius: 15pt;
 	grid-gap: 8pt;
 
 	grid-template-columns: auto 1fr;
 	box-shadow: var(--box-shadow);
 	margin: 15pt;
+	width: 220pt;
 
 	background-color:var(--login-paper);
+	background-image: url("../../assets/wall_darker.svg");
+	background-size: 200pt;
 
 }
 
@@ -92,18 +95,90 @@ html, body{
 	text-align: center;
 }
 
-#btn {
+#btn-submit {
 	grid-column: 2;
 	grid-row: 5;
 	width: fit-content;
 	justify-self:flex-end;
 }
 
+/*.login-text {
+	width: 150pt;
+}*/
 
 
+#register {
+	font-style: italic;
+	color: var(--selected);
+}
+
+#register:hover {
+	cursor: pointer;
+}
 
 
 
 #login > h1, #login > label {
 	color: var(--login-paper-text);
 }
+
+
+
+/* ======== SIGNIN ==========*/
+
+#signin-container {
+	display: grid;
+
+	padding: 25pt;
+	border-radius: 15pt;
+	grid-gap: 8pt;
+
+	grid-template-columns: auto 1fr;
+	box-shadow: var(--box-shadow);
+	margin: 15pt;
+	margin-top: 5pt;
+
+	max-width: 400pt;
+	width: 100%;
+
+	background-color:var(--login-paper);
+	background-image: url("../../assets/wall_darker.svg");
+	background-size: 200pt;
+
+	gap: 15pt;
+
+	
+}
+
+#signin-container > label {
+	color: white;
+}
+
+#signin-content > h1 {
+	display: inline;
+	width: max-content;
+	height: max-content;
+	color: rgb(0, 0, 0);
+	font-size: 40pt;
+	text-shadow: var(--text-shadow-black);
+	font-weight: bold;
+}
+
+#signin-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: calc(100% - var(--footer-size));
+}
+
+#signin-form {
+	width: 100%;
+	height: calc(100% - var(--footer-size));
+	margin: 0;
+	padding: 0;
+
+	background-color:var(--login-background);
+	background-image: var(--login-background-image);
+	background-size: 25%;
+}	

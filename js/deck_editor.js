@@ -26,6 +26,8 @@ function deleteDeck(id, user){
 
 				error: function (xhr, ajaxOptions, thrownError) {
 					postError();
+					alert(xhr.status);
+					alert(thrownError);
 				}
 			});
 		},
@@ -296,8 +298,8 @@ function submitHandler(id, user){
 		// in caso di errore
 		error: function (xhr, ajaxOptions, thrownError) {
 			postError();
-			//alert(xhr.status);
-			//alert(thrownError);
+			alert(xhr.status);
+			alert(thrownError);
 		}
 	});
 }

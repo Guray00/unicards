@@ -10,6 +10,13 @@
 			header("location: ./dashboard.php");
 			exit();
 		}
+
+
+		$phrases = [	"Un ottimo modo per studiare!", 
+						"Per chi si fa il mazzo!", 
+						"Per chi mette le carte cattedra!",
+						"Il tuo compagno di studio!"];
+		$p = $phrases[array_rand($phrases, 1)];
 ?>
 
 <html>
@@ -29,21 +36,21 @@
 				<h1>Login</h1>
 
 				<label id="lbl_mail">Mail:</label> 
-				<input type="email" id="" name="mail" required>
+				<input type="email" id="mail_txt" class="login-text" name="mail" required>
 				<label id="lbl_password">Password:</label> 
-				<input type="password" id="password" name="password" required>
-				<label id="msg">aaa</label>
-				<input type="submit" id="btn" value="Login" name="login" method="POST">
+				<input type="password" id="password" name="password"  class="login-text" required>
+				<label id="msg"></label>
+				<div id="register" onclick="window.location.href='../pages/signin.php'">Registrati</div>
+				<input type="submit" id="btn-submit" value="Login" name="login" method="POST">
 			</form>
 
 			<div id="login-side">
 				<h1>Unicards</h1>
-				<h2>Un ottimo modo per studiare</h2>
+				<h2><?php global $p; echo $p;?></h2>
 			</div>
 			
 		</div>
 
-		<!-- <div class="wave2"></div> -->
 		<?php require("../html/footer.php");?>
 	</body>
 </html>

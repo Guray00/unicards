@@ -8,7 +8,8 @@
 	//controlla se l'utente ha effettuato l'accesso
 	function _sessionCheck(){
 		if(!isset($_SESSION["session_id"])){
-			header("Location: ../pages/session_timeout.html");
+			//header("Location: ../pages/session_timeout.html");
+			header("Location: ../pages/login.php");
 			exit();
 		}
 	}

@@ -28,6 +28,8 @@
 
 	/*Ombre*/
 	--text-shadow: 0pt 0pt 8pt #0000007c;
+	--text-shadow-black: 0pt 0pt 8pt #00000013;
+
 	--box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.089), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	--box-hover-lighter: inset 0 0 100pt 100pt rgba(255, 255, 255, 0.4);
 
@@ -40,7 +42,7 @@
 	/* LOGIN page */
 	--login-background: #fde55b;
 	--login-background-image: var(--bg-image-2);
-	--login-paper: #6188f5;
+	--login-paper: #21252b;
 	--login-paper-text: white;
 
 

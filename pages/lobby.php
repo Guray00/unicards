@@ -88,8 +88,10 @@
 			$isMaster = $s["mail"] == $master ? "master" : "";
 			$isPlayer = $s["mail"] == $_SESSION["session_mail"] ? "player" : "";
 
+			$img = "../assets/users/".$s["mail"].".png";
+
 			echo "<div class = 'user content-box {$isMaster} {$isPlayer}' id='{$s["mail"]}'>
-					<img src='../assets/users/default.png'/>
+					<img src='{$img}'onerror=\"this.src='../assets/users/default.svg'\" />
 					<p>{$s["username"]}</p>
 				</div>";
 		}

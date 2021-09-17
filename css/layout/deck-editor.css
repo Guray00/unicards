@@ -324,19 +324,19 @@ textarea{
 
 
 #deck_editor_submit {
-	display: block !important;
-	margin-right: 10pt !important;
+	display: block;
+	margin-right: 10pt;
 	box-shadow: 0 4px 8px 0 rgba(59, 59, 59, 0.219), 0 6px 20px 0 rgba(0, 0, 0, 0.295) !important;
-	font-size: 12pt !important;
+	font-size: 12pt;
 
-	height: max-content !important;
+	height: max-content;
 
 	grid-row: 1;
 	grid-column: 4;
 }
 
 #back:hover, #deck_editor_submit:hover {
-	box-shadow: var(--box-hover-lighter) !important;
+	box-shadow: var(--box-hover-lighter);
 }
 
 h1 {

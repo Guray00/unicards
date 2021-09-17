@@ -135,7 +135,7 @@
 
 	catch(Exception $e){
 		//ritorna all'utente che c'è stato un errore con i campi
-		//echo $e;
+		echo $e;
 		header("HTTP/1.1 400");
 	}
 ?>

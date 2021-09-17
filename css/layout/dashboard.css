@@ -15,6 +15,37 @@
 	background-size: cover;
 }
 
+.img-container img {
+	display: inline;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	max-width: 90%;
+	max-height: 90%;
+	min-width: 90%;
+	min-height: 90%;
+	
+	object-fit: cover;
+	object-position: center;
+	box-shadow: var(--box-shadow);
+	border-radius: 100%;
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.img-container {
+	/*background-color: red;*/
+	width: 100%;
+	padding-top: 100%; 
+	position: relative;
+	margin-bottom: 15pt;
+}
+
 #choose-mod {
 	display: none;
 	position: absolute;
@@ -73,13 +104,14 @@
 	width: 90%;
 
 	margin-left: 15pt;
-	/*margin-right: auto;*/
 	margin-bottom: 5pt;
 
 	height: 48%;
 
 	font-size: 15pt;
 	text-shadow: var(--text-shadow);
+
+	border-radius: 8pt !important;
 
 	color: whitesmoke;
 	background-color: #474e5c;

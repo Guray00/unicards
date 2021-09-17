@@ -70,6 +70,9 @@
 				echo "<button class='btn-edit' onclick='window.location.href=\"./deck_editor.php?id={$deck["id"]}\"'></button>";
 			echo "</div>";
 		}
+
+
+		$img = "../assets/users/".$_SESSION["session_mail"].".png";
 	?>
 
 	<head>
@@ -147,6 +150,10 @@
 
 		<!--  Menu destro  -->
 		<div  class="right side-box">
+			<div class="img-container">
+				<img src='<?php global $img; echo $img?>' onerror="this.src='../assets/users/default_black.svg'" />
+			</div>
+			
 			<p><?php echo "Nome utente: ".$_SESSION["session_username"]?></p>
 		</div>
 

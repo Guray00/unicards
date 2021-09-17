@@ -15,7 +15,6 @@ body {
 }
 
 
-
 .title {
 	display: inline-block;
 	margin-top: 5vh;
@@ -27,11 +26,13 @@ body {
 	font-weight: 700;
 }
 
+
 h3 > div {
 	display: inline-block;
 	background-color: rgba(255, 255, 255, 0.164);
 	padding: 3pt;
 }
+
 
 h3 > div:hover {
 	cursor: pointer;
@@ -47,6 +48,7 @@ h2, h3 {
 	color: var(--game-question-color);
 	font-weight: 100;
 }
+
 
 h3 {
 	margin: 10pt;
@@ -70,19 +72,29 @@ h3 {
 	margin-right: auto;
 
 	background-color: var(--game-question-background-color);
+	border-left: solid 5pt var(--game-question-background-color);
 }
 
 .user > img {
 	max-width: 50pt;
 	max-height: 50pt;
+	min-width: 50pt;
+	min-height: 50pt;
+	object-fit: cover;
+	border-radius: 100%;
+	border: solid rgba(255, 255, 255, 0.5) 3pt;
+	box-shadow: var(--box-shadow);
 }
 
 .user.master {
 	background-color: var(--false);
+	border-left: solid 5pt var(--false);
 }
 
 .user.player {
 	background-color: var(--secondary-color);
+	border-left: solid 5pt var(--secondary-color);
+	border-left: none;
 }
 
 

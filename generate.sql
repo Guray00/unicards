@@ -5,6 +5,8 @@ CREATE DATABASE unicards
 	CHARACTER SET utf8 COLLATE utf8_general_ci; -- imposta la codifica dei caratteri a utf8
 
 USE unicards;
+SET GLOBAL event_scheduler = ON;
+
 -- ************************************** `User`
 CREATE TABLE `User`
 (
@@ -269,6 +271,14 @@ BEGIN
   	return response;
 END $$
 DELIMITER ;
+
+
+-- ************************************** Elimina le partite con valure null (ovvero non avviate)
+CREATE EVENT deleteNullMatch
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 HOUR
+ON COMPLETION PRESERVE
+DO 
+DELETE LOW_PRIORITY FROM unicards.match WHERE STATUS is null
 
 
 

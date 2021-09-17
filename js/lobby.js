@@ -102,8 +102,11 @@ function updatePlayers(data){
 
 		if (!found){
 			let z = document.createElement("div");
+
+			img =  "../assets/users/"+x.id+".png";
+
 			z.innerHTML = `<div class = 'user content-box' id='`+x.id+`'>
-							<img src='../assets/users/default.png'/>
+							<img src='`+img+`' onerror="this.src='../assets/users/default.svg'" />
 							<p>`+x["username"]+`</p>
 						</div>`;
 
