@@ -1,1 +1,5 @@
 config.php
+
+assets/users/*
+!assets/users/default.svg
+!assets/users/default_black.svg
