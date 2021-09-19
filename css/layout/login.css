@@ -5,6 +5,15 @@ html, body{
 	width: 100%;
 }
 
+
+input.txt-warning {
+	border: solid 2pt red;
+}
+
+input:invalid {
+	border: solid 2pt var(--selected);
+}
+
 /***********************
 		login page
 ************************/

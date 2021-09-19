@@ -281,8 +281,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Deck edit</title>
+		<title>Editor</title>
 		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
 
 		<!-- style -->
 		<link rel="stylesheet" href="../css/layout/deck-editor.css">

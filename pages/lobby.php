@@ -105,9 +105,10 @@
 <html>
 
 	<head>
-		<title>Unicards</title>
+		<title>Unicards #<?php echo $_GET["id"];?></title>
 		<meta charset="utf-8">
-		
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
+
 		<link rel="stylesheet" href="../css/design.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		<link rel="stylesheet" href="../css/animations/animation.css">

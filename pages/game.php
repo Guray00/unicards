@@ -275,7 +275,8 @@
 	<head>
 		<title>Unicards</title>
 		<meta charset="utf-8">
-		
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
+
 		<link rel="stylesheet" href="../css/layout/game.css">
 		<link rel="stylesheet" href="../css/layout/2-column-layout.css">
 		<link rel="stylesheet" href="../css/design.css">

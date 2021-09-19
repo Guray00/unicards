@@ -274,11 +274,11 @@ DELIMITER ;
 
 
 -- ************************************** Elimina le partite con valure null (ovvero non avviate)
-CREATE EVENT deleteNullMatch
+CREATE EVENT deletenullmatch
 ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 HOUR
 ON COMPLETION PRESERVE
 DO 
-DELETE LOW_PRIORITY FROM unicards.match WHERE STATUS is null
+DELETE LOW_PRIORITY FROM unicards.`match` WHERE STATUS is null;
 
 
 

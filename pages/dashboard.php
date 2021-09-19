@@ -95,6 +95,9 @@
 	<head>
 		<title>Dashboard</title>
 		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
+
+
 		
 		<!--  Stili  -->
 		<link rel="stylesheet" href="../css/layout/dashboard.css">

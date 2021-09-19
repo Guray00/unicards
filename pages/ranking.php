@@ -168,9 +168,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Unicards</title>
+		<title>Unicards Ranking</title>
 		<meta charset="utf-8">
-		
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
+
 		<link rel="stylesheet" href="../css/layout/2-column-layout.css">
 		<link rel="stylesheet" href="../css/design.css">
 		<link rel="stylesheet" href="../css/theme.css">

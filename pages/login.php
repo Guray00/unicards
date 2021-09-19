@@ -24,9 +24,10 @@
 
 <html>
 	<header>
-		<title>unicards</title>
+		<title>Unicards Login</title>
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
 		<meta charset="utf-8">
-		
+
 		<link rel="stylesheet" href="../css/layout/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		
