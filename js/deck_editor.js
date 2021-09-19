@@ -131,10 +131,6 @@ function post_request_cards_maker(){
         indexed_array[n['name']] = n['value'];
     });
 
-	//console.log(JSON.stringify(indexed_array))
-
-	//console.log(JSON.stringify(unindexed_array));
-
 	let result = {};
 
 	// carico nel resultset le domande per ogni sezione eseguendo
@@ -151,8 +147,6 @@ function post_request_cards_maker(){
 			if(result[section] == null) result[section] = {};
 
 			// inserisco la domanda
-			//result[section][indexed_array[key]] = [pos];
-
 			let type = key.replace("question", "type");
 
 
@@ -171,43 +165,22 @@ function post_request_cards_maker(){
 		
 		if(key.includes("answer")){
 
-
-			//1_answer3_A
-
 			let section = "tab"+key.substr(0, key.indexOf("_")).toString();
 			//let pos = key.substr(key.lastIndexOf("_"), key.length -1).replace("_answer", "");
 
 			let pos = key.replace(section.replace("tab", "") + "_answer", "");
 			let letter = pos.substr( (pos.indexOf("_") + 1), pos.length-1);
 
-			//pos = pos.indexOf("_") != -1 ? pos.substr(0, pos.indexOf("_")) : pos;
 			pos = pos.replace("_", "").replace(letter, "");
-
-			//console.log(letter=="");
-			//console.log("continuo");
-
-			//console.log(JSON.stringify(result[section]));
+			
 			for (k in result[section]){
 				
-				//alert(result[section][k][1][0][0]);
 				if (result[section][k][1][0][0] == pos){
-					//console.log("k vale: "+ k);
-					//console.log(JSON.stringify(result));
-					//console.log(indexed_array[key]);
-
-					//TODO
-					//console.log(key);
-					result[section][k][1].push([indexed_array[key], indexed_array[key.replace("answer", "correct")]]);
-					
-					//result[section][k] = indexed_array[key];
-					
+					result[section][k][1].push([indexed_array[key], indexed_array[key.replace("answer", "correct")]]);					
 				}
 			}
 		}
 	}
-
-	//console.log(JSON.stringify(result));
-	//console.log("\n\n=====\n\n");
 
 	// per ogni tab del risultato
 	for (key in result){
@@ -220,13 +193,12 @@ function post_request_cards_maker(){
 		}
 	}
 
-	//console.log(JSON.stringify(result));
-
 
 	// le sezioni sono state caricate con i loro identificativi, adesso
 	// li sostituisco inserendovi i nomi reali
 	for(tab of document.getElementsByClassName("tab")){
 		if (tab.nodeName == "LABEL"){
+
 			// aggiungo la nuova key con i valori precedenti e rimuovo la vecchia
 			result[tab.innerText] = result[tab.getAttribute("for")];
 			delete result[tab.getAttribute("for")];
@@ -239,8 +211,6 @@ function post_request_cards_maker(){
 
 // richiamato in caso di successo della richiesta post
 function postSuccess(){
-	//document.getElementById("error_msg").innerText = "Salvato con successo!";
-	//document.getElementById("error_msg").style.color = "#4fc46e";
 
 	dialogbox({title: "Salvataggio avvenuto", content:"Complimenti! Le tue modifiche sono andate a buon fine."});
 
@@ -637,17 +607,7 @@ function addCard(btn, d){
 		container.appendChild(fake_input);
 		container.appendChild(fake_correct);
 
-
-		/*<input id='{$correct}' 
-		name='{$correct}' 
-		value='1' 
-		style='display:none;'  
-		form='deck_form' />
-		*/
-
 		
-
-		//textAreaHandler(q, a, lq, la);
 		textAreaHandler2(container);
 		btn.parentNode.parentNode.insertBefore(container, btn.parentNode); // serve per fare l'inserimento prima del bottone
 	}
@@ -669,8 +629,6 @@ function addCard(btn, d){
 		container.appendChild(fake_input);
 
 		let letters = ["A", "B", "C", "D"];
-
-		//q.setAttribute("grid-column-start", "span 2");
 
 		let sw = document.createElement("div");
 		sw.className = "check-to-radio";
@@ -732,20 +690,6 @@ function addCard(btn, d){
 			btn.parentNode.parentNode.insertBefore(container, btn.parentNode); // serve per fare l'inserimento prima del bottone
 		}
 	}
-		
-
-	
-
-	// aggiungo alla tab di riferimento gli elementi generati
-	/*btn.parentNode.appendChild(lq);
-	btn.parentNode.appendChild(la);
-	btn.parentNode.appendChild(q);
-	btn.parentNode.appendChild(a);*/
-
-	//btn.parentNode.appendChildBefore(container);
-	
-
-	// gesisco la variazione del testo nelle textarea per renderle dinamiche
 }
 
 // elimina in automatico le caselle di testo vuote se quelle sotto sono riempite,

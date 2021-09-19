@@ -136,11 +136,14 @@ html, body{
 	grid-template-columns: auto 1fr;
 	box-shadow: var(--box-shadow);
 	margin: 15pt;
-	margin-top: 5pt;
 
-	max-width: 400pt;
-	width: 100%;
+	/*max-width: 400pt;
+	width: 100%;*/
 
+	min-width: 300pt;
+	max-width: 500pt;
+	max-height: 220pt;
+	
 	background-color:var(--login-paper);
 	background-image: url("../../assets/wall_darker.svg");
 	background-size: 200pt;
@@ -150,26 +153,68 @@ html, body{
 	
 }
 
+
+#img {
+	margin-top: auto;
+	margin-bottom: auto;
+
+	max-height: 100pt !important;
+	min-width: 100pt !important;
+	min-height: 100pt !important;
+	padding-top: 100pt !important;
+	cursor: pointer;
+}
+
+
 #signin-container > label {
 	color: white;
 }
 
 #signin-content > h1 {
-	display: inline;
+	display: block;
 	width: max-content;
 	height: max-content;
+	
 	color: rgb(0, 0, 0);
 	font-size: 40pt;
 	text-shadow: var(--text-shadow-black);
 	font-weight: bold;
+
+	text-align: center;
+	margin-top: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#signin-content {
-	display: flex;
+#signin-content > p {
+	text-align: center;
+}
+
+#signin-content {	
+	/*display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	height: calc(100% - var(--footer-size));
+	justify-content: center;*/
+
+	display: grid;
+
+	grid-template-columns: 200pt 500pt;
+	grid-template-rows	: 1fr max-content 1fr;
+	/*height: calc(100% - var(--footer-size));*/
+	height: 100%;
+
+	width: max-content;
+	margin-left: auto;
+	margin-right: auto;
+	top: auto;
+	bottom: auto;
+}
+
+#signin-container > label {
+	display: block;
+	height: max-content;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 #signin-form {
@@ -182,3 +227,4 @@ html, body{
 	background-image: var(--login-background-image);
 	background-size: 25%;
 }	
+

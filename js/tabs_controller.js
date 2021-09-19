@@ -1,4 +1,4 @@
-
+// tiene traccia del numero di tab attive
 MAX_TAB	 = 0;
 
 window.addEventListener("load",function(){

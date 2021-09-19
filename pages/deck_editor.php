@@ -282,11 +282,13 @@
 <html>
 	<head>
 		<title>Deck edit</title>
+		<meta charset="utf-8">
 
 		<!-- style -->
 		<link rel="stylesheet" href="../css/layout/deck-editor.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		<link rel="stylesheet" href="../css/animations/animation.css">
+		
 		<!-- Jquery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

@@ -72,7 +72,7 @@ h3 {
 	margin-right: auto;
 
 	background-color: var(--game-question-background-color);
-	border-left: solid 5pt var(--game-question-background-color);
+	/*border-left: solid 5pt var(--game-question-background-color);*/
 }
 
 .user > img {
@@ -88,13 +88,12 @@ h3 {
 
 .user.master {
 	background-color: var(--false);
-	border-left: solid 5pt var(--false);
+	/*border-left: solid 5pt var(--false);*/
 }
 
 .user.player {
 	background-color: var(--secondary-color);
-	border-left: solid 5pt var(--secondary-color);
-	border-left: none;
+	/*border-left: solid 5pt var(--secondary-color);*/
 }
 
 

@@ -169,6 +169,8 @@
 <html>
 	<head>
 		<title>Unicards</title>
+		<meta charset="utf-8">
+		
 		<link rel="stylesheet" href="../css/layout/2-column-layout.css">
 		<link rel="stylesheet" href="../css/design.css">
 		<link rel="stylesheet" href="../css/theme.css">

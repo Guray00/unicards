@@ -27,25 +27,30 @@
 	<body>
 
 		
-		<form id="signin-form" method="POST" action="../php/signin.php">
+		<form name="signin" id="signin-form" method="POST" action="../php/signin.php">
 
-
+	
 			<div id="signin-content">
+
+			<br>
 			<h1>Registrati</h1>
+
+			<div class="img-container" id="img">
+				<img src="../assets/users/test@test.it.png"/>
+			</div>
+			
 				<div class="content-box" id="signin-container">
 
 					<label>Mail:</label> <input type="email" name="mail" required>
-					<label>Password:</label> <input type="password" name="password" required> 
-					<label>Conferma password:</label> <input type="password" name="password" required>
+					<label>Username:</label> <input type="text" name="mail" required>
+					<label>Password:</label> <input type="password" name="psw" required> 
+					<label>Conferma password:</label> <input type="password" name="psw-confirm" required>
 
-					<input type="submit" value="Iscriviti" name="signin" method="POST">
-
+					<button type="submit">Iscriviti!</button>
 				</div>	
+				<br>
 				<p>Sei già registrato? Torna al <a href="../pages/login.php">login</a></p>
 			</div>
-		
-			
-				
 
 		</form>
 

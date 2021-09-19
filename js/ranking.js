@@ -38,6 +38,7 @@ function updateSize(user, position){
 }
 
 
+
 window.addEventListener('load', ()=>{
 	setInterval(()=>{window.location = window.location; console.log("fatto");}, 5000);
 

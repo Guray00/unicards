@@ -248,10 +248,10 @@ function goToAnswer(id){
 	checkShowFinish();
 }
 
+// restituisce l'id della carta attiva
 function getActiveCardId(){
 	return document.getElementsByClassName("card-enabled")[0].id.replace("card", "");
 }
-
 
 // serve per inviare la risposta per le risposte multiple
 function sendAnswer(obj){

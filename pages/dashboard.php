@@ -54,6 +54,23 @@
 		$favourite_list =  $request->fetchAll(PDO::FETCH_ASSOC);
 
 
+		$query = "
+			select count(DISTINCT match_id) as total from `points` P, `match` M
+			where 
+				P.match_id = M.id and
+				M.status is not null and
+				M.status != 0 and
+				P.user = :user
+
+		";
+
+		// ottengo le informazioni sul mazzo
+		$request = $pdo->prepare($query);
+		$request->bindParam(':user', $_SESSION["session_mail"], PDO::PARAM_STR);
+		$request->execute();
+		$partite =  $request->fetch()["total"];
+
+
 		function make_deck_preview($deck, $favourite_id="preview_list_normal"){
 			$favourite = ($deck["favourite"] == NULL) ? "" : "checked";
 			$public    = ($deck["public"   ] == 1) ? "btn-lock-open" : "btn-lock-close";
@@ -154,7 +171,10 @@
 				<img src='<?php global $img; echo $img?>' onerror="this.src='../assets/users/default_black.svg'" />
 			</div>
 			
-			<p><?php echo "Nome utente: ".$_SESSION["session_username"]?></p>
+			<p><b>Nome utente:</b> <?php echo $_SESSION["session_username"]?></p>
+			<p><b>Mail:</b> <?php echo $_SESSION["session_mail"]?></p><br>
+			<p>Hai partecipato a un totale di <b><?php global $partite; echo $partite; ?></b> partite</p>
+
 		</div>
 
 		<!--  Footer  -->

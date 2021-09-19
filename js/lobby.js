@@ -1,16 +1,10 @@
 
-
+// funzione che consente di copiare il test
 function copyUrl(){
 	var copyText = document.getElementById("text-url");
-
-	/* Select the text field */
-	//copyText.select();
-	//copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-	/* Copy the text inside the text field */
   	navigator.clipboard.writeText(copyText.innerText);
 
-	  alert("Testo copiato!");
+	alert("Testo copiato!");
 }
 
 

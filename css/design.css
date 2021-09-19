@@ -79,7 +79,7 @@ label.tab {
 	align-items: center;
 	font-size: 12pt;
 	color: rgba(0, 0, 0, 0.397);
-	background-image: url("../assets/unselected_tab3.svg");
+	background-image: url("../assets/tabs/unselected_tab.svg");
 	background-repeat: no-repeat;
 }
 
@@ -100,7 +100,7 @@ input[type="radio"].tab {
 
 /*quando una tab è selezionata*/
 .tab:checked + label {
-	background-image: url("../assets/selected_tab3.svg");
+	background-image: url("../assets/tabs/selected_tab.svg");
 	font-weight: bold;
 	z-index: 2;
 }
@@ -109,7 +109,7 @@ input[type="radio"].tab {
 .tab:hover{
 	cursor: pointer;
 	outline: none;
-	background-image: url("../assets/tab_hover3.svg");
+	background-image: url("../assets/tabs/tab_hover.svg");
 }
 
 /*selettore di tab*/
@@ -139,15 +139,53 @@ input[type="radio"].tab {
 	border-radius: 0;
 	z-index: 0;
 	background-color: rgba(240, 248, 255, 0);
-	background-image: url("../assets/add_tab3.svg");
+	background-image: url("../assets/tabs/add_tab.svg");
 	background-repeat: no-repeat;
 }
 
 .add-tab:hover, .add-tab:active {
 	outline: none;
 	box-shadow: none;
-	background-image: url("../assets/add_tab_hover3.svg");
+	background-image: url("../assets/tabs/add_tab_hover.svg");
 }
+
+
+/**********************
+		IMAGE
+**********************/
+.img-container > img {
+	display: inline;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	max-width: 90%;
+	max-height: 90%;
+	min-width: 90%;
+	min-height: 90%;
+	
+	object-fit: cover;
+	object-position: center;
+	box-shadow: var(--box-shadow);
+	border-radius: 100%;
+
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.img-container {
+	/*background-color: red;*/
+	width: 100%;
+	padding-top: 100%; 
+	position: relative;
+	margin-bottom: 15pt;
+}
+
+
+
 
 
 
@@ -288,7 +326,7 @@ button:focus, input[type=submit]:focus{
 .btn-remove {	
 	padding: 0;
 	margin: 0;
-	background-image: url("../assets/trash-can.svg");
+	background-image: url("../assets/icons/trash-can.svg");
 	background-repeat: no-repeat;
 	background-size: contain;
 	border-radius: 50pt;
@@ -475,6 +513,11 @@ nav > a.unselected {
 	cursor: pointer;
 }
 
+nav  > p {
+	margin-right: auto;
+	font-weight: bolder;
+	font-style: italic;
+}
 
 /***********************
 		footer

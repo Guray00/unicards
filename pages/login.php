@@ -14,14 +14,19 @@
 
 		$phrases = [	"Un ottimo modo per studiare!", 
 						"Per chi si fa il mazzo!", 
-						"Per chi mette le carte cattedra!",
-						"Il tuo compagno di studio!"];
+						"Per chi mette le carte in cattedra!",
+						"Il tuo compagno di studio!", 
+						"Affrontare lo studio con le carte in regola!",
+						"Giocare per studio, studiare per gioco!"];
+
 		$p = $phrases[array_rand($phrases, 1)];
 ?>
 
 <html>
 	<header>
 		<title>unicards</title>
+		<meta charset="utf-8">
+		
 		<link rel="stylesheet" href="../css/layout/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		
@@ -32,6 +37,7 @@
 	<body>
 
 		<div id="login_container">
+			
 			<form id="login" method="POST" action="../php/login.php">
 				<h1>Login</h1>
 

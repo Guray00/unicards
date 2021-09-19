@@ -13,6 +13,7 @@
 
 
 <nav>
+	<p>UNICARDS</p>
 	<a <?php check($currentpage, "home")     ?>										>Home</a>
 	<a <?php check($currentpage, "dashboard")?>	href="../pages/dashboard.php" 	>Dashboard</a>
 	<a <?php check($currentpage, "about us" )?>									>Chi siamo</è>
