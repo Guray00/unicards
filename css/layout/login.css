@@ -14,6 +14,14 @@ input:invalid {
 	border: solid 2pt var(--selected);
 }
 
+
+h1 > a, h1 > a:visited {
+	color: black;
+	outline: none;
+	font-style: normal;
+	text-decoration: none;
+}
+
 /***********************
 		login page
 ************************/

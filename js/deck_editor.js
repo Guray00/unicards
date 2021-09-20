@@ -205,7 +205,7 @@ function post_request_cards_maker(){
 		}
 	}
 
-		console.log(JSON.stringify(result));
+		//console.log(JSON.stringify(result));
 	return result;
 }
 
@@ -236,7 +236,7 @@ function submitHandler(id, user){
 	let cards  = post_request_cards_maker();
 	let deck   = post_request_deck_maker(id, user);
 	
-	alert(JSON.stringify(deck));
+	//alert(JSON.stringify(deck)); // per debug
 
 	// eseguo la chiamata ajax passandovi le informazioni di sopra
 	$.ajax({
@@ -247,7 +247,7 @@ function submitHandler(id, user){
 		
 		// in caso di successo
 		success: function (data) {	
-			alert(data); /* da attivare in caso di debug */
+			//alert(data); /* da attivare in caso di debug */
 
 			// ricarichiamo la pagina una volta creata
 			if (data >= 0){
@@ -756,13 +756,11 @@ function goBack(){
 			content: "Tornando indietro tutte le modifiche effettuate non saranno salvate.",
 			
 			yes: function(){
-				//alert("yes");
 				REFRESH=false;
 				window.location.href='./dashboard.php';
 			},
 
 			no: function(){
-				//alert("not");
 			}
 		});
 

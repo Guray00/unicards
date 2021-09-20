@@ -70,7 +70,7 @@
 			</form>
 
 			<div id="login-side">
-				<h1>Unicards</h1>
+				<h1><a href="../pages/landing.html">Unicards</a></h1>
 				<h2><?php global $p; echo $p;?></h2>
 			</div>
 			

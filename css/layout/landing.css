@@ -50,8 +50,8 @@ html, body{
 
 dl > li {
 	font-size: 120%;
-	text-indent: -25px; /* key property */
-    margin-left: 25px; /* key property */
+	text-indent: -25px;
+    margin-left: 25px; 
 }
 
 
@@ -186,7 +186,7 @@ button {
 #amici {
 	color: whitesmoke;
 	background-color: #f29254;
-	background-image: url("../../assets/wall.svg");	
+	background-image: url("../../assets/wall2.svg");	
 	padding: 5%;
 }
 
