@@ -20,8 +20,8 @@
 		$p = $phrases[array_rand($phrases, 1)];
 ?>
 
-<html>
-	<header>
+<html lang="it">
+	<head>
 		<title>Unicards Login</title>
 		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
 		<meta charset="utf-8">
@@ -29,9 +29,9 @@
 		<link rel="stylesheet" href="../css/layout/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		
-		<script type="text/javascript" src="../js/alertbox.js"></script>
-		<script type="text/javascript" src="../js/login.js"></script>
-	</header>
+		<script src="../js/alertbox.js"></script>
+		<script src="../js/login.js"></script>
+	</head>
 
 
 	<body>
@@ -66,7 +66,7 @@
 				<input type="password" id="password" name="password"  class="login-text" placeholder="********" required>
 				<label id="msg"></label>
 				<div id="register" onclick="window.location.href='../pages/signin.php'">Registrati</div>
-				<input type="submit" id="btn-submit" value="Login" name="login" method="POST">
+				<input type="submit" id="btn-submit" value="Login" name="login">
 			</form>
 
 			<div id="login-side">

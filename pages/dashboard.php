@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<?php
 		// controlla se l'utente ha effettuato l'accesso
 		require("../php/utils.php");
@@ -105,8 +105,8 @@
 		<link rel="stylesheet" href="../css/theme.css">
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../js/dashboard.js"></script>
-		<script type="text/javascript" src="../js/alertbox.js"></script>
+		<script src="../js/dashboard.js"></script>
+		<script src="../js/alertbox.js"></script>
 	</head>
 
 	<!-- griglia -->

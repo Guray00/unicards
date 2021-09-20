@@ -279,7 +279,7 @@
 
 <!-- PAGE -->
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<title>Editor</title>
 		<meta charset="utf-8">
@@ -294,9 +294,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 		<!-- scripts -->
-		<script type="text/javascript" src="../js/tabs_controller.js"></script>
-		<script type="text/javascript" src="../js/deck_editor.js"></script>
-		<script type="text/javascript" src="../js/alertbox.js"></script>
+		<script src="../js/tabs_controller.js"></script>
+		<script src="../js/deck_editor.js"></script>
+		<script src="../js/alertbox.js"></script>
 
 	</head>
 

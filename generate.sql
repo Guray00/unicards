@@ -257,11 +257,11 @@ BEGIN
 		if _color  is NULL then set _color = "#6188f5"; END IF;
 		insert into deck(id, user, name, school, degree, public, color) values(_id, _user, _name, _school, _degree, _public, _color)
 			ON DUPLICATE KEY UPDATE
-				name   = _name,
-				school = _school,
-				degree = _degree,
-				public = _public,
-				color  = _color;
+				`name`   = _name,
+				`school` = _school,
+				`degree` = _degree,
+				`public` = _public,
+				`color`  = _color;
 		
 		-- restituisco l'id del nuovo inserimento
 		set response = LAST_INSERT_ID();

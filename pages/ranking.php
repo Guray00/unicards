@@ -145,7 +145,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<title>Unicards Ranking</title>
 		<meta charset="utf-8">
@@ -157,8 +157,8 @@
 		<link rel="stylesheet" href="../css/animations/animation.css">
 		<link rel="stylesheet" href="../css/layout/ranking.css">
 
-		<script type="text/javascript" src="../js/alertbox.js"></script>
-		<script type="text/javascript" src="../js/ranking.js"></script>
+		<script src="../js/alertbox.js"></script>
+		<script src="../js/ranking.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>

@@ -91,7 +91,7 @@
 			$img = "../assets/users/".$s["mail"];
 
 			echo "<div class = 'user content-box {$isMaster} {$isPlayer}' id='{$s["mail"]}'>
-					<img src='{$img}'onerror=\"this.src='../assets/users/default.svg'\" />
+					<img src='{$img}' onerror=\"this.src='../assets/users/default.svg'\" alt='avatar' />
 					<p>{$s["username"]}</p>
 				</div>";
 		}
@@ -99,8 +99,8 @@
 	}
 ?>
 
-
-<html>
+<!DOCTYPE html>
+<html lang="it">
 
 	<head>
 		<title>Unicards #<?php echo $_GET["id"];?></title>
@@ -113,8 +113,8 @@
 		<link rel="stylesheet" href="../css/layout/lobby.css">
 		<link rel="stylesheet" href="../css/elements/alertbox.css">
 
-		<script type="text/javascript" src="../js/alertbox.js"></script>
-		<script type="text/javascript" src="../js/lobby.js"></script>
+		<script src="../js/alertbox.js"></script>
+		<script src="../js/lobby.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
@@ -125,7 +125,7 @@
 
 		<div class="title">LOBBY #<?php getId();?></div>
 		<h2>Per aggiungere altri giocatori alla lobby invia il link che segue:</h2>
-		<h3><div id="text-url" onclick="copyUrl();"><?php getPath();?>?id=<?php echo getId();?></div> <button id="copy" onclick="copyUrl();">Copia</button></h3>
+		<div id="text-container"><div id="text-url" onclick="copyUrl();"><?php getPath();?>?id=<?php echo getId();?></div> <button id="copy" onclick="copyUrl();">Copia</button></div>
 		
 
 		

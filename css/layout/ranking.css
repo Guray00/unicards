@@ -55,8 +55,7 @@ p {
 
 	height: 100%;
 
-	/*margin-left: 10pt;*/
-	max-width: calc(100%-  10pt);
+	max-width: calc(100% - 10pt);
 	width: calc(100% - 50pt);
 
 	min-height: 25pt;

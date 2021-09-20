@@ -27,30 +27,30 @@ body {
 }
 
 
-h3 > div {
+#text-container > div {
 	display: inline-block;
 	background-color: rgba(255, 255, 255, 0.164);
 	padding: 3pt;
 }
 
 
-h3 > div:hover {
+#text-container > div:hover {
 	cursor: pointer;
 }
 
 
-h3 > button {
-	font-size: 14pt;
+#text-container > button {
+	font-size: 12pt;
 }
 
 
-h2, h3 {
+h2, #text-container {
 	color: var(--game-question-color);
 	font-weight: 100;
 }
 
 
-h3 {
+#text-container {
 	margin: 10pt;
 	margin-bottom: 20pt;
 	padding: 3pt;

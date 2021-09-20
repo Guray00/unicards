@@ -31,20 +31,9 @@ Il sito mette a disposizione due differenti modalità:
 
 In entrambi i casi, a fine partita verranno mostrati i punteggi e le statistiche (che verranno salvati nel database del sito).
 
-## Informazioni Mazzo
-Pagina che fornisce le informazioni relative a un mazzo; darà la possibilità di lasciare recensioni e vedere statistiche e gradimenti degli altri utenti.
 
 ## Dashboard
 La dashboard sarà la schermata principale alla quale l’utente potrà accedere una volta eseguito il login. Questa consentirà di navigare tra le schede del sito e mostrerà i mazzi creati e preferiti, con la possibilità di suddividerli mediante filtri appositi, come: corso, università ecc. La dashboard sarà dotata di navbar (per la navigazione) e sidebar (per mostrare le informazioni dell’utente e accedere alle impostazioni). Cliccando su un mazzo si potrà scegliere se aprire la schermata di gioco, l’editor o eseguire altre operazioni rapide (come aggiungerlo ai preferiti).
 
 ## Landing Page
 Pagina iniziale del sito, verrà mostrata una breve introduzione sul funzionamento dello stesso e sarà presente una barra di ricerca per trovare i mazzi creati dagli utenti. Tale ricerca avverrà in base a criteri come: nome, università, corso, popolarità ecc…
-
-## Statistiche
-Pagina in cui vengono mostrate le statistiche dei migliori utenti ordinati per punteggio.
-
-## Chi siamo
-Pagina di informazioni sul progetto in cui sono riportate le informazioni relative ai contatti e alla storia del sito.
-
-## Impostazioni
-Pagina che consente all’utente di modificare le proprie impostazioni; permette di scegliere il tema da applicare al sito e di modificare  le informazioni inserite in fase di registrazione come nome utente, password e-mail.

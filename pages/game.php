@@ -278,7 +278,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 	<head>
 		<title>Unicards</title>
 		<meta charset="utf-8">
@@ -289,8 +289,8 @@
 		<link rel="stylesheet" href="../css/design.css">
 		<link rel="stylesheet" href="../css/theme.css">
 
-		<script type="text/javascript" src="../js/game.js"></script>
-		<script type="text/javascript" src="../js/alertbox.js"></script>
+		<script src="../js/game.js"></script>
+		<script src="../js/alertbox.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>

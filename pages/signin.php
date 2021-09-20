@@ -11,7 +11,7 @@
 		}
 ?>
 
-<html>
+<html lang="it">
 	<head>
 		<title>unicards</title>
 		<meta charset="utf-8">
@@ -24,8 +24,8 @@
 		<link rel="stylesheet" href="../css/layout/login.css">
 
 		<!-- Script -->
-		<script type="text/javascript" src="../js/alertbox.js"></script>
-		<script type="text/javascript" src="../js/signin.js"></script>
+		<script src="../js/alertbox.js"></script>
+		<script src="../js/signin.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
 
