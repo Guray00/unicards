@@ -1,5 +1,7 @@
-Attenzione: il progetto è funzionante, per usufruire del database eseguire generate o generate_lower (chiavi con maz 255). 
+Attenzione: il progetto è funzionante, per usufruire del database eseguire generate o generate_lower (chiavi con max 255). 
 
 Una volta creato il database, creare config.php come nel file config_sample.php
 
 Nel caso in cui il sito dovesse dare l'errore "impossibile connettersi" è dovuto a un possibile file di configurazione config.php errato o PDO non abilitato.
+
+leggere inoltre readme.md
