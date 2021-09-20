@@ -140,6 +140,29 @@
 
 		<!-- Menu sinistro -->
 		<div class="left content-box">	
+
+			<div id="favourites-list">
+
+				<?php 
+
+					if (count($favourite_list) > 0){
+						$n = count($favourite_list);
+
+						echo "<h1>Preferiti ({$n})</h1>
+								<div class='deck_container'>";
+
+								for ($i = 0;  $i < count($favourite_list); $i++) {
+									$favourite_list[$i]["favourite"] = "checked";
+									make_deck_preview($favourite_list[$i], "deck_favourite_list");
+								}
+
+						echo "</div>";
+					}
+				
+				?>
+				
+			</div>
+
 			<div id="your-deck-list">
 				<h1>I tuoi mazzi (<?php echo count($deck_list);?>)</h1>
 				<div class="deck_container">
@@ -153,18 +176,7 @@
 					
 				</div>
 			</div>
-			<div id="favourites-list">
-				<h1>Preferiti (<?php echo count($favourite_list);?>)</h1>
-				<div class="deck_container">
-
-					<?php 
-						for ($i = 0;  $i < count($favourite_list); $i++) {
-							$favourite_list[$i]["favourite"] = "checked";
-							make_deck_preview($favourite_list[$i], "deck_favourite_list");
-						}
-					?>
-				</div>
-			</div>
+			
 			
 		</div>
 
