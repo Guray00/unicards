@@ -4,13 +4,11 @@
 		// controlla se l'utente ha effettuato l'accesso
 		require("../php/utils.php");
 		
+		// se il login è già avvenuto reindirizza al menu
 		if (_isLogged()){
-			echo "Utente già connesso <br>";
-			echo '<a href="../php/logout.php">disconnetti</a>';
-			header("location: ./dashboard.php");
+			header("location: ../pages/dashboard.php");
 			exit();
 		}
-
 
 		$phrases = [	"Un ottimo modo per studiare!", 
 						"Per chi si fa il mazzo!", 
@@ -31,11 +29,31 @@
 		<link rel="stylesheet" href="../css/layout/login.css">
 		<link rel="stylesheet" href="../css/theme.css">
 		
+		<script type="text/javascript" src="../js/alertbox.js"></script>
 		<script type="text/javascript" src="../js/login.js"></script>
 	</header>
 
 
 	<body>
+
+	<?php 
+		// se viene passato un codice restituisce un messaggio
+		if (isset($_GET) && isset($_GET["code"])){
+
+			// login errato
+			if ($_GET["code"] == -1){
+				echo '	<script type="text/javascript">',
+						'okbox({
+							title: "Credenziali Errate", 
+							content:"Mi dispiace, non è possibile fare l\'accesso. Controlla che le credenziali inserite siano giuste.",
+				
+							ok: function(){}
+						});',
+						'</script>'
+					;
+			} 
+		}
+	?>
 
 		<div id="login_container">
 			
@@ -43,9 +61,9 @@
 				<h1>Login</h1>
 
 				<label id="lbl_mail">Mail:</label> 
-				<input type="email" id="mail_txt" class="login-text" name="mail" required>
+				<input type="email" id="mail_txt" class="login-text" name="mail" placeholder="user@mail.com" required>
 				<label id="lbl_password">Password:</label> 
-				<input type="password" id="password" name="password"  class="login-text" required>
+				<input type="password" id="password" name="password"  class="login-text" placeholder="********" required>
 				<label id="msg"></label>
 				<div id="register" onclick="window.location.href='../pages/signin.php'">Registrati</div>
 				<input type="submit" id="btn-submit" value="Login" name="login" method="POST">

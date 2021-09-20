@@ -153,6 +153,10 @@
 }
 
 
+#upload, #fake-url {
+	display: none;
+}
+
 /* COLORI */
 .left, .right {
 	background-color: var(--dashboard-paper-color);
@@ -180,4 +184,9 @@ nav > a.unselected {
 
 nav {
 	background-color: var(--dashboard-paper-color);
+}
+
+
+.img-container > img {
+	cursor: pointer;
 }

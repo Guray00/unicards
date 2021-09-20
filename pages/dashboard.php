@@ -89,7 +89,7 @@
 		}
 
 
-		$img = "../assets/users/".$_SESSION["session_mail"].".png";
+		$img = "../assets/users/".$_SESSION["session_mail"];
 	?>
 
 	<head>
@@ -171,13 +171,14 @@
 		<!--  Menu destro  -->
 		<div  class="right side-box">
 			<div class="img-container">
-				<img src='<?php global $img; echo $img?>' onerror="this.src='../assets/users/default_black.svg'" />
+				<img src='<?php global $img; echo $img?>' onerror="this.src='../assets/users/default_black.svg'" alt="Avatar" />
+				<input name="upload" value="" id="fake-url">
+				<input type="file" id="upload" class=".img-chooser" accept="image/*">
 			</div>
 			
 			<p><b>Nome utente:</b> <?php echo $_SESSION["session_username"]?></p>
 			<p><b>Mail:</b> <?php echo $_SESSION["session_mail"]?></p><br>
 			<p>Hai partecipato a un totale di <b><?php global $partite; echo $partite; ?></b> partite</p>
-
 		</div>
 
 		<!--  Footer  -->

@@ -139,8 +139,35 @@ function openMenu(id, user, name, color, mail){
 			}
 		});
 	};
-
 }
+
+
+
+function changeImage(upload){
+
+
+	$.ajax({
+		type: "POST",
+		url: "../php/save_avatar.php",
+		data: {upload:upload},
+
+		
+		// in caso di successo
+		success: function (data) {	
+
+		},
+
+		// in caso di errore
+		error: function (xhr, ajaxOptions, thrownError) {
+			postError();
+			//alert(xhr.status);
+			//alert(thrownError);
+		}
+	});
+}
+
+
+
 
 function closeMenu(){
 	document.getElementById("choose-mod").style.display = "none";
@@ -150,3 +177,35 @@ function closeMenu(){
 function edit_deck(id, user){
 	window.location.replace("../pages/deck_editor.php?id="+id+"&user="+user);
 }
+
+
+
+window.addEventListener('load',function(){
+
+	$(".img-container > img").click(function(){
+			document.getElementById("upload").click();
+	});
+
+
+
+	document.getElementById("upload").onchange = function() {
+
+		// serve per caricare l'immagine
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+
+			// cambia l'anteprima
+			document.getElementsByClassName("img-container")[0].children[0].src = e.target.result;
+
+			// imposta il fake input per salvare l'immagine
+			document.getElementsByClassName("img-container")[0].children[1].value = e.target.result;
+		
+			changeImage(e.target.result);
+		}
+
+		reader.readAsDataURL(this.files[0]);
+	}
+
+
+});

@@ -111,10 +111,6 @@ input:invalid {
 	justify-self:flex-end;
 }
 
-/*.login-text {
-	width: 150pt;
-}*/
-
 
 #register {
 	font-style: italic;
@@ -200,16 +196,11 @@ input:invalid {
 }
 
 #signin-content {	
-	/*display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;*/
 
 	display: grid;
 
 	grid-template-columns: 200pt 500pt;
 	grid-template-rows	: 1fr max-content 1fr;
-	/*height: calc(100% - var(--footer-size));*/
 	height: 100%;
 
 	width: max-content;
@@ -237,3 +228,29 @@ input:invalid {
 	background-size: 25%;
 }	
 
+#img-port{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.img-container > img {
+	background-color: var(--login-paper);
+	cursor: pointer;
+}
+
+
+#upload {
+	display: block;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#btn-signin {
+	margin-left: auto;
+	width: max-content;
+}
+
+#fake-url {
+	display: none;
+}

@@ -3,6 +3,34 @@ require("utils.php");
 require_once('database.php');
 
 
+/*
+	funzione che consente di inviare un'immagine al server
+	e salvarla al suo interno, in modo da poterla recuperare
+	in seguito nelle pagine che seguono.
+*/
+
+
+// https://stackoverflow.com/questions/15153776/convert-base64-string-to-an-image-file
+function base64_to_jpeg($base64_string, $output_file) {
+    
+	// apre in lettura il file
+    $ifp = fopen( $output_file, 'wb' ); 
+
+    // divide il contenuto della stringa per eliminare il tag
+    $data = explode( ',', $base64_string );
+
+    // scrive nel file
+    fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+
+    // chiude il file
+    fclose( $ifp ); 
+
+	// restituisce il file
+    return $output_file; 
+}
+
+
+
 if (isset($_POST['signin'])) {
 
 	// recupero mail, password e username
@@ -17,21 +45,15 @@ if (isset($_POST['signin'])) {
     
 	// controllo se i campi sono vuoti
     if (empty($mail) || empty($password)) {
-        /*$msg = 'Compila tutti i campi %s';*/
 		header("location: ../pages/signin.php?code=-2");
     } 
 	
 	elseif (false === $isUsernameValid) {
-        /*$msg = 'L\'username non è valido. Sono ammessi solamente caratteri 
-                alfanumerici e l\'underscore. Lunghezza minina 3 caratteri.
-                Lunghezza massima 20 caratteri %s';*/
 		header("location: ../pages/signin.php?code=-2");
     } 
 	
 	// controllo la lunghezza della password
 	elseif ($pwdLenght < 8 || $pwdLenght > 20) {
-        /*$msg = 'Lunghezza minima password 8 caratteri.
-                Lunghezza massima 20 caratteri %s';*/
 		header("location: ../pages/signin.php?code=-2");
     } 
 	
@@ -51,7 +73,7 @@ if (isset($_POST['signin'])) {
         $user = $check->fetchAll(PDO::FETCH_ASSOC);
         
         if (count($user) > 0) {
-           // $msg = 'Mail già in uso %s';
+		   header("location: ../pages/signin.php?code=0");
         } 
 		
 		else {
@@ -70,6 +92,12 @@ if (isset($_POST['signin'])) {
             if ($check->rowCount() > 0) {
                 //$msg = 'Registrazione eseguita con successo %s';
 				//header("location: ../pages/login.php");
+
+				// carica la foto
+				if ($_POST["upload"] != "")
+					base64_to_jpeg($_POST["upload"], "../assets/users/".$mail);
+
+				// rimanda alla pagina confermando l'avvenuto
 				header("location: ../pages/signin.php?code=1");
 
             } else {
@@ -78,6 +106,4 @@ if (isset($_POST['signin'])) {
             }
         }
     }
-    
-	//printf($msg, '<a href="../pages/signin.php">torna indietro</a>');
 }

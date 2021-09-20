@@ -5,7 +5,7 @@
 	include_once("../php/libs/Browser.php");
 
 	
-
+	// inserisce nella tabella delle sessioni
 	function insert_session_table($id, $mail){
 		global $pdo;
 
@@ -29,7 +29,8 @@
 		
 		// se non sono specificati mail e password
 		if (empty($mail) || empty($password)) {
-			$msg = 'Inserisci username e password %s';
+			//$msg = 'Inserisci username e password %s';
+			header('Location: ../pages/login.php?code=-1');
 		} 
 		
 		else {
@@ -50,7 +51,8 @@
 			// controllo se la password inserita è corretta
 			if (!$user || password_verify($password, $user["password"]) === false) {
 				//$password_hash = password_hash($password, PASSWORD_BCRYPT);
-				$msg = 'Credenziali utente errate %s';
+				//$msg = 'Credenziali utente errate %s';
+				header('Location: ../pages/login.php?code=-1');
 			} 
 			
 			else {
@@ -62,11 +64,11 @@
 
 				insert_session_table(session_id(), $user['mail']);
 				header('Location: ../pages/dashboard.php');
-				exit;
+				exit();
 			}
 		}
 		
-		printf($msg, '<a href="../pages/login.php">torna indietro</a>');
+		//printf($msg, '<a href="../pages/login.php">torna indietro</a>');
 	}
 
 ?>

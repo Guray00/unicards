@@ -2,18 +2,9 @@
 	require("../php/utils.php");
 	require_once("../php/database.php");
 
-
 	$match_id = $_GET["id"];
 
-
-
-	
-	
-
 	function createUser($username, $position, $user, $correct, $wrong, $skip){
-
-		//$total = $correct + $wrong + $skip;
-		//echo $wrong;
 
 
 		$total = $correct + $wrong + $skip;
@@ -136,18 +127,6 @@
 		$q1->bindParam(':match_4', $match_id, PDO::PARAM_STR);
 		$q1->execute();
 		$result =  $q1->fetchAll(PDO::FETCH_ASSOC);
-
-
-		/*$query = "(
-					select count(DISTINCT S.card_id) as total
-					from section S, `match` M, card C
-					WHERE S.deck_id = M.deck_id and M.id = :match and M.mode <= C.type and C.id = S.card_id
-				);";
-
-		$q1 = $pdo->prepare($query);
-		$q1->bindParam(':match', $match_id, PDO::PARAM_STR);
-		$q1->execute();
-		$total =  $q1->fetch()["total"];*/
 
 
 		$username = "";
