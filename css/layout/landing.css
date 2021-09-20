@@ -40,7 +40,7 @@ html, body{
 }
 
 
-.big-container > dl {
+.big-container > ul {
 	width: max-content;
 	text-align: left;
 	margin-left: auto;
@@ -48,23 +48,10 @@ html, body{
 	max-width: 60%;
 }
 
-dl > li {
+ul > li {
 	font-size: 120%;
-	text-indent: -25px;
-    margin-left: 25px; 
 }
 
-/* firefox, non sono a conoscenza del motivo, lascia
-	un px dal margine dell'immagine (svg) rendendo
-	sgradevole la vista
-*/
-@-moz-document url-prefix() {
-	dl > li {
-		font-size: 120%;
-		text-indent: 0 !important;
-		margin-left: 0 !important; 
-	}
-}
 
 
 .tre-elementi {
@@ -119,7 +106,7 @@ dl > li {
 
 #titolo {
 	display: flex;
-	height: 35vh !important;
+	height: 45vh !important;
 	align-items: center;
   	justify-content: center;	
 }

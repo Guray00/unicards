@@ -38,7 +38,7 @@
 
 						<div class='section-info-div'>
 							<label id='1_lbl_section'>Nome sezione:</label>
-							<input class='section_name' id='1_section_name' type='text' value='Untitled' required oninvalid='onInvalidText()'></input>
+							<input class='section_name' id='1_section_name' type='text' value='Untitled' required oninvalid='onInvalidText()'>
 						</div>
 
 						<div class='card-div'>
@@ -70,7 +70,7 @@
 
 					<div class='section-info-div'>
 						<label id='1_lbl_section'>Nome sezione:</label>
-						<input class='section_name' id='{$tab_number}_section_name' type='text' value='{$section}' required oninvalid='onInvalidText()'></input>
+						<input class='section_name' id='{$tab_number}_section_name' type='text' value='{$section}' required oninvalid='onInvalidText()'>
 					</div>
 					";
 
@@ -308,7 +308,7 @@
 
 				<div id = "menu" class="content-box">				
 					<h1>Creazione del mazzo</h1>
-					<label id="deck_editor_lbl_id" name="deck_id"><?php if(isset($_GET["id"])) echo "#".$_GET["id"]; ?></label>
+					<label id="deck_editor_lbl_id"><?php if(isset($_GET["id"])) echo "#".$_GET["id"]; ?></label>
 					<h2>Inserisci le informazioni per procedere</h2>
 					<div id="preview" style=<?php echo '"background-color:'.$color.';"'; ?> ><label id="lbl_preview"><?php echo $name;?></label></div>
 
