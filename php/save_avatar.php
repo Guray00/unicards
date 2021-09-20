@@ -21,6 +21,7 @@
 
 	}
 
+	// salva l'immagine se sono stati passati i parametri correttamente
 	if(isset($_SESSION["session_mail"]) && isset($_POST["upload"])){
 		base64_to_jpeg($_POST["upload"], "../assets/users/".$_SESSION["session_mail"]);
 	}

@@ -318,11 +318,6 @@ button:hover, input[type=submit]:hover {
 }
 
 
-/*
-button:focus, input[type=submit]:focus{
-	outline: none;
-}*/
-
 .btn-remove {	
 	padding: 0;
 	margin: 0;
