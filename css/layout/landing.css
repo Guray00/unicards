@@ -1,6 +1,6 @@
 @import "../design.css";
 @import "../theme.css";
-
+@import "../fonts.css";
 
 html, body{
 	height: 100%;
@@ -52,6 +52,18 @@ dl > li {
 	font-size: 120%;
 	text-indent: -25px;
     margin-left: 25px; 
+}
+
+/* firefox, non sono a conoscenza del motivo, lascia
+	un px dal margine dell'immagine (svg) rendendo
+	sgradevole la vista
+*/
+@-moz-document url-prefix() {
+	dl > li {
+		font-size: 120%;
+		text-indent: 0 !important;
+		margin-left: 0 !important; 
+	}
 }
 
 
@@ -215,4 +227,12 @@ img {
 
 .elemento > p {
 	text-shadow: var(--text-shadow);
+}
+
+a:visited {
+	color: yellow;
+}
+
+a {
+	color:rgb(255, 255, 255);
 }
