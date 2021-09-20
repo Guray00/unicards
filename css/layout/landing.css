@@ -158,11 +158,10 @@ button {
 
 
 
-#anteprima {
+#anteprima,  #opensource {
 	background-color: var(--login-paper);	
 	color: whitesmoke;
 	background-image: url("../../assets/wall_darker.svg");
-
 }
 
 #flashcards {

@@ -167,12 +167,19 @@
 
 						<!-- pulsanti di gioco -->
 						<div class= 'buttons-box'>
+
+							<!--
 							<div class='back'>
 							</div>
+							-->
+
 							<div class='play' {$onclick}>
 							</div>
+
+							<!--
 							<div class='skip'>
 							</div>
+							-->
 						</div>
 
 						<!-- pulsante di fine partita -->

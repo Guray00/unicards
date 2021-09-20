@@ -16,8 +16,8 @@ function slideBackground() {
 		bg3.style.backgroundPosition = x + 'px ' + x+"px";
 		bg4.style.backgroundPosition = (x*(-0.3)) + 'px ' +(x*(-0.3)) +"px";
 		bg5.style.backgroundPosition = x + 'px ' + x+"px";
-		x-=0.25;
-	}, 10);
+		x-=0.4;
+	}, 40);
 	
 }
 
