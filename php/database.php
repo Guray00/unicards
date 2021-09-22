@@ -1,7 +1,7 @@
 <?php
 
 	// carica le configurazioni del sito
-	$config = include("../php/config.php");
+	$config = include(__DIR__."/config.php");
 
 	// si connette al database
 	$db_config = $config['db_engine'] . ":host=".$config['db_host'] . ";dbname=" . $config['db_name'];
