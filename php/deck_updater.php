@@ -19,6 +19,9 @@
 			$deck[$key] = trim($value);
 		}
 
+		// Ripulisco l'id se è pari a null
+		if (strtoupper($deck["id"]) == "NULL") $deck["id"] = NULL;
+
 		// rendo la prima lettera del nome di un mazzo uppercase
 		$deck["name"] = ucfirst($deck["name"]);
 
