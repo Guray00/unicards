@@ -34,9 +34,9 @@ function base64_to_jpeg($base64_string, $output_file) {
 if (isset($_POST['signin'])) {
 
 	// recupero mail, password e username
-    $mail     = $_POST['mail'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $username = $_POST['username'] ?? '';
+    $mail     = $_POST['mail'];
+    $password = $_POST['password'];
+    $username = $_POST['username'];
 
    	$isUsernameValid = true;
 	$pwdLenght = mb_strlen($password);
