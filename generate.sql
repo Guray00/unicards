@@ -241,13 +241,13 @@ BEGIN
     		select -1
     		into response
 			from deck
-    		where name = _name AND user = _user limit 1;
+    		where `name` = _name AND `user` = _user limit 1;
 
 	ELSE
     		select -1
     		into response
 			from deck
-    		where name = _name AND user = _user AND id<>_id limit 1;
+    		where `name` = _name AND `user` = _user AND `id`<>_id limit 1;
 	END IF;
 
 	-- se non ci sono già deck con lo stesso nome
@@ -255,7 +255,7 @@ BEGIN
 
 		if _public is NULL then set _public=0; END IF;
 		if _color  is NULL then set _color = "#6188f5"; END IF;
-		insert into deck(id, user, name, school, degree, public, color) values(_id, _user, _name, _school, _degree, _public, _color)
+		insert into deck(`id`, `user`, `name`, `school`, `degree`, `public`, `color`) values(_id, _user, _name, _school, NULL, _public, _color)
 			ON DUPLICATE KEY UPDATE
 				`name`   = _name,
 				`school` = _school,
