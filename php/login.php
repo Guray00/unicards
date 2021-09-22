@@ -24,8 +24,8 @@
 	
 	// funziona solamente se viene fatta una richiesta post di login
 	if (isset($_POST['login'])) {
-		$mail 		= $_POST['mail'] ?? '';
-		$password 	= $_POST['password'] ?? '';
+		$mail 		= $_POST['mail'];
+		$password 	= $_POST['password'];
 		
 		// se non sono specificati mail e password
 		if (empty($mail) || empty($password)) {
